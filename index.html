@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Veylor</title>
+<meta name="description" content="Veylor is a private, self-custody Zcash wallet.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<style>
+  :root { --bg: #000; --text: #ececec; --muted: #8c8c8c; --red: #ff2b3d; --rule: #222; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 300 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 72px 16px 48px; }
+  .mark {
+    font-weight: 100; font-size: 44px; letter-spacing: 0.45em; margin: 0 0 8px;
+    color: var(--red); text-shadow: 0 0 8px rgba(255, 43, 61, 0.7), 0 0 24px rgba(255, 43, 61, 0.35);
+  }
+  .tagline { font-size: 20px; margin: 0 0 32px; }
+  h2 {
+    font-weight: 400; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--red); margin: 40px 0 8px; padding-top: 24px; border-top: 1px solid var(--rule);
+  }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  a { color: var(--red); }
+  footer { color: var(--muted); font-size: 14px; margin-top: 48px; }
+</style>
+</head>
+<body>
+<main>
+<h1 class="mark">VEYLOR</h1>
+<p class="tagline">A private, self-custody Zcash wallet.</p>
+
+<p>Your keys stay on your phone and there is no account to make. Transactions are shielded by default, so amounts, addresses and history stay private.</p>
+<ul>
+  <li>Send and receive ZEC, shielded by default</li>
+  <li>Private USD: dollars held privately on Ethereum through Railgun, converted to and from shielded ZEC</li>
+  <li>Swaps with other assets through NEAR Intents</li>
+  <li>Keystone and Ledger hardware wallets</li>
+  <li>Tor and Private queries</li>
+</ul>
+<p>Veylor is in beta on iPhone through TestFlight.</p>
+
+<h2 id="support">Support</h2>
+<p>Questions, feedback or problems: <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>. Never send anyone your recovery phrase, keys or passcode.</p>
+
+<h2>Privacy</h2>
+<p>Veylor collects no data about you. Read the <a href="/privacy/">privacy policy</a>.</p>
+
+<footer>Built on the open-source Vizor wallet. &copy; 2026 Zapp LLC</footer>
+</main>
+</body>
+</html>
