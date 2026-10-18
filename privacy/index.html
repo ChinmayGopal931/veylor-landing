@@ -5,47 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Veylor Privacy Policy</title>
 <meta name="description" content="How the Veylor Zcash wallet handles your information.">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="/icon.png">
-<style>
-  :root {
-    --bg: #ffffff;
-    --text: #1a1a1a;
-    --muted: #5c5c5c;
-    --accent: #c4001a;
-    --rule: #e4e4e4;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #000000;
-      --text: #ececec;
-      --muted: #9a9a9a;
-      --accent: #ff2b3d;
-      --rule: #262626;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
-  h1 { font-weight: 300; font-size: 32px; letter-spacing: 0.04em; margin: 0 0 4px; }
-  h2 {
-    font-weight: 400; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); margin: 40px 0 8px; padding-top: 24px; border-top: 1px solid var(--rule);
-  }
-  .updated { color: var(--muted); margin: 0 0 24px; }
-  ul { padding-left: 20px; }
-  li { margin: 6px 0; }
-  code { font-size: 14px; overflow-wrap: anywhere; }
-  a { color: var(--accent); }
-</style>
+<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<main>
-<p><a href="/">Veylor</a></p>
+<main class="doc">
+<a class="doc-home" href="/" aria-label="Veylor home">
+  <svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true">
+    <defs>
+      <path id="vw" d="M0 0L4 14L6 14L10 0M24.5 0L14.5 0L14.5 14L24.5 14M17.1 7L23 7M29 0L34 7L39 0M34 7L34 14M43.5 0L43.5 14L53.5 14M61 0L68 0L68 11L65 14L58 14L58 3ZM72.5 14L72.5 0L80 0L82.5 2.5L82.5 4.5L80 7L72.5 7M79 7L82.5 10.5L82.5 14"/>
+      <filter id="vw-halo" x="-20%" y="-90%" width="140%" height="280%"><feGaussianBlur stdDeviation="1.6"/></filter>
+      <filter id="vw-glow" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="0.45"/></filter>
+    </defs>
+    <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+      <use href="#vw" class="halo" filter="url(#vw-halo)"/>
+      <use href="#vw" class="glow" filter="url(#vw-glow)"/>
+      <use href="#vw" class="core"/>
+    </g>
+  </svg>
+</a>
 <h1>Veylor Privacy Policy</h1>
 <p class="updated">Last updated: October 17, 2026</p>
 
@@ -127,5 +107,12 @@
 <h2>17. Contact</h2>
 <p>Zapp LLC, <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>.</p>
 </main>
+<footer class="site-footer">
+  <span>&copy; 2026 Zapp LLC</span>
+  <nav aria-label="Footer">
+    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
+    <a href="/">Home</a>
+  </nav>
+</footer>
 </body>
 </html>

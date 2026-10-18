@@ -1,0 +1,213 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/montserrat-latin.woff2") format("woff2");
+  font-weight: 100 400;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --panel: #070707;
+  --text: #ececec;
+  --muted: #a3a3a3;
+  --red: #ff2e3e;
+  --red-hot: #ff5966;
+  --red-core: #ffb7bd;
+  --red-deep: #6e0b15;
+  --rule: #1d1d1d;
+  --cut: 14px;
+  --font: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 300 17px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--red-hot); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, .btn:focus-visible { outline: 1px solid var(--red-core); outline-offset: 4px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* HUD captions: spaced uppercase red, as the app's section heads. */
+.hud {
+  font-weight: 300; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--red); text-shadow: 0 0 10px rgba(255, 46, 62, 0.55);
+  margin: 0;
+}
+
+/* The VEYLOR tube: halo, glow and core, as Neon.strokeTube. */
+.wordmark { display: block; overflow: visible; }
+.wordmark .halo { stroke: var(--red); stroke-opacity: 0.28; stroke-width: 4.75; }
+.wordmark .glow { stroke: var(--red); stroke-opacity: 0.75; stroke-width: 2.09; }
+.wordmark .core { stroke: var(--red-core); stroke-width: 0.95; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; isolation: isolate; }
+.hero-top {
+  position: relative; z-index: 2; flex: 1 0 auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 72px 20px 32px;
+}
+.hero h1 { margin: 0; }
+.hero .wordmark { width: min(82vw, 560px); height: auto; }
+.hero .hud { margin-top: 36px; }
+.tagline { font-weight: 100; font-size: clamp(30px, 5.2vw, 50px); line-height: 1.12; letter-spacing: 0.01em; margin: 14px 0 0; }
+.lede { color: var(--muted); max-width: 30em; margin: 14px auto 0; }
+.cta { display: flex; gap: 14px 22px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 34px; }
+
+.btn-glow { filter: drop-shadow(0 0 10px rgba(255, 46, 62, 0.55)) drop-shadow(0 0 26px rgba(255, 46, 62, 0.22)); }
+.btn {
+  --c: 11px;
+  display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 26px;
+  font: 400 13px/1 var(--font); letter-spacing: 0.26em; text-transform: uppercase;
+  background: var(--red); color: #fff;
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  transition: background 0.2s ease;
+}
+.btn:hover { background: var(--red-hot); text-decoration: none; }
+.link-hud { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--text); }
+.link-hud:hover { color: var(--red-hot); text-decoration: none; }
+
+/* The horizon: a striped sun setting into a flowing grid. */
+.scene { position: relative; z-index: 1; height: max(230px, 40svh); }
+.sun-glow {
+  position: absolute; left: 50%; bottom: 62%; width: min(110vw, 680px); aspect-ratio: 1;
+  transform: translate(-50%, 50%);
+  background: radial-gradient(circle, rgba(255, 46, 62, 0.32) 0%, rgba(255, 46, 62, 0.1) 36%, transparent 64%);
+}
+.sun {
+  position: absolute; left: 50%; bottom: 62%; width: min(62vw, 380px); aspect-ratio: 1; border-radius: 50%;
+  transform: translate(-50%, 50%);
+  background: linear-gradient(to bottom, #ff9aa3 0%, var(--red) 30%, #b80d1d 50%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 23%, transparent 23% 25%, #000 25% 31%, transparent 31% 34%, #000 34% 38.5%, transparent 38.5% 42.5%, #000 42.5% 45.5%, transparent 45.5%);
+  mask-image: linear-gradient(to bottom, #000 0 23%, transparent 23% 25%, #000 25% 31%, transparent 31% 34%, #000 34% 38.5%, transparent 38.5% 42.5%, #000 42.5% 45.5%, transparent 45.5%);
+}
+.floor { position: absolute; left: 0; right: 0; top: 38%; bottom: 0; overflow: hidden; background: #000; perspective: 300px; perspective-origin: 50% 0; }
+.floor::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; z-index: 2;
+  background: var(--red-hot); box-shadow: 0 0 10px var(--red), 0 0 28px rgba(255, 46, 62, 0.7);
+}
+.floor::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, #000 0%, transparent 32%), linear-gradient(to top, #000 0%, transparent 30%);
+}
+.grid {
+  position: absolute; left: -100%; width: 300%; top: 0; height: 290px;
+  transform-origin: 50% 0; transform: rotateX(76deg);
+  background-image:
+    linear-gradient(90deg, rgba(255, 46, 62, 0.65) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 46, 62, 0.65) 1px, transparent 1px);
+  background-size: 46px 46px;
+  animation: flow 1.15s linear infinite;
+}
+@keyframes flow { to { background-position: 0 46px; } }
+
+/* Switch-on: the core traces the letters, then the tube flickers alight. */
+.wordmark .core { stroke-dasharray: 1 1; stroke-dashoffset: 1; animation: trace 1.7s cubic-bezier(0.6, 0, 0.2, 1) 0.25s forwards; }
+.wordmark .halo, .wordmark .glow { opacity: 0; animation: ignite 1.2s linear 1.45s forwards; }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+@keyframes ignite {
+  0% { opacity: 0; } 7% { opacity: 0.9; } 10% { opacity: 0.1; } 17% { opacity: 0.85; } 20% { opacity: 0.25; }
+  29% { opacity: 1; } 33% { opacity: 0.55; } 40%, 100% { opacity: 1; }
+}
+.wordmark.lit .core { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+.wordmark.lit .halo, .wordmark.lit .glow { animation: none; opacity: 1; }
+.rise { opacity: 0; transform: translateY(14px); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+.rise.d1 { animation-delay: 1.9s; } .rise.d2 { animation-delay: 2.05s; } .rise.d3 { animation-delay: 2.2s; } .rise.d4 { animation-delay: 2.35s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ---------- Sections ---------- */
+.section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 88px 20px; }
+.section .title { font-weight: 100; font-size: clamp(28px, 4.2vw, 42px); line-height: 1.15; margin: 12px 0 32px; }
+.prose { max-width: 36em; color: var(--muted); }
+.prose strong { color: var(--text); font-weight: 400; }
+
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.card {
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 46, 62, 0.85), rgba(255, 46, 62, 0.14) 38%, rgba(255, 255, 255, 0.09));
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+}
+.card-in {
+  height: 100%; padding: 26px 24px 28px; background: var(--panel);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+}
+.card h3 { font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: #fff; margin: 18px 0 8px; }
+.card p { margin: 0; font-size: 15px; color: var(--muted); }
+.glyph {
+  width: 30px; height: 30px; display: block; fill: none; stroke: var(--red-hot); stroke-width: 1.5;
+  stroke-linecap: square; stroke-linejoin: miter; filter: drop-shadow(0 0 5px rgba(255, 46, 62, 0.8));
+}
+
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.js .reveal.in { opacity: 1; transform: none; }
+.cards .reveal:nth-child(2) { transition-delay: 0.08s; } .cards .reveal:nth-child(3) { transition-delay: 0.16s; }
+.cards .reveal:nth-child(5) { transition-delay: 0.08s; } .cards .reveal:nth-child(6) { transition-delay: 0.16s; }
+
+.beta { text-align: center; }
+.beta .title { margin-bottom: 12px; }
+.beta .prose { margin: 0 auto; }
+.beta .cta { margin-top: 30px; }
+
+.site-footer {
+  position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 28px 20px 40px;
+  border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: space-between; align-items: baseline;
+  font-size: 13px; color: var(--muted);
+}
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+
+/* The scroll's sync line: it rises as the page is read, behind the content. */
+.sync {
+  position: fixed; top: 0; bottom: 0; z-index: 0; pointer-events: none; width: 2px;
+  right: max(10px, calc((100vw - 1100px) / 2 - 44px));
+}
+.sync-line {
+  position: absolute; left: 0; bottom: 0; width: 2px; height: calc(var(--p, 0) * 100%);
+  background: linear-gradient(to top, rgba(255, 46, 62, 0.2), var(--red));
+  box-shadow: 0 0 8px rgba(255, 46, 62, 0.8), 0 0 22px rgba(255, 46, 62, 0.3);
+}
+.sync-head { position: absolute; left: 1px; bottom: calc(var(--p, 0) * 100%); }
+.sync-head::before {
+  content: ""; position: absolute; left: -3px; top: -3px; width: 6px; height: 6px;
+  background: var(--red-core); box-shadow: 0 0 8px var(--red), 0 0 18px var(--red);
+}
+.sync-readout {
+  display: none; position: absolute; right: 14px; top: -9px; white-space: nowrap;
+  font-size: 11px; letter-spacing: 0.28em; color: var(--red-hot); text-shadow: 0 0 8px rgba(255, 46, 62, 0.7);
+}
+@media (min-width: 1240px) { .sync-readout { display: block; } }
+
+/* ---------- Long text (privacy policy) ---------- */
+.doc { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; padding: 40px 20px 72px; }
+.doc-home { display: inline-block; margin-bottom: 40px; }
+.doc-home .wordmark { width: 132px; height: auto; }
+.doc h1 { font-weight: 100; font-size: clamp(30px, 5vw, 40px); letter-spacing: 0.02em; margin: 0 0 4px; }
+.doc h2 {
+  font-weight: 400; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red);
+  margin: 44px 0 10px; padding-top: 24px; border-top: 1px solid var(--rule);
+}
+.doc .updated { color: var(--muted); margin: 0 0 28px; }
+.doc ul { padding-left: 20px; }
+.doc li { margin: 8px 0; }
+.doc strong { font-weight: 400; color: #fff; }
+.doc code { font-size: 14px; overflow-wrap: anywhere; color: var(--red-core); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .grid { animation: none; }
+  .wordmark .core { animation: none; stroke-dashoffset: 0; }
+  .wordmark .halo, .wordmark .glow { animation: none; opacity: 1; }
+  .rise { animation: none; opacity: 1; transform: none; }
+  .js .reveal { transform: none; transition: opacity 0.3s ease; }
+}

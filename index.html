@@ -2,57 +2,123 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Veylor</title>
-<meta name="description" content="Veylor is a private, self-custody Zcash wallet.">
-<meta name="color-scheme" content="dark">
+<meta name="description" content="Veylor is a private, self-custody Zcash wallet. Shielded by default, with Private USD, swaps, hardware wallets and Tor.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Veylor">
+<meta property="og:description" content="Private money that stays yours. A self-custody Zcash wallet, shielded by default.">
+<meta property="og:image" content="https://veylor.cash/icon.png">
+<meta property="og:url" content="https://veylor.cash/">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
-<style>
-  :root { --bg: #000; --text: #ececec; --muted: #8c8c8c; --red: #ff2b3d; --rule: #222; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 300 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  main { max-width: 640px; margin: 0 auto; padding: 72px 16px 48px; }
-  .mark {
-    font-weight: 100; font-size: 44px; letter-spacing: 0.45em; margin: 0 0 8px;
-    color: var(--red); text-shadow: 0 0 8px rgba(255, 43, 61, 0.7), 0 0 24px rgba(255, 43, 61, 0.35);
-  }
-  .tagline { font-size: 20px; margin: 0 0 32px; }
-  h2 {
-    font-weight: 400; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--red); margin: 40px 0 8px; padding-top: 24px; border-top: 1px solid var(--rule);
-  }
-  ul { padding-left: 20px; }
-  li { margin: 6px 0; }
-  a { color: var(--red); }
-  footer { color: var(--muted); font-size: 14px; margin-top: 48px; }
-</style>
+<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/site.js" defer></script>
 </head>
 <body>
+<div class="sync" aria-hidden="true"><div class="sync-line"></div><div class="sync-head"><span class="sync-readout">SYNC 0%</span></div></div>
+
+<header class="hero">
+  <div class="hero-top">
+    <h1>
+      <svg class="wordmark" viewBox="-5 -5 92.5 24" role="img" aria-labelledby="vw-title">
+        <title id="vw-title">Veylor</title>
+        <defs>
+          <path id="vw" pathLength="1" d="M0 0L4 14L6 14L10 0M24.5 0L14.5 0L14.5 14L24.5 14M17.1 7L23 7M29 0L34 7L39 0M34 7L34 14M43.5 0L43.5 14L53.5 14M61 0L68 0L68 11L65 14L58 14L58 3ZM72.5 14L72.5 0L80 0L82.5 2.5L82.5 4.5L80 7L72.5 7M79 7L82.5 10.5L82.5 14"/>
+          <filter id="vw-halo" x="-20%" y="-90%" width="140%" height="280%"><feGaussianBlur stdDeviation="1.6"/></filter>
+          <filter id="vw-glow" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="0.45"/></filter>
+        </defs>
+        <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+          <use href="#vw" class="halo" filter="url(#vw-halo)"/>
+          <use href="#vw" class="glow" filter="url(#vw-glow)"/>
+          <use href="#vw" class="core"/>
+        </g>
+      </svg>
+    </h1>
+    <p class="hud rise d1">Self-custody Zcash wallet</p>
+    <p class="tagline rise d2">Private money that stays yours.</p>
+    <p class="lede rise d3">Shielded by default. Your keys never leave your phone, and there is no account to make.</p>
+    <div class="cta rise d4">
+      <span class="btn-glow"><a class="btn" href="mailto:hello@veylor.cash?subject=Veylor%20beta">Request beta access</a></span>
+      <a class="link-hud" href="#inside">What's inside</a>
+    </div>
+  </div>
+  <div class="scene" aria-hidden="true">
+    <div class="sun-glow"></div>
+    <div class="sun"></div>
+    <div class="floor"><div class="grid"></div></div>
+  </div>
+</header>
+
 <main>
-<h1 class="mark">VEYLOR</h1>
-<p class="tagline">A private, self-custody Zcash wallet.</p>
+  <section class="section" id="inside">
+    <p class="hud">What's inside</p>
+    <h2 class="title">Built for privacy, end to end.</h2>
+    <div class="cards">
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L20 5.5V12L12 21.5L4 12V5.5Z M8.5 11L11 13.5L15.5 9"/></svg>
+        <h3>Shielded by default</h3>
+        <p>Amounts, addresses and history stay private on the Zcash blockchain.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5L5.5 7H9.5L12 9.5V12L9.5 14.5H5.5L3 12Z M12 10.75H21V14 M17.5 10.75V13.25"/></svg>
+        <h3>Your keys, your phone</h3>
+        <p>No account to make. Your recovery phrase lives in your phone's secure storage and never leaves it.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 6.5H8.5L6.5 8.5V10L8.5 12H15.5L17.5 14V15.5L15.5 17.5H7 M12 3.5V20.5"/></svg>
+        <h3>Private USD</h3>
+        <p>Hold dollars privately on Ethereum through Railgun, converted to and from shielded ZEC by atomic swap.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8H19 M15.5 4.5L19 8L15.5 11.5 M20 16H5 M8.5 12.5L5 16L8.5 19.5"/></svg>
+        <h3>Swaps</h3>
+        <p>Trade ZEC with other assets through NEAR Intents, with live quotes and status tracking.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2.5H17V18.5L14 21.5H7Z M9.5 5.5H14.5V11H9.5Z M10 15.5H14"/></svg>
+        <h3>Hardware wallets</h3>
+        <p>Sign with Keystone or Ledger, so your keys never touch your phone.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L21 12L12 21L3 12Z M12 7.5L16.5 12L12 16.5L7.5 12Z M12 11L13 12L12 13L11 12Z"/></svg>
+        <h3>Tor &amp; Private queries</h3>
+        <p>Hide your IP address from the servers the app talks to, and what you look up from them.</p>
+      </div></article>
+    </div>
+  </section>
 
-<p>Your keys stay on your phone and there is no account to make. Transactions are shielded by default, so amounts, addresses and history stay private.</p>
-<ul>
-  <li>Send and receive ZEC, shielded by default</li>
-  <li>Private USD: dollars held privately on Ethereum through Railgun, converted to and from shielded ZEC</li>
-  <li>Swaps with other assets through NEAR Intents</li>
-  <li>Keystone and Ledger hardware wallets</li>
-  <li>Tor and Private queries</li>
-</ul>
-<p>Veylor is in beta on iPhone through TestFlight.</p>
+  <section class="section">
+    <p class="hud">Self-custody</p>
+    <h2 class="title">Nobody holds your keys. Not even us.</h2>
+    <div class="prose reveal">
+      <p>Your recovery phrase is the only way into your wallet, so back it up and keep it offline. No one, including us, can recover it for you.</p>
+      <p>Veylor is built on the open-source <a href="https://github.com/chainapsis/vizor-wallet">Vizor</a> wallet and collects no data about you. Read the <a href="/privacy/">privacy policy</a>.</p>
+    </div>
+  </section>
 
-<h2 id="support">Support</h2>
-<p>Questions, feedback or problems: <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>. Never send anyone your recovery phrase, keys or passcode.</p>
+  <section class="section beta" id="beta">
+    <p class="hud">Beta</p>
+    <h2 class="title">Now in beta on TestFlight.</h2>
+    <p class="prose">Veylor runs on Zcash mainnet with real funds. Ask for an invite, and start with small amounts.</p>
+    <div class="cta"><span class="btn-glow"><a class="btn" href="mailto:hello@veylor.cash?subject=Veylor%20beta">Request beta access</a></span></div>
+  </section>
 
-<h2>Privacy</h2>
-<p>Veylor collects no data about you. Read the <a href="/privacy/">privacy policy</a>.</p>
-
-<footer>Built on the open-source Vizor wallet. &copy; 2026 Zapp LLC</footer>
+  <section class="section" id="support">
+    <p class="hud">Support</p>
+    <p class="prose">Questions, feedback or problems: <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>. Never send anyone your recovery phrase, keys or passcode.</p>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Zapp LLC</span>
+  <nav aria-label="Footer">
+    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
+    <a href="/privacy/">Privacy policy</a>
+    <a href="#support">Support</a>
+  </nav>
+</footer>
 </body>
 </html>

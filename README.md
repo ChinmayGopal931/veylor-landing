@@ -4,12 +4,22 @@ The static site for [veylor.cash](https://veylor.cash): the home page and the
 privacy policy that Veylor's TestFlight and App Store listings link to. Plain
 HTML, no build step.
 
-| File | URL |
+| File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash (support: https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the animated home page (support: https://veylor.cash/#support) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
+| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the scroll's sync line |
+| `fonts/` | Montserrat (SIL Open Font License, `fonts/OFL.txt`), self-hosted so the site makes no third-party requests |
 | `icon.png` | favicon, from the app icon |
 | `CNAME` | tells GitHub Pages to serve the site on veylor.cash |
+
+Every push to `main` redeploys the site. The VEYLOR wordmark is the app's
+`VeylorWordmarkPainter` geometry drawn as SVG. Gotham isn't used here: the
+app's license doesn't cover websites. All motion stops for visitors who ask
+for reduced motion.
+
+When the public TestFlight link exists, point the two "Request beta access"
+buttons in `index.html` at it instead of the email.
 
 ## Publish on GitHub Pages
 
