@@ -27,7 +27,7 @@
   </svg>
 </a>
 <h1>Veylor Privacy Policy</h1>
-<p class="updated">Last updated: October 17, 2026</p>
+<p class="updated">Last updated: October 18, 2026</p>
 
 <p>Veylor is a self-custody Zcash wallet for iPhone and Android, published by Zapp LLC ("Zapp", "we", "us"). It is built on the open-source Vizor wallet. Veylor has no account system and never holds your funds: your recovery phrase, keys and wallet data stay on your device. This policy explains what the app keeps on your device, which network services it talks to, and the little information we receive.</p>
 
@@ -49,7 +49,7 @@
   <li>Recovery phrases and key material, in your device's secure storage (the iOS Keychain or Android Keystore).</li>
   <li>The wallet database: accounts, addresses, balances, transaction history, memos and contacts.</li>
   <li>Settings, including your passcode state, network and server choices, Tor and Private queries settings, and any Ethereum RPC address you set.</li>
-  <li>For Private USD: records of your conversions, the short-lived accounts a conversion uses, and the Railgun wallet kept by the app's built-in Railgun engine.</li>
+  <li>For swaps with USDC held on Ethereum: records of each swap, the short-lived accounts a swap uses, and the Railgun wallet kept by the app's built-in Railgun engine.</li>
   <li>Hardware wallet account data for Keystone and Ledger, and the QR or Bluetooth signing data exchanged with them.</li>
 </ul>
 <p>We cannot recover your wallet, recovery phrase, passcode or funds if you lose them. Back up your recovery phrase.</p>
@@ -61,7 +61,7 @@
   <li><strong>Private queries</strong> (optional): private information retrieval servers at <code>valargroup.dev</code>, used to check transaction status and transparent activity without revealing which records you look up.</li>
   <li><strong>Prices:</strong> CoinGecko, for the ZEC price on Home. If you turn on "Use market prices" for the portfolio chart, a public price server (<code>zapp-pricing-engine.majorworker.workers.dev</code>) for daily ZEC/USD history. Chart requests carry only the coin, the currency and a date range, nothing about your wallet.</li>
   <li><strong>Swaps:</strong> NEAR Intents (<code>1click.chaindefuser.com</code>) for the quotes and swaps you request, which includes the assets, amounts and addresses of each swap. The app also reads a public on/off switch for swaps from <code>functions.vizor.cash</code>.</li>
-  <li><strong>Private USD:</strong> the zecSwap service (<code>zecswap-mainnet.pepeman931.workers.dev</code>) that quotes, settles and relays the conversions you start; an Ethereum RPC provider (<code>ethereum-rpc.publicnode.com</code> by default, or the provider you set in Settings), which sees the app's Ethereum requests; Railgun's private proof-of-innocence node (<code>ppoi.fdi.network</code>) and event indexer (<code>rail-squid.squids.live</code>); and IPFS gateways (<code>ipfs-lb.com</code>) with a mirror (<code>railgun-artifacts.pepeman931.workers.dev</code>) for Railgun's proving files. Ethereum transactions are public on Ethereum, while Railgun keeps balances and transfers inside it shielded.</li>
+  <li><strong>Swaps with USDC on Ethereum:</strong> the zecSwap service (<code>zecswap-mainnet.pepeman931.workers.dev</code>) that quotes, settles and relays the swaps you start; an Ethereum RPC provider (<code>ethereum-rpc.publicnode.com</code> by default, or the provider you set in Settings), which sees the app's Ethereum requests; Railgun's private proof-of-innocence node (<code>ppoi.fdi.network</code>) and event indexer (<code>rail-squid.squids.live</code>); and IPFS gateways (<code>ipfs-lb.com</code>) with a mirror (<code>railgun-artifacts.pepeman931.workers.dev</code>) for Railgun's proving files. Ethereum transactions are public on Ethereum, while Railgun keeps balances and transfers inside it shielded.</li>
   <li><strong>Coinholder voting</strong> (optional): the voting servers at <code>valargroup.dev</code> and <code>valargroup.org</code>, when you take part in a poll.</li>
   <li><strong>Websites you open</strong> from the app, such as block explorers or payment links, under those sites' own policies.</li>
 </ul>
