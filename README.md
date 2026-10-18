@@ -6,9 +6,10 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the animated home page (support: https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, how the bridge works, the comparison with NEAR Intents, Railgun, the rest of the app, the source links, the beta and support (https://veylor.cash/#support) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
-| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the scroll's sync line |
+| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
+| `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
 | `fonts/` | Montserrat (SIL Open Font License, `fonts/OFL.txt`), self-hosted so the site makes no third-party requests |
 | `icon.png` | favicon, from the app icon |
 | `CNAME` | tells GitHub Pages to serve the site on veylor.cash |
@@ -16,10 +17,39 @@ HTML, no build step.
 Every push to `main` redeploys the site. The VEYLOR wordmark is the app's
 `VeylorWordmarkPainter` geometry drawn as SVG. Gotham isn't used here: the
 app's license doesn't cover websites. All motion stops for visitors who ask
-for reduced motion.
+for reduced motion: the stylesheet draws the still page first and keeps every
+animation inside one `prefers-reduced-motion: no-preference` block.
 
 When the public TestFlight link exists, point the two "Request beta access"
 buttons in `index.html` at it instead of the email.
+
+## The click sound
+
+Buttons and links make a short square-wave blip, synthesized with the Web
+Audio API in `site.js`; there are no audio files. The audio context is made on
+the visitor's first press, never before. The SOUND switch in the top corner
+turns it off and on (on by default) and remembers the choice in
+`localStorage` under `veylor.sound`; if storage is blocked the page still
+works and the sound stays on.
+
+## The Railgun mark
+
+`logos/railgun.svg` is the file railgun.org serves at
+https://railgun.org/favicon-dark.svg, downloaded on 2026-10-18 and kept byte
+for byte (SHA-256
+`41da269bcffb887d9ce74c81a6f478618e1dda3cb69fa2e06303265fd2614e0f`). Railgun
+publishes no brand kit or logo terms on railgun.org, railgun.ch,
+docs.railgun.org or its GitHub organizations, and railgun.org describes
+itself as an independent info site. The mark links to railgun.org. Don't
+recolor or redraw it.
+
+## Keeping the copy true
+
+The bridge copy comes from the bridge's own documentation
+(https://github.com/JustZappIt/zecSwap) and Railgun's descriptions of itself.
+Never claim an audit, a speed or a fee. When the bridge changes (an audit is
+published, the per-swap caps or units change, it leaves beta), update the
+"How it works", comparison and beta sections to match.
 
 ## Publish on GitHub Pages
 

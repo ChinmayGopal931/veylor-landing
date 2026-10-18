@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Veylor</title>
-<meta name="description" content="Veylor is a private, self-custody Zcash wallet. Shielded by default, with swaps, hardware wallets and Tor.">
+<meta name="description" content="Veylor is a self-custody Zcash wallet with the first shielded bridge for Zcash: swap shielded ZEC for USDC held privately in Railgun, and back, without ever unshielding.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor">
-<meta property="og:description" content="Private money that stays yours. A self-custody Zcash wallet, shielded by default.">
+<meta property="og:description" content="Swap ZEC for private dollars without ever unshielding. The first shielded bridge for Zcash, in a self-custody wallet.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/">
 <link rel="icon" href="/icon.png">
@@ -18,6 +18,11 @@
 <script src="/site.js" defer></script>
 </head>
 <body>
+<button class="sound plate" type="button" aria-pressed="true" hidden>
+  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+  <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+</button>
+
 <div class="sync" aria-hidden="true"><div class="sync-line"></div><div class="sync-head"><span class="sync-readout">SYNC 0%</span></div></div>
 
 <header class="hero">
@@ -37,12 +42,12 @@
         </g>
       </svg>
     </h1>
-    <p class="hud rise d1">Self-custody Zcash wallet</p>
-    <p class="tagline rise d2">Private money that stays yours.</p>
-    <p class="lede rise d3">Shielded by default. Your keys never leave your phone, and there is no account to make.</p>
+    <p class="hud rise d1">The first shielded bridge for Zcash</p>
+    <p class="tagline rise d2">Swap ZEC for private dollars without ever unshielding.</p>
+    <p class="lede rise d3">Veylor is a self-custody Zcash wallet that swaps shielded ZEC for USDC held privately in Railgun on Ethereum, and back. It's an atomic swap: nobody holds your funds, and every failure ends in a refund.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn" href="mailto:hello@veylor.cash?subject=Veylor%20beta">Request beta access</a></span>
-      <a class="link-hud" href="#inside">What's inside</a>
+      <a class="link-hud" href="#how">How it works</a>
     </div>
   </div>
   <div class="scene" aria-hidden="true">
@@ -53,9 +58,387 @@
 </header>
 
 <main>
-  <section class="section" id="inside">
-    <p class="hud">What's inside</p>
-    <h2 class="title">Built for privacy, end to end.</h2>
+  <section class="section" id="trail" aria-labelledby="trail-title">
+    <p class="hud">The problem</p>
+    <h2 class="title" id="trail-title">Swapping through NEAR Intents leaves a public trail.</h2>
+    <div class="prose reveal">
+      <p>Zcash wallets such as Zodl swap through NEAR Intents. To trade ZEC there, you first send it out of the shielded pool to a transparent deposit address. That send stays public on the Zcash blockchain for good: the exact amount, the exact time, and a known NEAR Intents deposit address. It's the kind of transaction chain-analysis firms flag. Soon after, about the same value in USDC arrives from a solver on the other chain, so amount and timing link the two.</p>
+      <p>Veylor's bridge never unshields. Your ZEC goes to a fresh shielded address whose key is split between you and the other side of the trade, so anyone reading Zcash sees one ordinary shielded transaction.</p>
+    </div>
+
+    <div class="routes">
+      <div class="route route-public card reveal">
+        <figure class="card-in">
+          <figcaption class="hud">Through NEAR Intents</figcaption>
+          <ol class="hops">
+            <li class="hop plate zone-shielded">
+              <span class="hop-zone">Shielded</span>
+              <span class="hop-name">Your ZEC</span>
+              <span class="wire" aria-hidden="true"></span>
+              <span class="edge" aria-hidden="true">Unshield</span>
+            </li>
+            <li class="hop plate zone-public">
+              <span class="hop-zone">Public</span>
+              <span class="hop-name">A NEAR Intents deposit address</span>
+              <dl class="leak">
+                <div><dt>Amount</dt><dd>Exact</dd></div>
+                <div><dt>Time</dt><dd>Exact</dd></div>
+                <div><dt>To</dt><dd>Known</dd></div>
+              </dl>
+              <span class="wire" aria-hidden="true"></span>
+            </li>
+            <li class="hop plate zone-public">
+              <span class="hop-zone">Public</span>
+              <span class="hop-name">USDC from a solver, for about the same value</span>
+            </li>
+          </ol>
+          <p class="route-note">The unshield stays on the Zcash blockchain for good, and amount and timing link it to the payout.</p>
+        </figure>
+      </div>
+
+      <div class="route route-shielded card reveal">
+        <figure class="card-in">
+          <figcaption class="hud">Through Veylor's bridge</figcaption>
+          <ol class="hops">
+            <li class="hop plate zone-shielded">
+              <span class="hop-zone">Shielded</span>
+              <span class="hop-name">Your ZEC</span>
+              <span class="wire" aria-hidden="true"><span class="packet"></span></span>
+            </li>
+            <li class="hop plate zone-shielded">
+              <span class="hop-zone">Shielded</span>
+              <span class="hop-name">A fresh joint address. Its key is split in two.</span>
+              <dl class="leak sealed">
+                <div><dt>Amount</dt><dd>Hidden</dd></div>
+                <div><dt>To</dt><dd>Hidden</dd></div>
+                <div><dt>Unshield</dt><dd>None</dd></div>
+              </dl>
+              <span class="wire" aria-hidden="true"><span class="packet"></span></span>
+            </li>
+            <li class="hop plate zone-shielded">
+              <span class="hop-zone">Shielded in Railgun</span>
+              <span class="hop-name">0zkUSDC in your Railgun note</span>
+            </li>
+          </ol>
+          <p class="route-note">To anyone reading Zcash, one ordinary shielded transaction, like any other.</p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trustless" aria-labelledby="trustless-title">
+    <p class="hud">Trustless, not trusted</p>
+    <h2 class="title" id="trustless-title">An atomic swap. Nobody holds your money.</h2>
+    <p class="prose intro reveal">On the other side of every swap is a maker, which quotes a price and puts up the dollars. You don't have to trust it, or us. A contract on Ethereum enforces the deal, and the maker can't touch your ZEC without your half of the key.</p>
+    <div class="cards">
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9L5 6.5H8L10.5 9V12L8 14.5H5L2.5 12Z M10.5 10.5H12 M13.5 10.5H21.5 M18.5 10.5V13.5 M21.5 10.5V13"/></svg>
+        <h3>Nobody holds your funds</h3>
+        <p>Your ZEC waits at a shielded address that needs both halves of a split key, and the dollars wait in the contract. At no point does anyone, including us, hold your money.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5H15.5L18.5 5.5V21.5H6Z M9 9H15.5 M9 12.5H15.5 M9 16H13"/></svg>
+        <h3>No operator to trust</h3>
+        <p>Through NEAR Intents, your ZEC sits in someone else's transparent address mid-swap, where it can be frozen, seized or lost. Here there's nothing to freeze. The maker can refuse to quote you, but it can't touch a swap already in flight.</p>
+      </div></article>
+      <article class="card reveal"><div class="card-in">
+        <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.5V16.5L16.5 19.5H7.5L4.5 16.5V7.5L7.5 4.5H15 M12.5 2L15 4.5L12.5 7"/></svg>
+        <h3>Every failure ends in a refund</h3>
+        <p>A swap has only two endings, each fair to both sides. Either you claim your dollars and the maker takes the ZEC, or the maker takes its dollars back and your ZEC comes back to you.</p>
+      </div></article>
+    </div>
+  </section>
+
+  <section class="section" id="dollars" aria-labelledby="dollars-title">
+    <div class="split">
+      <div>
+        <p class="hud">Dollars and ZEC, one wallet</p>
+        <h2 class="title" id="dollars-title">Hold private dollars next to your ZEC.</h2>
+        <div class="prose reveal">
+          <p>Zcash wallets hold ZEC. Veylor also holds 0zkUSDC, which is USDC kept privately in Railgun on Ethereum, in the same wallet. Move into dollars to hedge, and back into ZEC when you choose, without unshielding.</p>
+          <p>The Railgun wallet is built in and out of sight. There's no second wallet to set up, no second seed to back up, and no ETH to buy for gas: a relayer sends the Ethereum transactions. You see a dollar balance next to your ZEC, with all your assets in one place.</p>
+        </div>
+      </div>
+      <div class="wallet card reveal">
+        <figure class="card-in">
+          <figcaption class="hud">Your Veylor wallet</figcaption>
+          <div class="asset plate">
+            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 7H16.5L7.5 17H16.5M12 4V7M12 17V20"/></svg>
+            <span class="asset-name">ZEC</span>
+            <span class="asset-where">Shielded on Zcash</span>
+          </div>
+          <div class="bridge-link" aria-hidden="true">
+            <span class="bl-line"><span class="packet down"></span><span class="packet up"></span></span>
+            <span class="bl-tag">Shielded bridge</span>
+          </div>
+          <div class="asset plate">
+            <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 7.5H10L8 9.5V10.5L10 12.5H14L16 14.5V15.5L14 17.5H8M12 4.5V7.5M12 17.5V20.5"/></svg>
+            <span class="asset-name">0zkUSDC</span>
+            <span class="asset-where">Private in Railgun on Ethereum</span>
+          </div>
+          <ul class="nots">
+            <li>No second wallet</li>
+            <li>No second seed</li>
+            <li>No ETH for gas</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <p class="hud">How it works</p>
+    <h2 class="title" id="how-title">A split key and an atomic swap.</h2>
+    <p class="lead reveal">Your ZEC never leaves the shielded pool, your dollars land straight in Railgun, and at no point does anyone, including us, hold your money.</p>
+
+    <div class="how-block how-key">
+      <div>
+        <h3 class="sub"><span class="sub-n">01</span> The split key</h3>
+        <div class="prose">
+          <p>Your ZEC goes to a fresh shielded Zcash address that nobody can spend alone. Its spend key is two halves added together. The maker keeps half <var>e</var>, and you keep half <var>z</var>, made fresh for every swap from your seed. Spending needs <var>e</var> + <var>z</var>.</p>
+          <p>The Ethereum contract stores only the public points <var>E</var> = <var>e</var>·G and <var>Z</var> = <var>z</var>·G, on the Pallas curve, so it can check a half when one is revealed.</p>
+        </div>
+        <p class="callout plate">The only way to take money out of the contract is to reveal your half of the key, and revealing it hands the other side what it needs to take the ZEC.</p>
+      </div>
+      <figure class="keyfig reveal">
+        <svg viewBox="0 0 320 292" role="img" aria-labelledby="kf-title kf-desc">
+          <title id="kf-title">The split key</title>
+          <desc id="kf-desc">The maker's half e and your half z add up to e + z, the spend key of the joint shielded address. The Ethereum contract stores only the public points E = e·G and Z = z·G.</desc>
+          <g class="kd-e kd-lit">
+            <path class="kd-plate" d="M11 12H87V70L77 80H1V22Z"/>
+            <text class="kd-cap" x="44" y="32" text-anchor="middle">MAKER</text>
+            <text class="kd-big" x="44" y="66" text-anchor="middle">e</text>
+          </g>
+          <g class="kd-z kd-lit">
+            <path class="kd-plate" d="M243 12H319V70L309 80H233V22Z"/>
+            <text class="kd-cap" x="276" y="32" text-anchor="middle">YOU</text>
+            <text class="kd-big" x="276" y="66" text-anchor="middle">z</text>
+          </g>
+          <path class="kd-wire w1" pathLength="1" d="M87 46H117"/>
+          <path class="kd-wire w2" pathLength="1" d="M233 46H203"/>
+          <g class="kd-sum kd-lit">
+            <path class="kd-plate" d="M127 12H203V70L193 80H117V22Z"/>
+            <text class="kd-cap" x="160" y="32" text-anchor="middle">SPEND KEY</text>
+            <text class="kd-mid" x="160" y="63" text-anchor="middle">e + z</text>
+          </g>
+          <path class="kd-wire w3" pathLength="1" d="M160 80V118"/>
+          <g class="kd-joint kd-lit">
+            <path class="kd-plate" d="M52 118H280V176L268 188H40V130Z"/>
+            <path class="kd-lock" d="M63 146V140L67 136H72L76 140V146M59 146H80V165H59Z"/>
+            <text class="kd-cap" x="94" y="148">JOINT ADDRESS</text>
+            <text class="kd-small" x="94" y="167">Shielded. Spending needs e + z.</text>
+          </g>
+          <g class="kd-contract">
+            <path class="kd-rule" d="M0 212H320"/>
+            <text class="kd-cap kd-cap-dim" x="160" y="235" text-anchor="middle">ETHEREUM CONTRACT STORES ONLY</text>
+            <path class="kd-plate" d="M66 250H150V276L142 284H58V258Z"/>
+            <text class="kd-chip" x="104" y="272" text-anchor="middle">E = e·G</text>
+            <path class="kd-plate" d="M178 250H262V276L254 284H170V258Z"/>
+            <text class="kd-chip" x="216" y="272" text-anchor="middle">Z = z·G</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+
+    <div class="how-block">
+      <h3 class="sub"><span class="sub-n">02</span> A swap, ZEC to 0zkUSDC</h3>
+      <div class="steps-wrap" data-rail>
+        <span class="rail" aria-hidden="true"><span class="rail-fill"></span></span>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-where">You and the maker</span>
+            <h4>Quote and accept</h4>
+            <p>The maker offers a price and proves it knows <var>e</var> without showing it. You send back <var>Z</var>, a proof you know <var>z</var>, and the exact Railgun note your dollars must go to.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Ethereum</span>
+            <h4>The maker locks the dollars first</h4>
+            <p>The maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Your phone</span>
+            <h4>You check before you pay</h4>
+            <p>The app reads the swap back from Ethereum and only sends ZEC if every term matches.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Zcash</span>
+            <h4>You send shielded ZEC</h4>
+            <p>It goes to the joint address. Neither side can spend it yet.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Ethereum</span>
+            <h4>The maker confirms</h4>
+            <p>After 2 Zcash confirmations, the maker calls <code>ready()</code>, giving up its right to refund before <var>t1</var>.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Ethereum</span>
+            <h4>You claim</h4>
+            <p>The app takes a claim lock, then calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var> and pays the USDC straight into your Railgun note. A relayer sends these transactions, so you never need ETH.</p>
+          </li>
+          <li class="step">
+            <span class="step-where">Zcash</span>
+            <h4>The maker takes the ZEC</h4>
+            <p>Your half <var>z</var> is now public on Ethereum. The maker adds it to <var>e</var> and spends the ZEC. Both sides are paid.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="how-block">
+      <h3 class="sub"><span class="sub-n">03</span> Only two endings</h3>
+      <p class="prose">Each one is fair to both sides.</p>
+      <div class="endings">
+        <article class="ending card reveal"><div class="card-in">
+          <span class="half plate" aria-hidden="true">z</span>
+          <p class="hud">Claimed</p>
+          <h4>You reveal <var>z</var></h4>
+          <ul class="payouts">
+            <li>You get 0zkUSDC in your Railgun note.</li>
+            <li>The maker adds <var>z</var> to <var>e</var> and takes the ZEC.</li>
+          </ul>
+          <p class="ending-note">The contract can only pay the note fixed at open.</p>
+        </div></article>
+        <article class="ending card reveal"><div class="card-in">
+          <span class="half plate" aria-hidden="true">e</span>
+          <p class="hud">Refunded</p>
+          <h4>The maker reveals <var>e</var></h4>
+          <ul class="payouts">
+            <li>The maker gets its USDC back.</li>
+            <li>Your app adds <var>e</var> to your <var>z</var> and moves the ZEC back to you.</li>
+          </ul>
+        </div></article>
+      </div>
+    </div>
+
+    <div class="how-block">
+      <h3 class="sub"><span class="sub-n">04</span> Why you don't have to trust anyone</h3>
+      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose.</p></blockquote>
+      <div class="rules">
+        <div class="rule reveal">
+          <h4>Deadlines</h4>
+          <p>Two deadlines, <var>t0</var> and <var>t1</var>, decide who may act, so a silent party can never trap the other.</p>
+          <div class="lanes">
+            <div class="lane">
+              <p class="lane-title">Before the maker confirms</p>
+              <ol class="lane-bar ends-you">
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>Open<span class="sr-only">:</span></span> The maker can refund.</li>
+                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t0<span class="sr-only">:</span></span> You can claim anyway. The maker can still refund.</li>
+              </ol>
+            </div>
+            <div class="lane">
+              <p class="lane-title">After the maker confirms</p>
+              <ol class="lane-bar">
+                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>Ready<span class="sr-only">:</span></span> Only you can act.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> You can still claim, and the maker can refund.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="rule reveal">
+          <h4>Locks</h4>
+          <p>Before revealing anything, a side takes a lock (<code>lockClaim</code> or <code>lockRefund</code>). While one is held, the other side can't take one, so only one half is ever revealed. The app reveals <var>z</var> only once its lock has landed with at least 5 minutes to spare.</p>
+        </div>
+      </div>
+
+      <h4 class="hud whatif-title">What if</h4>
+      <dl class="whatif">
+        <div class="wi plate reveal"><dt>The maker goes offline after you pay</dt><dd>You claim without it after <var>t0</var>.</dd></div>
+        <div class="wi plate reveal"><dt>You send too little</dt><dd>The maker refunds, which reveals <var>e</var>, so your ZEC comes back.</dd></div>
+        <div class="wi plate reveal"><dt>Your phone is off for hours</dt><dd>A confirmed swap waits until <var>t1</var>. Then the maker can only refund, which gives you the key back.</dd></div>
+        <div class="wi plate reveal"><dt>The relayer misbehaves</dt><dd>It can't redirect anything. The payout note is fixed, and every request is signed by your swap key.</dd></div>
+        <div class="wi plate reveal"><dt>A Railgun payout bounces</dt><dd>The funds return to a vault for that swap and can be shielded again.</dd></div>
+      </dl>
+    </div>
+
+    <div class="how-block">
+      <h3 class="sub"><span class="sub-n">05</span> The other way, dollars to ZEC</h3>
+      <p class="prose">The same split key and contract, with the roles swapped.</p>
+      <ol class="flowline reveal">
+        <li class="plate"><span class="fl-n" aria-hidden="true">01</span>You lock 0zkUSDC straight from Railgun, with a refund note that only pays you.</li>
+        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">02</span>The maker sends ZEC to the joint address.</li>
+        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">03</span>Your app checks the ZEC is really there before you sign <code>ready</code>.</li>
+        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">04</span>The maker reveals its half to take the USDC. Your app adds it to yours and moves the ZEC into your wallet.</li>
+      </ol>
+      <p class="prose after">Until you sign <code>ready</code>, you can take your dollars back.</p>
+    </div>
+  </section>
+
+  <section class="section" id="compare" aria-labelledby="compare-title">
+    <p class="hud">Compared with NEAR Intents</p>
+    <h2 class="title" id="compare-title">Two ways to swap ZEC for dollars.</h2>
+    <p class="prose intro">Veylor still offers NEAR Intents swaps for other assets. Between ZEC and dollars, it uses the bridge. Here is how the two routes compare.</p>
+    <div class="reveal">
+      <table class="compare" role="table">
+        <caption class="sr-only">NEAR Intents and Veylor's bridge, compared</caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th scope="col" role="columnheader"><span class="sr-only">Compared on</span></th>
+            <th scope="col" role="columnheader" class="c-near">NEAR Intents</th>
+            <th scope="col" role="columnheader" class="c-veylor">Veylor's bridge</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <th scope="row" role="rowheader">What Zcash shows</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">An unshield to a known NEAR deposit address, with the exact amount and time, public for good.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">One ordinary shielded transaction. No amount, no destination, no unshield.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">What the dollar side shows</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">USDC from a solver soon after, for about the same value.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">USDC paid into your Railgun note, inside Railgun's shielded pool.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">Linking the two legs</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">Amount and timing make the link.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">No shared hash, unlike hash-locked swaps, and nothing visible on the Zcash side.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">Your funds mid-swap</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">In someone else's transparent address, where they can be frozen, seized or lost.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Held by nobody. There's nothing to freeze.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">When something breaks</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">A support ticket, and the refund may go to a transparent address.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A refund, built in. At worst you wait until <var>t1</var> for your ZEC to come back.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">Censorship</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">The solver or operator can block you.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The maker can refuse to quote you, but can't touch a swap already in flight.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">What the other side sees</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">Your deposit, your payout address and your refund address.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The same: the maker sees the swap it's party to. It can't see your other notes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fair plate reveal">
+      <p class="hud">Where NEAR Intents is ahead</p>
+      <p>It's fire-and-forget, while the bridge needs the app to come back online to claim. It also has deeper liquidity, takes any amount where the bridge uses fixed units, covers many chains and assets, and is a mature service in production.</p>
+    </div>
+  </section>
+
+  <section class="section" id="railgun" aria-labelledby="railgun-title">
+    <div class="railgun">
+      <a class="railgun-mark plate reveal" href="https://railgun.org/"><img src="/logos/railgun.svg" width="88" height="88" alt="Railgun"></a>
+      <div class="reveal">
+        <p class="hud">Powered by Railgun</p>
+        <h2 class="title" id="railgun-title">Your dollars stay private in Railgun.</h2>
+        <div class="prose">
+          <p>Railgun is an on-chain, non-custodial privacy system for Ethereum and other EVM chains. It uses zero-knowledge cryptography to keep tokens at private 0zk addresses, and to send, receive and use them privately. Its code has no owner, and there's no single official wallet: many independent wallets use it.</p>
+          <p>Veylor runs a Railgun wallet inside the app, so your 0zkUSDC sits in Railgun's shielded pool without a separate wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="inside" aria-labelledby="inside-title">
+    <p class="hud">Also in Veylor</p>
+    <h2 class="title" id="inside-title">Built for privacy, end to end.</h2>
     <div class="cards">
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L20 5.5V12L12 21.5L4 12V5.5Z M8.5 11L11 13.5L15.5 9"/></svg>
@@ -69,8 +452,8 @@
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8H19 M15.5 4.5L19 8L15.5 11.5 M20 16H5 M8.5 12.5L5 16L8.5 19.5"/></svg>
-        <h3>Swaps</h3>
-        <p>Trade ZEC with other assets, including stablecoins, with live quotes and status tracking.</p>
+        <h3>Swaps for other assets</h3>
+        <p>Trade ZEC with other assets through NEAR Intents, with live quotes and status tracking.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5H20V20.5H4Z M8 15.5H16 M8.5 10.5V3.5H15.5V10.5"/></svg>
@@ -90,19 +473,45 @@
     </div>
   </section>
 
-  <section class="section">
-    <p class="hud">Self-custody</p>
-    <h2 class="title">Nobody holds your keys. Not even us.</h2>
+  <section class="section" id="source" aria-labelledby="source-title">
+    <p class="hud">Open source</p>
+    <h2 class="title" id="source-title">Nobody holds your keys. Not even us.</h2>
     <div class="prose reveal">
       <p>Your recovery phrase is the only way into your wallet, so back it up and keep it offline. No one, including us, can recover it for you.</p>
-      <p>Veylor is built on the open-source <a href="https://github.com/chainapsis/vizor-wallet">Vizor</a> wallet and collects no data about you. Read the <a href="/privacy/">privacy policy</a>.</p>
+      <p>Veylor collects no data about you. Read the <a href="/privacy/">privacy policy</a>, or read the code.</p>
     </div>
+    <ul class="links">
+      <li class="reveal"><a class="link-card plate" href="https://github.com/JustZappIt/zecSwap">
+        <span class="hud">Bridge protocol</span>
+        <span class="link-name">zecSwap</span>
+        <span class="link-desc">The swap contract, ZecSwap.sol, and the client the app runs.</span>
+        <span class="link-url">github.com/JustZappIt/zecSwap</span>
+      </a></li>
+      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/vizor-fork/tree/feature/private-usd-android">
+        <span class="hud">The app</span>
+        <span class="link-name">Veylor</span>
+        <span class="link-desc">The app's source, on its feature/private-usd-android branch.</span>
+        <span class="link-url">github.com/ChinmayGopal931/vizor-fork</span>
+      </a></li>
+      <li class="reveal"><a class="link-card plate" href="https://github.com/chainapsis/vizor-wallet">
+        <span class="hud">Built on</span>
+        <span class="link-name">Vizor</span>
+        <span class="link-desc">The open-source Zcash wallet Veylor is built on.</span>
+        <span class="link-url">github.com/chainapsis/vizor-wallet</span>
+      </a></li>
+      <li class="reveal"><a class="link-card plate" href="https://railgun.org/">
+        <span class="hud">Private dollars</span>
+        <span class="link-name">Railgun</span>
+        <span class="link-desc">The privacy system that holds your 0zkUSDC.</span>
+        <span class="link-url">railgun.org</span>
+      </a></li>
+    </ul>
   </section>
 
   <section class="section beta" id="beta">
     <p class="hud">Beta</p>
     <h2 class="title">Now in beta on TestFlight.</h2>
-    <p class="prose">Veylor runs on Zcash mainnet with real funds. Ask for an invite, and start with small amounts.</p>
+    <p class="prose">Veylor runs on Zcash mainnet with real funds, and the bridge on Ethereum mainnet. While in beta, swaps come in fixed units with a cap on each, and no audit has been published yet. Ask for an invite, and start with small amounts.</p>
     <div class="cta"><span class="btn-glow"><a class="btn" href="mailto:hello@veylor.cash?subject=Veylor%20beta">Request beta access</a></span></div>
   </section>
 
