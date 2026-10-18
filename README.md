@@ -6,7 +6,8 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, how the bridge works, the comparison with NEAR Intents, Railgun, the rest of the app, the source links, the beta and support (https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, the beta and support (https://veylor.cash/#support) |
+| `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, deadlines and locks, what if, the dollars-to-ZEC direction) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
 | `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
@@ -49,7 +50,7 @@ The bridge copy comes from the bridge's own documentation
 (https://github.com/JustZappIt/zecSwap) and Railgun's descriptions of itself.
 Never claim an audit, a speed or a fee. When the bridge changes (an audit is
 published, the per-swap caps or units change, it leaves beta), update the
-"How it works", comparison and beta sections to match.
+"How it works" page, its comparison and the beta sections to match.
 
 ## Publish on GitHub Pages
 

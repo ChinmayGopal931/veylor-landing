@@ -543,3 +543,8 @@ var { font-style: normal; color: var(--red-core); }
   .js .flowline.in li:nth-child(3) { transition-delay: 0.5s; }
   .js .flowline.in li:nth-child(4) { transition-delay: 0.75s; }
 }
+
+/* ---------- Sub-pages ---------- */
+.section.page-top { padding-top: 40px; padding-bottom: 0; }
+.section.page-top + .section { padding-top: 40px; }
+.cta.left { justify-content: flex-start; }
