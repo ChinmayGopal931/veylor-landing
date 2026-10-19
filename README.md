@@ -21,9 +21,12 @@ app's license doesn't cover websites. All motion stops for visitors who ask
 for reduced motion: the stylesheet draws the still page first and keeps every
 animation inside one `prefers-reduced-motion: no-preference` block.
 
-The beta buttons ("Join the beta on TestFlight", two in `index.html` and one
-in `how-it-works/index.html`) point at the public TestFlight link,
-https://testflight.apple.com/join/D9gw2Kwm. Change all three together.
+The beta buttons (two pairs in `index.html`, one in `how-it-works/index.html`)
+point at the public TestFlight link (https://testflight.apple.com/join/D9gw2Kwm) and Google Play's open
+testing opt-in page (https://play.google.com/apps/testing/com.veylor.app). Once the Play listing
+(https://play.google.com/store/apps/details?id=com.veylor.app) stops returning
+404, point the Android buttons at it instead: it installs in one tap and stays
+the same after the beta.
 
 ## The click sound
 
