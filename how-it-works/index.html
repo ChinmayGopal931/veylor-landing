@@ -47,16 +47,16 @@
   <section class="section first" id="how" aria-labelledby="how-title">
     <p class="hud sec">How it works</p>
     <h1 class="title" id="how-title">A split key and an atomic swap.</h1>
-    <p class="lead reveal">Your ZEC never leaves the shielded pool, your dollars land straight in Railgun, and at no point does anyone, including us, hold your money.</p>
+    <p class="lead reveal">Your ZEC stays shielded, your dollars land in Railgun, and nobody, including us, ever holds your money.</p>
 
     <div class="how-block how-key">
       <div>
         <h3 class="sub"><span class="sub-n">01</span> The split key</h3>
         <div class="prose">
-          <p>Your ZEC goes to a fresh shielded Zcash address that nobody can spend alone. Its spend key is two halves added together. The maker keeps half <var>e</var>, and you keep half <var>z</var>, made fresh for every swap from your seed. Spending needs <var>e</var> + <var>z</var>.</p>
+          <p>Your ZEC goes to a fresh shielded address whose spend key is <var>e</var> + <var>z</var>. The maker holds <var>e</var>. You hold <var>z</var>, made fresh from your seed for each swap.</p>
           <p>The Ethereum contract stores only the public points <var>E</var> = <var>e</var>·G and <var>Z</var> = <var>z</var>·G, on the Pallas curve, so it can check a half when one is revealed.</p>
         </div>
-        <p class="callout plate">The only way to take money out of the contract is to reveal your half of the key, and revealing it hands the other side what it needs to take the ZEC.</p>
+        <p class="callout plate">Taking money out of the contract means revealing your half, which hands the other side what it needs to take the ZEC.</p>
       </div>
       <figure class="keyfig reveal">
         <svg viewBox="0 0 320 292" role="img" aria-labelledby="kf-title kf-desc">
@@ -111,7 +111,7 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker locks the dollars first</h4>
-            <p>Before you send anything, the maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract is public, with its source <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
+            <p>Before you send anything, the maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. Its source is <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
           </li>
           <li class="step">
             <span class="step-where">Your phone</span>
@@ -131,7 +131,7 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>You claim</h4>
-            <p>The app takes a claim lock, then calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var>, and <code>payout()</code> shields the USDC into your Railgun note, the only one it can pay. A relayer sends these transactions on your signatures, so you never need ETH.</p>
+            <p>The app takes a claim lock and calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var>, then <code>payout()</code> shields the USDC into your Railgun note, the only note it can pay. A relayer sends both on your signatures, so you never need ETH.</p>
           </li>
           <li class="step">
             <span class="step-where">Zcash</span>
@@ -170,7 +170,7 @@
 
     <div class="how-block">
       <h3 class="sub"><span class="sub-n">04</span> Why you don't have to trust anyone</h3>
-      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose. The contract has no owner, admin key or pause switch, so nobody can change the rules of a swap once it opens.</p></blockquote>
+      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose. With no owner or pause switch, nobody can change a swap once it opens.</p></blockquote>
       <div class="rules">
         <div class="rule reveal">
           <h4>Deadlines</h4>
@@ -224,7 +224,7 @@
   <section class="section" id="compare" aria-labelledby="compare-title">
     <p class="hud sec">Compared with NEAR Intents</p>
     <h2 class="title" id="compare-title">Two ways to swap ZEC for dollars.</h2>
-    <p class="prose intro">Veylor still offers NEAR Intents swaps for other assets. Between ZEC and dollars, it uses the bridge. Here is how the two routes compare.</p>
+    <p class="prose intro">Veylor still uses NEAR Intents for other assets. For ZEC and dollars, it uses the bridge.</p>
     <div class="reveal">
       <table class="compare" role="table">
         <caption class="sr-only">NEAR Intents and Veylor's bridge, compared</caption>
@@ -274,21 +274,21 @@
           <tr role="row">
             <th scope="row" role="rowheader">What the other side sees</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">Your deposit, your payout address and your refund address.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The same: the maker sees the swap it's party to. It can't see your other notes.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The same. The maker sees its own swap, never your other notes.</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="fair plate reveal">
       <p class="hud">Where NEAR Intents is ahead</p>
-      <p>It's fire-and-forget, while the bridge needs the app to come back online to claim. It also has deeper liquidity, takes any amount where the bridge uses fixed units, covers many chains and assets, and is a mature service in production.</p>
+      <p>It's fire-and-forget, while the bridge needs your app online to claim. It also has deeper liquidity, takes any amount, covers many chains, and is mature in production.</p>
     </div>
   </section>
 
   <section class="section beta" id="try">
     <p class="hud">Try it</p>
     <h2 class="title">Swap without unshielding.</h2>
-    <p class="prose">Veylor is in beta on iPhone and Android, on Zcash and Ethereum mainnet with real funds. Join through TestFlight on iPhone or Google Play on Android, and start with small amounts.</p>
+    <p class="prose">In beta on iPhone and Android, on mainnet with real funds. Start small.</p>
     <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/apps/testing/com.veylor.app">Beta for Android</a></span><a class="link-hud" href="/">Back to veylor.cash</a></div>
   </section>
 </main>

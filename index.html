@@ -56,7 +56,7 @@
     </h1>
     <p class="hud rise d1">Shielded ZEC &middot; Shielded USDC</p>
     <p class="tagline rise d2">Your Zcash wallet now holds shielded dollars.</p>
-    <p class="lede rise d3">Veylor keeps ZEC shielded on Zcash and USDC shielded in Railgun, side by side. Send and receive private dollars with anyone, and swap between the two without ever unshielding. Nobody holds your funds, not even us.</p>
+    <p class="lede rise d3">Hold, send and swap shielded USDC next to your ZEC, without ever unshielding.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/apps/testing/com.veylor.app">Beta for Android</a></span>
       <a class="link-hud" href="/how-it-works/">How it works</a>
@@ -80,13 +80,13 @@
         <p class="hud sec">Shielded dollars</p>
         <h2 class="title" id="dollars-title">Hold, send and receive shielded USDC.</h2>
         <div class="prose reveal">
-          <p>Veylor is the first wallet to hold shielded ZEC and shielded dollars side by side. Your dollars are 0zkUSDC: USDC shielded in Railgun on Ethereum, where balances and transfers stay private. Move into dollars to hedge, and back into ZEC when you choose.</p>
+          <p>0zkUSDC is USDC shielded in Railgun on Ethereum. Veylor is the first wallet to hold it beside shielded ZEC.</p>
         </div>
         <ul class="ticks reveal">
-          <li><strong>Send to anyone.</strong> Pay any Railgun 0zk address privately, or withdraw to any Ethereum address.</li>
-          <li><strong>Receive from anyone.</strong> Share your 0zk address, or take USDC from any Ethereum account at your deposit address, and it shields itself into your balance.</li>
-          <li><strong>No ETH for gas.</strong> A relayer sends the Ethereum transactions, for a small fee in USDC.</li>
-          <li><strong>One seed.</strong> The Railgun wallet comes from your recovery phrase, so there's nothing new to back up.</li>
+          <li><strong>Send to anyone.</strong> Pay any 0zk or Ethereum address.</li>
+          <li><strong>Receive from anyone.</strong> From any 0zk address or Ethereum account. Public USDC shields on arrival.</li>
+          <li><strong>No ETH for gas.</strong> A relayer covers it for a small USDC fee.</li>
+          <li><strong>One seed.</strong> Your recovery phrase covers both.</li>
         </ul>
       </div>
       <div class="wallet card reveal">
@@ -106,11 +106,6 @@
             <span class="asset-name">0zkUSDC</span>
             <span class="asset-where">Shielded in Railgun on Ethereum</span>
           </div>
-          <ul class="nots">
-            <li>One seed</li>
-            <li>No ETH for gas</li>
-            <li>Nobody holds it</li>
-          </ul>
         </figure>
       </div>
     </div>
@@ -119,8 +114,7 @@
     <p class="hud sec">The shielded bridge</p>
     <h2 class="title" id="trail-title">Swap ZEC and dollars without unshielding.</h2>
     <div class="prose reveal">
-      <p>Swapping ZEC through NEAR Intents starts with an unshield: your ZEC goes to a transparent deposit address, where its amount and time stay public for good, and the dollars that arrive on the other chain can be matched to it.</p>
-      <p>Veylor's bridge stays shielded the whole way. Your ZEC moves to a fresh shielded address, your dollars land shielded in Railgun, and Zcash sees one ordinary shielded transaction.</p>
+      <p>NEAR Intents swaps start with an unshield, which leaves the amount and time public for good. Veylor's bridge never unshields.</p>
     </div>
 
     <div class="routes">
@@ -149,7 +143,7 @@
               <span class="hop-name">USDC from a solver, for about the same value</span>
             </li>
           </ol>
-          <p class="route-note">The unshield stays on the Zcash blockchain for good, and amount and timing link it to the payout.</p>
+          <p class="route-note">The unshield is public for good. Amount and timing link it to the payout.</p>
         </figure>
       </div>
 
@@ -177,7 +171,7 @@
               <span class="hop-name">0zkUSDC in your Railgun note</span>
             </li>
           </ol>
-          <p class="route-note">To anyone reading Zcash, one ordinary shielded transaction, like any other.</p>
+          <p class="route-note">Zcash sees one ordinary shielded transaction.</p>
         </figure>
       </div>
     </div>
@@ -186,17 +180,17 @@
   <section class="section" id="trustless" aria-labelledby="trustless-title">
     <p class="hud sec">Trustless at every step</p>
     <h2 class="title" id="trustless-title">Verify every step. Trust no one.</h2>
-    <p class="prose intro reveal">A maker on the other side of each swap quotes the price and puts up the dollars. You never have to trust it, or us: the app checks the chain before every move, and an Ethereum contract enforces the deal.</p>
+    <p class="prose intro reveal">Don't trust the maker, or us. Your app checks the chain before every move, and a public contract enforces the deal.</p>
     <div class="cards">
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.5H19.5V20.5H4.5Z M8 10.5V6.5L10 4.5H14L16 6.5V10.5 M12 14V17"/></svg>
         <h3>The maker locks first</h3>
-        <p>Before you send anything, the maker locks the dollars in the ZecSwap contract on Ethereum. It&rsquo;s public, with its source <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
+        <p>Before you send anything, the maker locks the dollars in a public contract, its source <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12L8.5 17L20.5 5"/></svg>
         <h3>Your app checks the lock</h3>
-        <p>The app reads the lock back from Ethereum and only sends your ZEC if the amount, the deadlines and your payout note all match.</p>
+        <p>Your ZEC leaves only if the amount, deadlines and payout note on Ethereum all match.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9L5 6.5H8L10.5 9V12L8 14.5H5L2.5 12Z M10.5 10.5H12 M13.5 10.5H21.5 M18.5 10.5V13.5 M21.5 10.5V13"/></svg>
@@ -206,17 +200,17 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5V15.5 M7 10.5L12 15.5L17 10.5 M4.5 20.5H19.5"/></svg>
         <h3>Your claim comes first</h3>
-        <p>To take the dollars, you reveal your half of the key, and the contract commits them to your Railgun note. Only then can the maker take the ZEC.</p>
+        <p>Revealing your half of the key commits the dollars to your Railgun note. Only then can the maker take the ZEC.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.5V16.5L16.5 19.5H7.5L4.5 16.5V7.5L7.5 4.5H15 M12.5 2L15 4.5L12.5 7"/></svg>
         <h3>Every failure ends in a refund</h3>
-        <p>If anything stalls, the deadlines settle it: the maker takes its dollars back, and that hands your app the key to move your ZEC home.</p>
+        <p>If a swap stalls, the maker takes its dollars back, which hands your app the key to bring your ZEC home.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L21.5 12L12 21.5L2.5 12Z M8 12H16 M12 8V16"/></svg>
         <h3>No owner, no off switch</h3>
-        <p>The contract has no owner, admin key or pause switch. Anyone can be a maker on it, and anyone can send your signed requests.</p>
+        <p>The contract has no admin key. Anyone can be a maker or relay your signed requests.</p>
       </div></article>
     </div>
     <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="/how-it-works/">How it works</a></span><a class="link-hud" href="/how-it-works/#compare">Compared with NEAR Intents</a></div>
@@ -231,15 +225,15 @@
         <p class="hud sec">Powered by Railgun</p>
         <h2 class="title" id="railgun-title">Your dollars stay shielded in Railgun.</h2>
         <div class="prose">
-          <p>Railgun is an on-chain, non-custodial privacy system for Ethereum and other EVM chains. It uses zero-knowledge cryptography to keep tokens at private 0zk addresses, and to send, receive and use them privately. Its code has no owner, and there's no single official wallet: many independent wallets use it.</p>
-          <p>Veylor runs a Railgun wallet inside the app, so your 0zkUSDC sits in Railgun's shielded pool without a separate wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
+          <p>Railgun is a non-custodial privacy system for Ethereum. Zero-knowledge proofs keep tokens at private 0zk addresses, and many independent wallets use it.</p>
+          <p>Veylor runs one inside the app, so there's no second wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
         </div>
         <div class="pool plate">
           <span class="token-logo"><img src="/logos/usdc.webp" width="52" height="52" alt=""><img class="badge" src="/logos/railgun-badge.webp" width="23" height="23" alt=""></span>
           <span class="pool-text">
             <span class="hud">The pool Veylor uses</span>
             <span class="pool-name">0zkUSDC</span>
-            <span class="pool-desc">USDC in Railgun's shielded pool on Ethereum, marked with Railgun's badge in the app.</span>
+            <span class="pool-desc">USDC in Railgun's shielded pool. It carries Railgun's badge in the app.</span>
           </span>
         </div>
       </div>
@@ -258,12 +252,12 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5L5.5 7H9.5L12 9.5V12L9.5 14.5H5.5L3 12Z M12 10.75H21V14 M17.5 10.75V13.25"/></svg>
         <h3>Your keys, your phone</h3>
-        <p>No account to make. Your recovery phrase lives in your phone's secure storage and never leaves it.</p>
+        <p>No account. Your recovery phrase stays in your phone's secure storage.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8H19 M15.5 4.5L19 8L15.5 11.5 M20 16H5 M8.5 12.5L5 16L8.5 19.5"/></svg>
         <h3>Swaps for other assets</h3>
-        <p>Trade ZEC with other assets through NEAR Intents, with live quotes and status tracking.</p>
+        <p>Trade ZEC for other assets through NEAR Intents.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5H20V20.5H4Z M8 15.5H16 M8.5 10.5V3.5H15.5V10.5"/></svg>
@@ -278,7 +272,7 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L21 12L12 21L3 12Z M12 7.5L16.5 12L12 16.5L7.5 12Z M12 11L13 12L12 13L11 12Z"/></svg>
         <h3>Tor &amp; Private queries</h3>
-        <p>Hide your IP address from the servers the app talks to, and what you look up from them.</p>
+        <p>Hide your IP, and what you look up, from the servers the app uses.</p>
       </div></article>
     </div>
   </section>
@@ -287,26 +281,26 @@
     <p class="hud sec">Open source</p>
     <h2 class="title" id="source-title">Nobody holds your keys. Not even us.</h2>
     <div class="prose reveal">
-      <p>Your recovery phrase is the only way into your wallet, so back it up and keep it offline. No one, including us, can recover it for you.</p>
+      <p>Your recovery phrase is the only way in. Keep a copy offline, because nobody, including us, can recover it.</p>
       <p>Veylor has no accounts, analytics or trackers. Read the <a href="/privacy/">privacy policy</a>, or read the code.</p>
     </div>
     <ul class="links">
       <li class="reveal"><a class="link-card plate" href="https://github.com/JustZappIt/zecSwap">
         <span class="hud">Bridge protocol</span>
         <span class="link-name">zecSwap</span>
-        <span class="link-desc">The swap contract, ZecSwap.sol, and the client the app runs.</span>
+        <span class="link-desc">The swap contract and the client the app runs.</span>
         <span class="link-url">github.com/JustZappIt/zecSwap</span>
       </a></li>
       <li class="reveal"><a class="link-card plate" href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">
         <span class="hud">On Ethereum</span>
         <span class="link-name">The contract</span>
-        <span class="link-desc">ZecSwap on mainnet, source verified. Every swap&rsquo;s lock is public here.</span>
+        <span class="link-desc">Verified source. Every swap&rsquo;s lock is public here.</span>
         <span class="link-url">etherscan.io &middot; 0x4708&hellip;fe6D</span>
       </a></li>
       <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/vizor-fork/tree/feature/private-usd-android">
         <span class="hud">The app</span>
         <span class="link-name">Veylor</span>
-        <span class="link-desc">The app's source, on its feature/private-usd-android branch.</span>
+        <span class="link-desc">The app's source code.</span>
         <span class="link-url">github.com/ChinmayGopal931/vizor-fork</span>
       </a></li>
       <li class="reveal"><a class="link-card plate" href="https://railgun.org/">
@@ -322,7 +316,7 @@
     <div class="card beta-card reveal"><div class="card-in">
         <p class="hud">Beta</p>
         <h2 class="title">Now in beta on iPhone and Android.</h2>
-        <p class="prose">Veylor runs on Zcash mainnet with real funds, and the bridge on Ethereum mainnet. While in beta, the app trades with one maker, swaps come in fixed units with a cap on each, and no audit has been published yet. Join through TestFlight on iPhone or Google Play on Android, and start with small amounts.</p>
+        <p class="prose">Live on mainnet with real funds. During the beta the app trades with one maker, swaps come in capped fixed units, and no audit is published yet. Start small.</p>
         <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/apps/testing/com.veylor.app">Beta for Android</a></span></div>
       <div class="beta-scene" aria-hidden="true"><div class="sun-glow"></div><div class="sun"></div><div class="floor"><div class="grid"></div></div></div>
     </div></div>
@@ -330,7 +324,7 @@
 
   <section class="section" id="support">
     <p class="hud">Support</p>
-    <p class="prose">Questions, feedback or problems: <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>. Never send anyone your recovery phrase, keys or passcode.</p>
+    <p class="prose">Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a> with questions or feedback. Never share your recovery phrase, keys or passcode.</p>
   </section>
 </main>
 

@@ -174,7 +174,7 @@ var { font-style: normal; color: var(--red-core); }
   background: linear-gradient(180deg, #fff 45%, #ffdfe2 80%, #ffb3ba 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 0 22px rgba(255, 46, 62, 0.22));
   font-weight: 100; font-size: clamp(30px, 5.2vw, 50px); line-height: 1.12; letter-spacing: 0.01em; margin: 14px auto 0; max-width: 15em; text-wrap: balance; }
-.lede { color: var(--muted); max-width: 33em; margin: 18px auto 0; text-wrap: pretty; }
+.lede { color: var(--muted); max-width: 33em; margin: 18px auto 0; text-wrap: balance; }
 .cta { display: flex; gap: 14px 22px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 34px; }
 
 .btn-glow { filter: drop-shadow(0 0 10px rgba(255, 46, 62, 0.55)) drop-shadow(0 0 26px rgba(255, 46, 62, 0.22)); }
