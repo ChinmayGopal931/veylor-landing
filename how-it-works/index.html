@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How it works · Veylor</title>
-<meta name="description" content="How Veylor's shielded bridge swaps ZEC for USDC held privately in Railgun without unshielding: a split key, an atomic swap, and a refund for every failure.">
+<meta name="description" content="How Veylor's shielded bridge swaps shielded ZEC for USDC shielded in Railgun, without unshielding: a split key, an atomic swap, and a refund for every failure.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="How Veylor's shielded bridge works">
-<meta property="og:description" content="Swap ZEC for private dollars without ever unshielding. The first shielded bridge for Zcash, in a self-custody wallet.">
+<meta property="og:description" content="How Veylor swaps shielded ZEC and shielded USDC with a split key and an atomic swap, and how it compares with NEAR Intents.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/how-it-works/">
 <link rel="icon" href="/icon.png">
@@ -21,9 +21,9 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
+    <a href="/#dollars">Shielded dollars</a>
     <a href="/#trail">The bridge</a>
     <a href="/how-it-works/">How it works</a>
-    <a href="/#railgun">Railgun</a>
     <a href="/#source">Open source</a>
   </nav>
   <div class="tb-end">
@@ -111,7 +111,7 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker locks the dollars first</h4>
-            <p>The maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note.</p>
+            <p>Before you send anything, the maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract is public, with its source <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
           </li>
           <li class="step">
             <span class="step-where">Your phone</span>
@@ -126,12 +126,12 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker confirms</h4>
-            <p>After 2 Zcash confirmations, the maker calls <code>ready()</code>, giving up its right to refund before <var>t1</var>.</p>
+            <p>Once your ZEC has confirmed, the maker calls <code>ready()</code>, giving up its right to refund before <var>t1</var>.</p>
           </li>
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>You claim</h4>
-            <p>The app takes a claim lock, then calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var> and pays the USDC straight into your Railgun note. A relayer sends these transactions, so you never need ETH.</p>
+            <p>The app takes a claim lock, then calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var>, and <code>payout()</code> shields the USDC into your Railgun note, the only one it can pay. A relayer sends these transactions on your signatures, so you never need ETH.</p>
           </li>
           <li class="step">
             <span class="step-where">Zcash</span>
@@ -170,7 +170,7 @@
 
     <div class="how-block">
       <h3 class="sub"><span class="sub-n">04</span> Why you don't have to trust anyone</h3>
-      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose.</p></blockquote>
+      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose. The contract has no owner, admin key or pause switch, so nobody can change the rules of a swap once it opens.</p></blockquote>
       <div class="rules">
         <div class="rule reveal">
           <h4>Deadlines</h4>
@@ -262,6 +262,11 @@
             <td role="cell" class="c-veylor" data-label="Veylor's bridge">A refund, built in. At worst you wait until <var>t1</var> for your ZEC to come back.</td>
           </tr>
           <tr role="row">
+            <th scope="row" role="rowheader">Who runs it</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">An operator. Its bridge issues your deposit address and holds the ZEC until a solver fills the trade.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A contract with no owner, admin key or pause switch. Anyone can be a maker on it. The beta app trades with one.</td>
+          </tr>
+          <tr role="row">
             <th scope="row" role="rowheader">Censorship</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">The solver or operator can block you.</td>
             <td role="cell" class="c-veylor" data-label="Veylor's bridge">The maker can refuse to quote you, but can't touch a swap already in flight.</td>
@@ -291,7 +296,7 @@
 <footer class="site-footer">
   <div class="ft-brand">
     <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
-    <p>The first shielded bridge for Zcash.</p>
+    <p>Shielded ZEC and shielded dollars, in one wallet.</p>
   </div>
   <nav aria-label="Footer">
     <a href="/">Home</a>
