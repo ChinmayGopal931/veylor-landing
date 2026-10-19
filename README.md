@@ -21,8 +21,9 @@ app's license doesn't cover websites. All motion stops for visitors who ask
 for reduced motion: the stylesheet draws the still page first and keeps every
 animation inside one `prefers-reduced-motion: no-preference` block.
 
-When the public TestFlight link exists, point the two "Request beta access"
-buttons in `index.html` at it instead of the email.
+The beta buttons ("Join the beta on TestFlight", two in `index.html` and one
+in `how-it-works/index.html`) point at the public TestFlight link,
+https://testflight.apple.com/join/D9gw2Kwm. Change all three together.
 
 ## The click sound
 
