@@ -372,7 +372,13 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; align-items: center;
   padding: 14px 16px; --c: 10px; --edge: var(--lit-edge); --fill: #0b0607;
 }
-.asset .glyph { grid-row: 1 / span 2; width: 34px; height: 34px; }
+.asset .glyph, .asset .token-logo { grid-row: 1 / span 2; }
+.asset .glyph { width: 34px; height: 34px; }
+/* A coin, with Railgun's badge past its bottom right for 0zkUSDC (the app's
+   PrivateUsdLogo: 14 on 32, 2 past the corner). */
+.token-logo { position: relative; display: block; width: 40px; height: 40px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6)); }
+.token-logo img { display: block; width: 100%; height: 100%; }
+.token-logo .badge { position: absolute; right: -6.25%; bottom: -6.25%; width: 43.75%; height: 43.75%; }
 .asset-name { font-weight: 100; font-size: 26px; line-height: 1.15; color: #fff; }
 .asset-where { font-size: 11px; line-height: 1.4; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
 .bridge-link { position: relative; height: 68px; margin-left: 32px; }
@@ -525,11 +531,18 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .railgun-mark:hover { text-decoration: none; --edge: linear-gradient(135deg, var(--red-hot), rgba(255, 46, 62, 0.5) 50%, var(--red)); }
 .railgun-mark:focus-visible { outline-offset: -7px; }
 .railgun-mark img { display: block; width: 88px; height: 88px; }
+.pool {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 18px; align-items: center;
+  max-width: 560px; margin-top: 28px; padding: 16px 20px 16px 18px; --edge: var(--lit-edge); --fill: #0b0607;
+}
+.pool .token-logo { width: 52px; height: 52px; }
+.pool-text { display: block; min-width: 0; }
+.pool-name { display: block; margin-top: 4px; font-weight: 100; font-size: 26px; line-height: 1.15; color: #fff; }
+.pool-desc { display: block; margin-top: 4px; font-size: 14px; line-height: 1.5; color: var(--muted); }
 
 /* ---------- Source links ---------- */
 .links { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 14px; }
-@media (min-width: 560px) { .links { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1000px) { .links { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 760px) { .links { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .links li { display: flex; }
 .link-card {
   flex: 1; display: block; padding: 20px 20px 22px; color: var(--text); --fill: var(--panel-fill);
@@ -708,7 +721,7 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   /* Panels light up as they arrive. */
   .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
   .js .reveal.in { opacity: 1; transform: none; }
-  .whatif .reveal:nth-child(3n+2), .links .reveal:nth-child(2n) { transition-delay: 0.08s; }
+  .whatif .reveal:nth-child(3n+2), .links .reveal:nth-child(3n+2) { transition-delay: 0.08s; }
   .whatif .reveal:nth-child(3n) { transition-delay: 0.16s; }
   .cards .reveal:nth-child(3n+2) { --d: 0.08s; }
   .cards .reveal:nth-child(3n) { --d: 0.16s; }
