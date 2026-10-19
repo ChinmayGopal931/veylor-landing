@@ -17,11 +17,23 @@
 <script>document.documentElement.classList.add('js')</script>
 <script src="/site.js" defer></script>
 </head>
-<body>
-<button class="sound plate" type="button" aria-pressed="true" hidden>
-  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
-  <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
-</button>
+<body class="home">
+<div class="topbar">
+  <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
+  <nav class="tb-links" aria-label="Main">
+    <a href="/#trail">The bridge</a>
+    <a href="/how-it-works/">How it works</a>
+    <a href="/#railgun">Railgun</a>
+    <a href="/#source">Open source</a>
+  </nav>
+  <div class="tb-end">
+    <span class="btn-glow"><a class="btn btn-sm" href="/#beta">Get the beta</a></span>
+    <button class="sound plate" type="button" aria-pressed="true" hidden>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+    </button>
+  </div>
+</div>
 
 <div class="sync" aria-hidden="true"><div class="sync-line"></div><div class="sync-head"><span class="sync-readout">SYNC 0%</span></div></div>
 
@@ -50,16 +62,20 @@
       <a class="link-hud" href="/how-it-works/">How it works</a>
     </div>
   </div>
+  <div class="sky" aria-hidden="true"><div class="stars"></div><div class="stars twinkle"></div></div>
+  <div class="hud-frame" aria-hidden="true"></div>
   <div class="scene" aria-hidden="true">
     <div class="sun-glow"></div>
     <div class="sun"></div>
-    <div class="floor"><div class="grid"></div></div>
+    <div class="floor"><div class="grid"></div><div class="reflect"></div></div>
+    <span class="hz hz-l">ZEC <i></i> Shielded on Zcash</span>
+    <span class="hz hz-r">0zkUSDC <i></i> Private in Railgun</span>
   </div>
 </header>
 
 <main>
   <section class="section" id="trail" aria-labelledby="trail-title">
-    <p class="hud">The problem</p>
+    <p class="hud sec">The problem</p>
     <h2 class="title" id="trail-title">Swapping through NEAR Intents leaves a public trail.</h2>
     <div class="prose reveal">
       <p>Zcash wallets such as Zodl swap through NEAR Intents. To trade ZEC there, you first send it out of the shielded pool to a transparent deposit address. That send stays public on the Zcash blockchain for good: the exact amount, the exact time, and a known NEAR Intents deposit address. It's the kind of transaction chain-analysis firms flag. Soon after, about the same value in USDC arrives from a solver on the other chain, so amount and timing link the two.</p>
@@ -127,7 +143,7 @@
   </section>
 
   <section class="section" id="trustless" aria-labelledby="trustless-title">
-    <p class="hud">Trustless, not trusted</p>
+    <p class="hud sec">Trustless, not trusted</p>
     <h2 class="title" id="trustless-title">An atomic swap. Nobody holds your money.</h2>
     <p class="prose intro reveal">On the other side of every swap is a maker, which quotes a price and puts up the dollars. You don't have to trust it, or us. A contract on Ethereum enforces the deal, and the maker can't touch your ZEC without your half of the key.</p>
     <div class="cards">
@@ -152,7 +168,7 @@
   <section class="section" id="dollars" aria-labelledby="dollars-title">
     <div class="split">
       <div>
-        <p class="hud">Dollars and ZEC, one wallet</p>
+        <p class="hud sec">Dollars and ZEC, one wallet</p>
         <h2 class="title" id="dollars-title">Hold private dollars next to your ZEC.</h2>
         <div class="prose reveal">
           <p>Zcash wallets hold ZEC. Veylor also holds 0zkUSDC, which is USDC kept privately in Railgun on Ethereum, in the same wallet. Move into dollars to hedge, and back into ZEC when you choose, without unshielding.</p>
@@ -187,7 +203,7 @@
   </section>
 
   <section class="section" id="how" aria-labelledby="how-title">
-    <p class="hud">How it works</p>
+    <p class="hud sec">How it works</p>
     <h2 class="title" id="how-title">A split key and an atomic swap.</h2>
     <p class="prose reveal">Your ZEC goes to a fresh shielded address whose key is split between you and the maker. The maker locks the dollars in an Ethereum contract first, and the only way to take them out is to reveal your half of the key, which hands the maker what it needs to take the ZEC. Either you get your dollars, or everything goes back where it came from.</p>
     <div class="cta left"><span class="btn-glow"><a class="btn" href="/how-it-works/">How it works</a></span><a class="link-hud" href="/how-it-works/#compare">Compared with NEAR Intents</a></div>
@@ -197,7 +213,7 @@
     <div class="railgun">
       <a class="railgun-mark plate reveal" href="https://railgun.org/"><img src="/logos/railgun.svg" width="88" height="88" alt="Railgun"></a>
       <div class="reveal">
-        <p class="hud">Powered by Railgun</p>
+        <p class="hud sec">Powered by Railgun</p>
         <h2 class="title" id="railgun-title">Your dollars stay private in Railgun.</h2>
         <div class="prose">
           <p>Railgun is an on-chain, non-custodial privacy system for Ethereum and other EVM chains. It uses zero-knowledge cryptography to keep tokens at private 0zk addresses, and to send, receive and use them privately. Its code has no owner, and there's no single official wallet: many independent wallets use it.</p>
@@ -208,7 +224,7 @@
   </section>
 
   <section class="section" id="inside" aria-labelledby="inside-title">
-    <p class="hud">Also in Veylor</p>
+    <p class="hud sec">Also in Veylor</p>
     <h2 class="title" id="inside-title">Built for privacy, end to end.</h2>
     <div class="cards">
       <article class="card reveal"><div class="card-in">
@@ -245,7 +261,7 @@
   </section>
 
   <section class="section" id="source" aria-labelledby="source-title">
-    <p class="hud">Open source</p>
+    <p class="hud sec">Open source</p>
     <h2 class="title" id="source-title">Nobody holds your keys. Not even us.</h2>
     <div class="prose reveal">
       <p>Your recovery phrase is the only way into your wallet, so back it up and keep it offline. No one, including us, can recover it for you.</p>
@@ -280,10 +296,13 @@
   </section>
 
   <section class="section beta" id="beta">
-    <p class="hud">Beta</p>
-    <h2 class="title">Now in beta on iPhone and Android.</h2>
-    <p class="prose">Veylor runs on Zcash mainnet with real funds, and the bridge on Ethereum mainnet. While in beta, swaps come in fixed units with a cap on each, and no audit has been published yet. Join through TestFlight on iPhone or Google Play on Android, and start with small amounts.</p>
-    <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/apps/testing/com.veylor.app">Beta for Android</a></span></div>
+    <div class="card beta-card reveal"><div class="card-in">
+        <p class="hud">Beta</p>
+        <h2 class="title">Now in beta on iPhone and Android.</h2>
+        <p class="prose">Veylor runs on Zcash mainnet with real funds, and the bridge on Ethereum mainnet. While in beta, swaps come in fixed units with a cap on each, and no audit has been published yet. Join through TestFlight on iPhone or Google Play on Android, and start with small amounts.</p>
+        <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/apps/testing/com.veylor.app">Beta for Android</a></span></div>
+      <div class="beta-scene" aria-hidden="true"><div class="sun-glow"></div><div class="sun"></div><div class="floor"><div class="grid"></div></div></div>
+    </div></div>
   </section>
 
   <section class="section" id="support">
@@ -293,10 +312,15 @@
 </main>
 
 <footer class="site-footer">
+  <div class="ft-brand">
+    <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
+    <p>The first shielded bridge for Zcash.</p>
+  </div>
   <nav aria-label="Footer">
-    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
+    <a href="/how-it-works/">How it works</a>
     <a href="/privacy/">Privacy policy</a>
     <a href="#support">Support</a>
+    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
   </nav>
 </footer>
 </body>

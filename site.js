@@ -1,4 +1,5 @@
-// The sync line rises with the scroll, panels light up as they arrive, the
+// The sync line rises with the scroll, the top bar frosts once the page
+// moves, panels light up as they arrive, cards tilt toward the pointer, the
 // swap's rail fills as its steps are read, and presses make a quiet blip.
 (function () {
   'use strict';
@@ -36,7 +37,14 @@
     });
   }
 
-  function update() { ticking = false; updateSync(); updateRails(); }
+  // The bar's mark shows once the hero's own wordmark has scrolled away.
+  var hero = document.querySelector('.hero');
+  function updateBar() {
+    root.classList.toggle('scrolled', window.scrollY > 8);
+    root.classList.toggle('past-hero', !hero || window.scrollY > hero.offsetHeight * 0.45);
+  }
+
+  function update() { ticking = false; updateSync(); updateRails(); updateBar(); }
   function request() {
     if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
   }
@@ -60,6 +68,27 @@
       });
     }, { threshold: [0, 0.05, 0.1, 0.15] });
     each(panels, function (el) { io.observe(el); });
+  }
+
+  /* ---- Cards: a spotlight follows the pointer, and the card tilts toward it ---- */
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    each(document.querySelectorAll('.cards .card, .link-card'), function (card) {
+      var light = card.querySelector('.card-in') || card;
+      card.addEventListener('pointermove', function (event) {
+        var r = card.getBoundingClientRect();
+        var x = (event.clientX - r.left) / r.width;
+        var y = (event.clientY - r.top) / r.height;
+        light.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        light.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        if (reduce) return;
+        var px = x - 0.5, py = y - 0.5, d = Math.sqrt(px * px + py * py);
+        if (d < 0.001) return;
+        card.style.setProperty('--tx', (-py / d).toFixed(3));
+        card.style.setProperty('--ty', (px / d).toFixed(3));
+        card.style.setProperty('--ta', (d * 11).toFixed(2) + 'deg');
+      });
+      card.addEventListener('pointerleave', function () { card.style.setProperty('--ta', '0deg'); });
+    });
   }
 
   /* ---- Sound: a 90s-game blip, synthesized; no audio files ---- */

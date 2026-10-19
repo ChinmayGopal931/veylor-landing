@@ -9,7 +9,7 @@ HTML, no build step.
 | `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, the beta and support (https://veylor.cash/#support) |
 | `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, deadlines and locks, what if, the dollars-to-ZEC direction) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
-| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
+| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
 | `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
 | `fonts/` | Montserrat (SIL Open Font License, `fonts/OFL.txt`), self-hosted so the site makes no third-party requests |
 | `icon.png` | favicon, from the app icon |
@@ -32,7 +32,7 @@ the same after the beta.
 
 Buttons and links make a short square-wave blip, synthesized with the Web
 Audio API in `site.js`; there are no audio files. The audio context is made on
-the visitor's first press, never before. The SOUND switch in the top corner
+the visitor's first press, never before. The SOUND switch in the top bar
 turns it off and on (on by default) and remembers the choice in
 `localStorage` under `veylor.sound`; if storage is blocked the page still
 works and the sound stays on.
