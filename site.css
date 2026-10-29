@@ -464,7 +464,7 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .payouts li::after { content: ""; position: absolute; left: 9px; top: 18px; width: 6px; height: 6px; border-top: 2px solid var(--red-hot); border-right: 2px solid var(--red-hot); transform: rotate(45deg); }
 .ending-note { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
 
-/* Why there is no one to trust: the quote, the deadlines, the locks. */
+/* Why there is no one to trust: the quote, the deadlines, one side at a time. */
 .pull { position: relative; margin: 0 0 40px; padding: 2px 0 2px 24px; max-width: 34em; }
 .pull::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--red-hot); box-shadow: 0 0 8px var(--red), 0 0 18px rgba(255, 46, 62, 0.5); }
 .pull p { margin: 0; font-weight: 100; font-size: clamp(21px, 2.6vw, 27px); line-height: 1.35; color: #fff; }
@@ -474,7 +474,7 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .rule > p { margin: 0; color: var(--muted); }
 .lanes { display: grid; gap: 30px; margin-top: 28px; }
 .lane-title { margin: 0; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--text); }
-.lane-bar { position: relative; list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.lane-bar { position: relative; list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .lane-bar::after { content: ""; position: absolute; right: -2px; top: -4px; border-left: 9px solid rgba(255, 255, 255, 0.4); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
 .lane-bar.ends-you::after { border-left-color: var(--red-hot); filter: drop-shadow(0 0 4px var(--red)); }
 .seg { position: relative; padding: 14px 14px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
@@ -484,6 +484,17 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .seg-you::before { background: var(--red-hot); box-shadow: 0 0 8px var(--red), 0 0 16px rgba(255, 46, 62, 0.4); }
 .mark { position: absolute; left: 0; top: -30px; font-size: 12px; letter-spacing: 0.1em; color: #fff; white-space: nowrap; }
 .seg-you .mark { color: var(--red-core); }
+.seg-wide { grid-column: span 2; }
+/* On phones each lane runs down the page. */
+@media (max-width: 600px) {
+  .lane-bar { grid-template-columns: minmax(0, 1fr); margin-top: 16px; }
+  .lane-bar::after { right: auto; left: -4px; top: auto; bottom: -8px; border: 5px solid transparent; border-top: 9px solid rgba(255, 255, 255, 0.4); border-bottom: 0; }
+  .lane-bar.ends-you::after { border-left-color: transparent; border-top-color: var(--red-hot); }
+  .seg { grid-column: auto; padding: 0 0 18px 22px; }
+  .seg::before { right: auto; bottom: 0; width: 2px; height: auto; transform-origin: 50% 0; }
+  .seg::after { left: -6px; top: 0; width: 14px; height: 2px; }
+  .mark { position: static; display: block; margin-bottom: 4px; }
+}
 
 .whatif-title { margin: 60px 0 16px; }
 .whatif { display: grid; gap: 12px; margin: 0; }
@@ -787,13 +798,17 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   .js .ending.in .payouts li:nth-child(1) { transition-delay: 0.6s; }
   .js .ending.in .payouts li:nth-child(2) { transition-delay: 0.8s; }
 
-  /* Deadlines: each lane draws left to right. */
+  /* Deadlines: each lane draws left to right, top to bottom on phones. */
   .js .lanes .seg::before { transform: scaleX(0); transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @media (max-width: 600px) { .js .lanes .seg::before { transform: scaleY(0); } }
   .js .rule.in .seg::before { transform: none; }
   .js .rule.in .lane:nth-child(1) .seg:nth-child(1)::before { transition-delay: 0.3s; }
-  .js .rule.in .lane:nth-child(1) .seg:nth-child(2)::before { transition-delay: 0.75s; }
-  .js .rule.in .lane:nth-child(2) .seg:nth-child(1)::before { transition-delay: 1.2s; }
-  .js .rule.in .lane:nth-child(2) .seg:nth-child(2)::before { transition-delay: 1.65s; }
+  .js .rule.in .lane:nth-child(1) .seg:nth-child(2)::before { transition-delay: 0.55s; }
+  .js .rule.in .lane:nth-child(1) .seg:nth-child(3)::before { transition-delay: 0.8s; }
+  .js .rule.in .lane:nth-child(1) .seg:nth-child(4)::before { transition-delay: 1.05s; }
+  .js .rule.in .lane:nth-child(2) .seg:nth-child(1)::before { transition-delay: 1.3s; }
+  .js .rule.in .lane:nth-child(2) .seg:nth-child(2)::before { transition-delay: 1.55s; }
+  .js .rule.in .lane:nth-child(2) .seg:nth-child(3)::before { transition-delay: 1.8s; }
 
   /* The other way: the four steps arrive in order. */
   .js .flowline li { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }

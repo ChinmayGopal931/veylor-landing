@@ -111,7 +111,7 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker locks the dollars first</h4>
-            <p>Before you send anything, the maker calls <code>open()</code>, putting the USDC into the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. Its source is <a href="https://etherscan.io/address/0x4708D7d36992b7e33Ad97a1ab0A31c3ac6C4fe6D#code">verified on Etherscan</a>.</p>
+            <p>Before you send anything, the maker calls <code>open()</code>, locking the USDC in the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract's <a href="https://github.com/JustZappIt/zecSwap/blob/32cc6efca0f22589655eb2e61b00ec6d582e8570/contracts/src/ZecSwap.sol">source is open</a>, and every swap is public on <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">Etherscan</a>.</p>
           </li>
           <li class="step">
             <span class="step-where">Your phone</span>
@@ -126,12 +126,12 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker confirms</h4>
-            <p>Once your ZEC has confirmed, the maker calls <code>ready()</code>, giving up its right to refund before <var>t1</var>.</p>
+            <p>Once your ZEC has confirmed, the maker calls <code>ready()</code>, giving up its right to cancel. It can only do this before <var>t0</var>.</p>
           </li>
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>You claim</h4>
-            <p>The app takes a claim lock and calls <code>claim(z)</code>. The contract checks <var>z</var>·G = <var>Z</var>, then <code>payout()</code> shields the USDC into your Railgun note, the only note it can pay. A relayer sends both on your signatures, so you never need ETH.</p>
+            <p>The app hands your claim to a relayer, and you can close the app. The relayer calls <code>claim(z)</code> through Flashbots Protect, so <var>z</var> stays out of the public mempool until it lands. The contract checks <var>z</var>·G = <var>Z</var>, then <code>payout()</code> shields the USDC into your Railgun note, the only note it can pay. You never need ETH.</p>
           </li>
           <li class="step">
             <span class="step-where">Zcash</span>
@@ -164,6 +164,7 @@
             <li>The maker gets its USDC back.</li>
             <li>Your app adds <var>e</var> to your <var>z</var> and moves the ZEC back to you.</li>
           </ul>
+          <p class="ending-note">The maker can cancel before <var>t0</var> if it never confirmed, or refund in the day after <var>t1</var>.</p>
         </div></article>
       </div>
     </div>
@@ -174,35 +175,38 @@
       <div class="rules">
         <div class="rule reveal">
           <h4>Deadlines</h4>
-          <p>Two deadlines, <var>t0</var> and <var>t1</var>, decide who may act, so a silent party can never trap the other.</p>
+          <p>Two deadlines, <var>t0</var> and <var>t1</var>, cut every swap into windows, and in each only one side may act. A silent party can never trap the other.</p>
           <div class="lanes">
             <div class="lane">
-              <p class="lane-title">Before the maker confirms</p>
+              <p class="lane-title">If the maker never confirms</p>
               <ol class="lane-bar ends-you">
-                <li class="seg"><span class="mark"><span class="sr-only">From </span>Open<span class="sr-only">:</span></span> The maker can refund.</li>
-                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t0<span class="sr-only">:</span></span> You can claim anyway. The maker can still refund.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>Open<span class="sr-only">:</span></span> The maker can cancel.</li>
+                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t0<span class="sr-only">:</span></span> You can claim.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The maker can refund.</li>
+                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t1 + 24h<span class="sr-only">:</span></span> You can claim, for good.</li>
               </ol>
             </div>
             <div class="lane">
-              <p class="lane-title">After the maker confirms</p>
-              <ol class="lane-bar">
-                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>Ready<span class="sr-only">:</span></span> Only you can act.</li>
-                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> You can still claim, and the maker can refund.</li>
+              <p class="lane-title">Once the maker confirms</p>
+              <ol class="lane-bar ends-you">
+                <li class="seg seg-you seg-wide"><span class="mark"><span class="sr-only">From </span>Ready<span class="sr-only">:</span></span> You can claim.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The maker can refund.</li>
+                <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t1 + 24h<span class="sr-only">:</span></span> You can claim, for good.</li>
               </ol>
             </div>
           </div>
         </div>
         <div class="rule reveal">
-          <h4>Locks</h4>
-          <p>Before revealing anything, a side takes a lock (<code>lockClaim</code> or <code>lockRefund</code>). While one is held, the other side can't take one, so only one half is ever revealed. The app reveals <var>z</var> only once its lock has landed with at least 5 minutes to spare.</p>
+          <h4>One side at a time</h4>
+          <p>The clock and the swap's stage alone decide who may reveal, so only one half is ever revealed and no reveal can be raced. One held up still lands any time before its window closes, and your claim goes out only with at least 5 minutes of its window left.</p>
         </div>
       </div>
 
       <h4 class="hud whatif-title">What if</h4>
       <dl class="whatif">
-        <div class="wi plate reveal"><dt>The maker goes offline after you pay</dt><dd>You claim without it after <var>t0</var>.</dd></div>
-        <div class="wi plate reveal"><dt>You send too little</dt><dd>The maker refunds, which reveals <var>e</var>, so your ZEC comes back.</dd></div>
-        <div class="wi plate reveal"><dt>Your phone is off for hours</dt><dd>A confirmed swap waits until <var>t1</var>. Then the maker can only refund, which gives you the key back.</dd></div>
+        <div class="wi plate reveal"><dt>The maker goes offline after you pay</dt><dd>You claim without it from <var>t0</var>.</dd></div>
+        <div class="wi plate reveal"><dt>You send too little</dt><dd>The maker cancels, which reveals <var>e</var>, so your ZEC comes back.</dd></div>
+        <div class="wi plate reveal"><dt>Your phone is off for hours</dt><dd>Once the maker confirms, the relayer claims for you. If your phone went off before that, the swap waits for your claim until <var>t1</var>, then the maker refunds, which brings your ZEC back.</dd></div>
         <div class="wi plate reveal"><dt>The relayer misbehaves</dt><dd>It can't redirect anything. The payout note is fixed, and every request is signed by your swap key.</dd></div>
         <div class="wi plate reveal"><dt>A Railgun payout bounces</dt><dd>The funds return to a vault for that swap and can be shielded again.</dd></div>
       </dl>
@@ -217,7 +221,7 @@
         <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">03</span>Your app checks the ZEC is really there before you sign <code>ready</code>.</li>
         <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">04</span>The maker reveals its half to take the USDC. Your app adds it to yours and moves the ZEC into your wallet.</li>
       </ol>
-      <p class="prose after">Until you sign <code>ready</code>, you can take your dollars back.</p>
+      <p class="prose after">Until you sign <code>ready</code>, you can take your dollars back. Once you do, the maker has until <var>t1</var> to take them, and from <var>t1</var> they're yours to take back again.</p>
     </div>
   </section>
 
@@ -259,7 +263,7 @@
           <tr role="row">
             <th scope="row" role="rowheader">When something breaks</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">A support ticket, and the refund may go to a transparent address.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A refund, built in. At worst you wait until <var>t1</var> for your ZEC to come back.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A refund, built in, and if the maker goes quiet you claim without it from <var>t0</var>.</td>
           </tr>
           <tr role="row">
             <th scope="row" role="rowheader">Who runs it</th>
@@ -269,7 +273,7 @@
           <tr role="row">
             <th scope="row" role="rowheader">Censorship</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">The solver or operator can block you.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The maker can refuse to quote you, but can't touch a swap already in flight.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The maker can refuse to quote you, but can't take a swap's funds. At most it calls one off, which returns your ZEC.</td>
           </tr>
           <tr role="row">
             <th scope="row" role="rowheader">What the other side sees</th>
@@ -281,7 +285,7 @@
     </div>
     <div class="fair plate reveal">
       <p class="hud">Where NEAR Intents is ahead</p>
-      <p>It's fire-and-forget, while the bridge needs your app online to claim. It also has deeper liquidity, takes any amount, covers many chains, and is mature in production.</p>
+      <p>It's fire-and-forget, while the bridge needs your app open for part of each swap. It also has deeper liquidity, takes any amount, covers many chains, and is mature in production.</p>
     </div>
   </section>
 
