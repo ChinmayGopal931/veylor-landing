@@ -6,7 +6,7 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, the beta and support (https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, getting the app (`#beta`) and support (https://veylor.cash/#support) |
 | `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if, the dollars-to-ZEC direction) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
@@ -21,12 +21,13 @@ app's license doesn't cover websites. All motion stops for visitors who ask
 for reduced motion: the stylesheet draws the still page first and keeps every
 animation inside one `prefers-reduced-motion: no-preference` block.
 
-The beta buttons (two pairs in `index.html`, one in `how-it-works/index.html`)
-point at the public TestFlight link (https://testflight.apple.com/join/D9gw2Kwm) and Google Play's open
-testing opt-in page (https://play.google.com/apps/testing/com.veylor.app). Once the Play listing
-(https://play.google.com/store/apps/details?id=com.veylor.app) stops returning
-404, point the Android buttons at it instead: it installs in one tap and stays
-the same after the beta.
+The download buttons (two pairs in `index.html`, one in `how-it-works/index.html`)
+point at the iPhone beta's public TestFlight link
+(https://testflight.apple.com/join/D9gw2Kwm) and the Android app's Play listing
+(https://play.google.com/store/apps/details?id=com.veylor.app), in production.
+When the iPhone app leaves TestFlight, point its buttons at its App Store
+listing and drop "beta" from the copy beside them. The bridge itself stays in
+beta until it leaves it (below).
 
 ## The click sound
 
