@@ -53,9 +53,11 @@ recolor or redraw it.
 
 The bridge copy comes from the bridge's own documentation
 (https://github.com/ChinmayGopal931/zecSwap) and Railgun's descriptions of itself.
-Never claim an audit, a speed or a fee. When the bridge changes (an audit is
-published, the per-swap caps or units change, it leaves beta), update the
-"How it works" page, its comparison and the beta sections to match.
+Never claim an audit, a speed or a fee. The copy calls the swap's market maker
+"the bridge": anyone can run one on the contract, and the app uses one. When
+the bridge changes (an audit is published, the per-swap caps or units change,
+it leaves beta), update the "How it works" page, its comparison and the beta
+sections to match.
 
 ## Publish on GitHub Pages
 

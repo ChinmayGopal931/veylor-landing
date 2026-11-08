@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Veylor</title>
-<meta name="description" content="Veylor is a self-custody Zcash wallet that also holds shielded USDC. Send and receive private dollars with anyone, and swap them with shielded ZEC without ever unshielding your ZEC.">
+<meta name="description" content="Veylor is a self-custody Zcash wallet that also holds Shielded USD, USDC shielded in Railgun. Send and receive it with anyone, and swap it with shielded ZEC without ever unshielding your ZEC.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor">
-<meta property="og:description" content="Your Zcash wallet now holds shielded dollars. Send and receive them with anyone, and swap with ZEC without ever unshielding your ZEC.">
+<meta property="og:description" content="Your Zcash wallet now holds Shielded USD. Send and receive it with anyone, and swap it with ZEC without ever unshielding your ZEC.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/">
 <link rel="icon" href="/icon.png">
@@ -21,7 +21,7 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
-    <a href="/#dollars">Shielded dollars</a>
+    <a href="/#dollars">Shielded USD</a>
     <a href="/#trail">The bridge</a>
     <a href="/how-it-works/">How it works</a>
   </nav>
@@ -50,7 +50,7 @@
       </svg>
     </h1>
     <p class="hud rise d1">Shielded ZEC &middot; Shielded USDC</p>
-    <p class="tagline rise d2">Your Zcash wallet now holds shielded dollars.</p>
+    <p class="tagline rise d2">Your Zcash wallet now holds Shielded USD.</p>
     <p class="lede rise d3">Hold, send and swap shielded USDC, without ever unshielding your ZEC.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/store/apps/details?id=com.veylor.app">Get it on Android</a></span>
@@ -71,7 +71,7 @@
   <section class="section" id="dollars" aria-labelledby="dollars-title">
     <div class="split">
       <div>
-        <p class="hud sec">Shielded dollars</p>
+        <p class="hud sec">Shielded USD</p>
         <h2 class="title" id="dollars-title">Hold, send and receive shielded USDC.</h2>
         <div class="prose reveal">
           <p>0zkUSDC is USDC shielded in Railgun on Ethereum. Veylor lets you hold 0zkUSDC and ZEC in one wallet.</p>
@@ -172,12 +172,12 @@
   <section class="section" id="trustless" aria-labelledby="trustless-title">
     <p class="hud sec">Trustless at every step</p>
     <h2 class="title" id="trustless-title">Verifiable at every step.</h2>
-    <p class="prose intro reveal">Don't trust the maker, or us.</p>
+    <p class="prose intro reveal">Don't trust the bridge, or us.</p>
     <div class="cards">
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.5H19.5V20.5H4.5Z M8 10.5V6.5L10 4.5H14L16 6.5V10.5 M12 14V17"/></svg>
-        <h3>The maker locks first</h3>
-        <p>Before you send anything, the maker locks the dollars in a public contract, its source <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
+        <h3>The bridge locks first</h3>
+        <p>Before you send anything, the bridge locks the dollars in a public contract, its source <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12L8.5 17L20.5 5"/></svg>
@@ -187,22 +187,22 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9L5 6.5H8L10.5 9V12L8 14.5H5L2.5 12Z M10.5 10.5H12 M13.5 10.5H21.5 M18.5 10.5V13.5 M21.5 10.5V13"/></svg>
         <h3>A key split in two</h3>
-        <p>Your ZEC goes to a fresh shielded address whose key is split between you and the maker. Neither half can spend it alone.</p>
+        <p>Your ZEC goes to a fresh shielded address whose key is split between you and the bridge. Neither half can spend it alone.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5V15.5 M7 10.5L12 15.5L17 10.5 M4.5 20.5H19.5"/></svg>
         <h3>Your claim comes first</h3>
-        <p>Revealing your half of the key commits the dollars to your Railgun note. Only then can the maker take the ZEC.</p>
+        <p>Revealing your half of the key commits the dollars to your Railgun note. Only then can the bridge take the ZEC.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.5V16.5L16.5 19.5H7.5L4.5 16.5V7.5L7.5 4.5H15 M12.5 2L15 4.5L12.5 7"/></svg>
         <h3>Every failure ends in a refund</h3>
-        <p>If a swap stalls, the maker takes its dollars back, which hands your app the key to bring your ZEC home.</p>
+        <p>If a swap stalls, the bridge takes its dollars back, which hands your app the key to bring your ZEC home.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5L21.5 12L12 21.5L2.5 12Z M8 12H16 M12 8V16"/></svg>
         <h3>No owner, no off switch</h3>
-        <p>The contract has no admin key. Anyone can be a maker or relay your signed requests.</p>
+        <p>The contract has no admin key. Anyone can run a bridge on it, or relay your signed requests.</p>
       </div></article>
     </div>
     <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="/how-it-works/">How it works</a></span><a class="link-hud" href="/how-it-works/#compare">Compared with NEAR Intents</a></div>
@@ -295,7 +295,7 @@
         <span class="link-url">github.com/ChinmayGopal931/vizor-fork</span>
       </a></li>
       <li class="reveal"><a class="link-card plate" href="https://railgun.org/">
-        <span class="hud">Shielded dollars</span>
+        <span class="hud">Shielded USD</span>
         <span class="link-name">Railgun</span>
         <span class="link-desc">The privacy system that holds your 0zkUSDC.</span>
         <span class="link-url">railgun.org</span>
@@ -307,7 +307,7 @@
     <div class="card beta-card reveal"><div class="card-in">
         <p class="hud">Get the app</p>
         <h2 class="title">Now on Android, and in beta on iPhone.</h2>
-        <p class="prose">The bridge runs on mainnet with real funds and is still in beta: the app trades with one maker, each swap is capped, and no audit is published yet. Start small.</p>
+        <p class="prose">Swaps run on mainnet with real funds and are still in beta: the app uses a single bridge for now, each swap is capped, and no audit is published yet. Start small.</p>
         <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/store/apps/details?id=com.veylor.app">Get it on Android</a></span></div>
       <div class="beta-scene" aria-hidden="true"><div class="sun-glow"></div><div class="sun"></div><div class="floor"><div class="grid"></div></div></div>
     </div></div>
@@ -322,7 +322,7 @@
 <footer class="site-footer">
   <div class="ft-brand">
     <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
-    <p>Shielded ZEC and shielded dollars, in one wallet.</p>
+    <p>Shielded ZEC and Shielded USD, in one wallet.</p>
   </div>
   <div class="ft-links">
     <nav aria-label="Footer">

@@ -21,7 +21,7 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
-    <a href="/#dollars">Shielded dollars</a>
+    <a href="/#dollars">Shielded USD</a>
     <a href="/#trail">The bridge</a>
     <a href="/how-it-works/">How it works</a>
   </nav>
@@ -48,7 +48,7 @@
       <div>
         <h3 class="sub"><span class="sub-n">01</span> The split key</h3>
         <div class="prose">
-          <p>Your ZEC goes to a fresh shielded address whose spend key is <var>e</var> + <var>z</var>. The maker holds <var>e</var>. You hold <var>z</var>, made fresh from your seed for each swap.</p>
+          <p>Your ZEC goes to a fresh shielded address whose spend key is <var>e</var> + <var>z</var>. The bridge holds <var>e</var>. You hold <var>z</var>, made fresh from your seed for each swap.</p>
           <p>The Ethereum contract stores only the public points <var>E</var> = <var>e</var>·G and <var>Z</var> = <var>z</var>·G, on the Pallas curve, so it can check a half when one is revealed.</p>
         </div>
         <p class="callout plate">Taking money out of the contract means revealing your half, which hands the other side what it needs to take the ZEC.</p>
@@ -56,10 +56,10 @@
       <figure class="keyfig reveal">
         <svg viewBox="0 0 320 292" role="img" aria-labelledby="kf-title kf-desc">
           <title id="kf-title">The split key</title>
-          <desc id="kf-desc">The maker's half e and your half z add up to e + z, the spend key of the joint shielded address. The Ethereum contract stores only the public points E = e·G and Z = z·G.</desc>
+          <desc id="kf-desc">The bridge's half e and your half z add up to e + z, the spend key of the joint shielded address. The Ethereum contract stores only the public points E = e·G and Z = z·G.</desc>
           <g class="kd-e kd-lit">
             <path class="kd-plate" d="M11 12H87V70L77 80H1V22Z"/>
-            <text class="kd-cap" x="44" y="32" text-anchor="middle">MAKER</text>
+            <text class="kd-cap" x="44" y="32" text-anchor="middle">BRIDGE</text>
             <text class="kd-big" x="44" y="66" text-anchor="middle">e</text>
           </g>
           <g class="kd-z kd-lit">
@@ -99,14 +99,14 @@
         <span class="rail" aria-hidden="true"><span class="rail-fill"></span></span>
         <ol class="steps">
           <li class="step">
-            <span class="step-where">You and the maker</span>
+            <span class="step-where">You and the bridge</span>
             <h4>Quote and accept</h4>
-            <p>The maker offers a price and proves it knows <var>e</var> without showing it. You send back <var>Z</var>, a proof you know <var>z</var>, and the exact Railgun note your dollars must go to.</p>
+            <p>The bridge offers a price and proves it knows <var>e</var> without showing it. You send back <var>Z</var>, a proof you know <var>z</var>, and the exact Railgun note your dollars must go to.</p>
           </li>
           <li class="step">
             <span class="step-where">Ethereum</span>
-            <h4>The maker locks the dollars first</h4>
-            <p>Before you send anything, the maker calls <code>open()</code>, locking the USDC in the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract's <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">source is open</a>, and every swap is public on <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">Etherscan</a>.</p>
+            <h4>The bridge locks the dollars first</h4>
+            <p>Before you send anything, the bridge calls <code>open()</code>, locking the USDC in the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract's <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">source is open</a>, and every swap is public on <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">Etherscan</a>.</p>
           </li>
           <li class="step">
             <span class="step-where">Your phone</span>
@@ -120,8 +120,8 @@
           </li>
           <li class="step">
             <span class="step-where">Ethereum</span>
-            <h4>The maker confirms</h4>
-            <p>Once your ZEC has confirmed, the maker calls <code>ready()</code>, giving up its right to cancel. It can only do this before <var>t0</var>.</p>
+            <h4>The bridge confirms</h4>
+            <p>Once your ZEC has confirmed, the bridge calls <code>ready()</code>, giving up its right to cancel. It can only do this before <var>t0</var>.</p>
           </li>
           <li class="step">
             <span class="step-where">Ethereum</span>
@@ -130,8 +130,8 @@
           </li>
           <li class="step">
             <span class="step-where">Zcash</span>
-            <h4>The maker takes the ZEC</h4>
-            <p>Your half <var>z</var> is now public on Ethereum. The maker adds it to <var>e</var> and spends the ZEC. Both sides are paid.</p>
+            <h4>The bridge takes the ZEC</h4>
+            <p>Your half <var>z</var> is now public on Ethereum. The bridge adds it to <var>e</var> and spends the ZEC. Both sides are paid.</p>
           </li>
         </ol>
       </div>
@@ -147,45 +147,45 @@
           <h4>You reveal <var>z</var></h4>
           <ul class="payouts">
             <li>You get 0zkUSDC in your Railgun note.</li>
-            <li>The maker adds <var>z</var> to <var>e</var> and takes the ZEC.</li>
+            <li>The bridge adds <var>z</var> to <var>e</var> and takes the ZEC.</li>
           </ul>
           <p class="ending-note">The contract can only pay the note fixed at open.</p>
         </div></article>
         <article class="ending card reveal"><div class="card-in">
           <span class="half plate" aria-hidden="true">e</span>
           <p class="hud">Refunded</p>
-          <h4>The maker reveals <var>e</var></h4>
+          <h4>The bridge reveals <var>e</var></h4>
           <ul class="payouts">
-            <li>The maker gets its USDC back.</li>
+            <li>The bridge gets its USDC back.</li>
             <li>Your app adds <var>e</var> to your <var>z</var> and moves the ZEC back to you.</li>
           </ul>
-          <p class="ending-note">The maker can cancel before <var>t0</var> if it never confirmed, or refund in the day after <var>t1</var>.</p>
+          <p class="ending-note">The bridge can cancel before <var>t0</var> if it never confirmed, or refund in the day after <var>t1</var>.</p>
         </div></article>
       </div>
     </div>
 
     <div class="how-block">
       <h3 class="sub"><span class="sub-n">04</span> Why you don't have to trust anyone</h3>
-      <blockquote class="pull reveal"><p>The maker can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose. With no owner or pause switch, nobody can change a swap once it opens.</p></blockquote>
+      <blockquote class="pull reveal"><p>The bridge can't touch your ZEC without your half of the key. You only reveal that half by claiming, and the contract only pays the note you chose. With no owner or pause switch, nobody can change a swap once it opens.</p></blockquote>
       <div class="rules">
         <div class="rule reveal">
           <h4>Deadlines</h4>
           <p>Two deadlines, <var>t0</var> and <var>t1</var>, cut every swap into windows, and in each only one side may act. A silent party can never trap the other.</p>
           <div class="lanes">
             <div class="lane">
-              <p class="lane-title">If the maker never confirms</p>
+              <p class="lane-title">If the bridge never confirms</p>
               <ol class="lane-bar ends-you">
-                <li class="seg"><span class="mark"><span class="sr-only">From </span>Open<span class="sr-only">:</span></span> The maker can cancel.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>Open<span class="sr-only">:</span></span> The bridge can cancel.</li>
                 <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t0<span class="sr-only">:</span></span> You can claim.</li>
-                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The maker can refund.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The bridge can refund.</li>
                 <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t1 + 24h<span class="sr-only">:</span></span> You can claim, for good.</li>
               </ol>
             </div>
             <div class="lane">
-              <p class="lane-title">Once the maker confirms</p>
+              <p class="lane-title">Once the bridge confirms</p>
               <ol class="lane-bar ends-you">
                 <li class="seg seg-you seg-wide"><span class="mark"><span class="sr-only">From </span>Ready<span class="sr-only">:</span></span> You can claim.</li>
-                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The maker can refund.</li>
+                <li class="seg"><span class="mark"><span class="sr-only">From </span>t1<span class="sr-only">:</span></span> The bridge can refund.</li>
                 <li class="seg seg-you"><span class="mark"><span class="sr-only">From </span>t1 + 24h<span class="sr-only">:</span></span> You can claim, for good.</li>
               </ol>
             </div>
@@ -199,9 +199,9 @@
 
       <h4 class="hud whatif-title">What if</h4>
       <dl class="whatif">
-        <div class="wi plate reveal"><dt>The maker goes offline after you pay</dt><dd>You claim without it from <var>t0</var>.</dd></div>
-        <div class="wi plate reveal"><dt>You send too little</dt><dd>The maker cancels, which reveals <var>e</var>, so your ZEC comes back.</dd></div>
-        <div class="wi plate reveal"><dt>Your phone is off for hours</dt><dd>Once the maker confirms, the relayer claims for you. If your phone went off before that, the swap waits for your claim until <var>t1</var>, then the maker refunds, which brings your ZEC back.</dd></div>
+        <div class="wi plate reveal"><dt>The bridge goes offline after you pay</dt><dd>You claim without it from <var>t0</var>.</dd></div>
+        <div class="wi plate reveal"><dt>You send too little</dt><dd>The bridge cancels, which reveals <var>e</var>, so your ZEC comes back.</dd></div>
+        <div class="wi plate reveal"><dt>Your phone is off for hours</dt><dd>Once the bridge confirms, the relayer claims for you. If your phone went off before that, the swap waits for your claim until <var>t1</var>, then the bridge refunds, which brings your ZEC back.</dd></div>
         <div class="wi plate reveal"><dt>The relayer misbehaves</dt><dd>It can't redirect anything. The payout note is fixed, and every request is signed by your swap key.</dd></div>
         <div class="wi plate reveal"><dt>A Railgun payout bounces</dt><dd>The funds return to a vault for that swap and can be shielded again.</dd></div>
       </dl>
@@ -211,7 +211,7 @@
   <section class="section" id="compare" aria-labelledby="compare-title">
     <p class="hud sec">Compared with NEAR Intents</p>
     <h2 class="title" id="compare-title">One takes custody. The other can't.</h2>
-    <p class="prose intro">NEAR Intents holds your ZEC and you trust it to pay. The bridge is an atomic swap your app verifies on Ethereum, and every swap ends with your dollars or your ZEC back, whether the maker shows up or not.</p>
+    <p class="prose intro">NEAR Intents holds your ZEC and you trust it to pay. Veylor's bridge never holds it: each swap is atomic, checked by your app on Ethereum, and ends with the dollars or your ZEC back, even if the bridge goes quiet.</p>
     <div class="reveal">
       <table class="compare" role="table">
         <caption class="sr-only">NEAR Intents and Veylor's bridge, compared</caption>
@@ -226,17 +226,17 @@
           <tr role="row">
             <th scope="row" role="rowheader">Who holds your ZEC</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">The operator, in a transparent deposit address, until a solver fills the trade.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Nobody. Its key is split between you and the maker, and neither half can spend alone.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Nobody. Its key is split between you and the bridge, and neither half can spend alone.</td>
           </tr>
           <tr role="row">
             <th scope="row" role="rowheader">Can they take it?</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">Yes. It can be frozen, seized or lost, and the operator or solver can block you.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">No. The contract has no owner or pause switch. At most the maker calls a swap off, which returns your ZEC.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">No. The contract has no owner or pause switch. At most the bridge calls a swap off, which returns your ZEC.</td>
           </tr>
           <tr role="row">
             <th scope="row" role="rowheader">If they go quiet</th>
             <td role="cell" class="c-near" data-label="NEAR Intents">You wait, and file a support ticket.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">You claim the dollars from <var>t0</var>, without the maker.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">You claim the dollars from <var>t0</var>, without the bridge.</td>
           </tr>
           <tr role="row">
             <th scope="row" role="rowheader">Can you check it?</th>
@@ -264,7 +264,7 @@
 <footer class="site-footer">
   <div class="ft-brand">
     <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
-    <p>Shielded ZEC and shielded dollars, in one wallet.</p>
+    <p>Shielded ZEC and Shielded USD, in one wallet.</p>
   </div>
   <div class="ft-links">
     <nav aria-label="Footer">
