@@ -24,14 +24,9 @@
     <a href="/#dollars">Shielded dollars</a>
     <a href="/#trail">The bridge</a>
     <a href="/how-it-works/">How it works</a>
-    <a href="/#source">Open source</a>
   </nav>
   <div class="tb-end">
     <span class="btn-glow"><a class="btn btn-sm" href="/#beta">Get the app</a></span>
-    <button class="sound plate" type="button" aria-pressed="true" hidden>
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
-      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
-    </button>
   </div>
 </div>
 
@@ -111,7 +106,7 @@
           <li class="step">
             <span class="step-where">Ethereum</span>
             <h4>The maker locks the dollars first</h4>
-            <p>Before you send anything, the maker calls <code>open()</code>, locking the USDC in the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract's <a href="https://github.com/JustZappIt/zecSwap/blob/32cc6efca0f22589655eb2e61b00ec6d582e8570/contracts/src/ZecSwap.sol">source is open</a>, and every swap is public on <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">Etherscan</a>.</p>
+            <p>Before you send anything, the maker calls <code>open()</code>, locking the USDC in the contract under <var>E</var>, <var>Z</var>, two deadlines and your payout note. The contract's <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">source is open</a>, and every swap is public on <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">Etherscan</a>.</p>
           </li>
           <li class="step">
             <span class="step-where">Your phone</span>
@@ -211,24 +206,12 @@
         <div class="wi plate reveal"><dt>A Railgun payout bounces</dt><dd>The funds return to a vault for that swap and can be shielded again.</dd></div>
       </dl>
     </div>
-
-    <div class="how-block">
-      <h3 class="sub"><span class="sub-n">05</span> The other way, dollars to ZEC</h3>
-      <p class="prose">The same split key and contract, with the roles swapped.</p>
-      <ol class="flowline reveal">
-        <li class="plate"><span class="fl-n" aria-hidden="true">01</span>You lock 0zkUSDC straight from Railgun, with a refund note that only pays you.</li>
-        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">02</span>The maker sends ZEC to the joint address.</li>
-        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">03</span>Your app checks the ZEC is really there before you sign <code>ready</code>.</li>
-        <li class="plate"><span class="fl-wire" aria-hidden="true"></span><span class="fl-n" aria-hidden="true">04</span>The maker reveals its half to take the USDC. Your app adds it to yours and moves the ZEC into your wallet.</li>
-      </ol>
-      <p class="prose after">Until you sign <code>ready</code>, you can take your dollars back. Once you do, the maker has until <var>t1</var> to take them, and from <var>t1</var> they're yours to take back again.</p>
-    </div>
   </section>
 
   <section class="section" id="compare" aria-labelledby="compare-title">
     <p class="hud sec">Compared with NEAR Intents</p>
-    <h2 class="title" id="compare-title">Two ways to swap ZEC for dollars.</h2>
-    <p class="prose intro">Veylor still uses NEAR Intents for other assets. For ZEC and dollars, it uses the bridge.</p>
+    <h2 class="title" id="compare-title">One takes custody. The other can't.</h2>
+    <p class="prose intro">NEAR Intents holds your ZEC and you trust it to pay. The bridge is an atomic swap your app verifies on Ethereum, and every swap ends with your dollars or your ZEC back, whether the maker shows up or not.</p>
     <div class="reveal">
       <table class="compare" role="table">
         <caption class="sr-only">NEAR Intents and Veylor's bridge, compared</caption>
@@ -241,51 +224,32 @@
         </thead>
         <tbody role="rowgroup">
           <tr role="row">
+            <th scope="row" role="rowheader">Who holds your ZEC</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">The operator, in a transparent deposit address, until a solver fills the trade.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Nobody. Its key is split between you and the maker, and neither half can spend alone.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">Can they take it?</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">Yes. It can be frozen, seized or lost, and the operator or solver can block you.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">No. The contract has no owner or pause switch. At most the maker calls a swap off, which returns your ZEC.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">If they go quiet</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">You wait, and file a support ticket.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">You claim the dollars from <var>t0</var>, without the maker.</td>
+          </tr>
+          <tr role="row">
+            <th scope="row" role="rowheader">Can you check it?</th>
+            <td role="cell" class="c-near" data-label="NEAR Intents">No. You send first and trust the operator to pay.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Yes. The code is open, and your app checks the locked dollars on Ethereum before any ZEC leaves.</td>
+          </tr>
+          <tr role="row">
             <th scope="row" role="rowheader">What Zcash shows</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">An unshield to a known NEAR deposit address, with the exact amount and time, public for good.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">One ordinary shielded transaction. No amount, no destination, no unshield.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">What the dollar side shows</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">USDC from a solver soon after, for about the same value.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">USDC paid into your Railgun note, inside Railgun's shielded pool.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">Linking the two legs</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">Amount and timing make the link.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">No shared hash, unlike hash-locked swaps, and nothing visible on the Zcash side.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">Your funds mid-swap</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">In someone else's transparent address, where they can be frozen, seized or lost.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">Held by nobody. There's nothing to freeze.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">When something breaks</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">A support ticket, and the refund may go to a transparent address.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A refund, built in, and if the maker goes quiet you claim without it from <var>t0</var>.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">Who runs it</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">An operator. Its bridge issues your deposit address and holds the ZEC until a solver fills the trade.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">A contract with no owner, admin key or pause switch. Anyone can be a maker on it. For now the app trades with one.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">Censorship</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">The solver or operator can block you.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The maker can refuse to quote you, but can't take a swap's funds. At most it calls one off, which returns your ZEC.</td>
-          </tr>
-          <tr role="row">
-            <th scope="row" role="rowheader">What the other side sees</th>
-            <td role="cell" class="c-near" data-label="NEAR Intents">Your deposit, your payout address and your refund address.</td>
-            <td role="cell" class="c-veylor" data-label="Veylor's bridge">The same. The maker sees its own swap, never your other notes.</td>
+            <td role="cell" class="c-near" data-label="NEAR Intents">An unshield to a known deposit address, exact amount and time, public for good.</td>
+            <td role="cell" class="c-veylor" data-label="Veylor's bridge">One ordinary shielded transaction. Your ZEC never unshields.</td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="fair plate reveal">
-      <p class="hud">Where NEAR Intents is ahead</p>
-      <p>It's fire-and-forget, while the bridge needs your app open for part of each swap. It also has deeper liquidity, takes any amount, covers many chains, and is mature in production.</p>
     </div>
   </section>
 
@@ -293,7 +257,7 @@
     <p class="hud">Try it</p>
     <h2 class="title">Swap without unshielding your ZEC.</h2>
     <p class="prose">On Android, and in beta on iPhone. The bridge runs on mainnet with real funds, so start small.</p>
-    <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/store/apps/details?id=com.veylor.app">Get it on Android</a></span><a class="link-hud" href="/">Back to veylor.cash</a></div>
+    <div class="cta"><span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/store/apps/details?id=com.veylor.app">Get it on Android</a></span></div>
   </section>
 </main>
 
@@ -302,12 +266,18 @@
     <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
     <p>Shielded ZEC and shielded dollars, in one wallet.</p>
   </div>
-  <nav aria-label="Footer">
-    <a href="/">Home</a>
-    <a href="/privacy/">Privacy policy</a>
-    <a href="/#support">Support</a>
-    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
-  </nav>
+  <div class="ft-links">
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/privacy/">Privacy policy</a>
+      <a href="/#support">Support</a>
+      <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
+    </nav>
+    <button class="sound plate" type="button" aria-pressed="true" hidden>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+    </button>
+  </div>
 </footer>
 </body>
 </html>

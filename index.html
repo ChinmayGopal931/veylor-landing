@@ -24,14 +24,9 @@
     <a href="/#dollars">Shielded dollars</a>
     <a href="/#trail">The bridge</a>
     <a href="/how-it-works/">How it works</a>
-    <a href="/#source">Open source</a>
   </nav>
   <div class="tb-end">
     <span class="btn-glow"><a class="btn btn-sm" href="/#beta">Get the app</a></span>
-    <button class="sound plate" type="button" aria-pressed="true" hidden>
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
-      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
-    </button>
   </div>
 </div>
 
@@ -59,7 +54,6 @@
     <p class="lede rise d3">Hold, send and swap shielded USDC, without ever unshielding your ZEC.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn" href="https://testflight.apple.com/join/D9gw2Kwm">Beta for iPhone</a></span><span class="btn-glow"><a class="btn" href="https://play.google.com/store/apps/details?id=com.veylor.app">Get it on Android</a></span>
-      <a class="link-hud" href="/how-it-works/">How it works</a>
     </div>
   </div>
   <div class="sky" aria-hidden="true"><div class="stars"></div><div class="stars twinkle"></div></div>
@@ -80,13 +74,11 @@
         <p class="hud sec">Shielded dollars</p>
         <h2 class="title" id="dollars-title">Hold, send and receive shielded USDC.</h2>
         <div class="prose reveal">
-          <p>0zkUSDC is USDC shielded in Railgun on Ethereum. Veylor is the first wallet to hold it beside shielded ZEC.</p>
+          <p>0zkUSDC is USDC shielded in Railgun on Ethereum. Veylor lets you hold 0zkUSDC and ZEC in one wallet.</p>
         </div>
         <ul class="ticks reveal">
           <li><strong>Send to anyone.</strong> Pay any 0zk or Ethereum address.</li>
           <li><strong>Receive from anyone.</strong> From any 0zk address or Ethereum account. Public USDC shields on arrival.</li>
-          <li><strong>No ETH for gas.</strong> A relayer covers it for a small USDC fee.</li>
-          <li><strong>One seed.</strong> Your Railgun wallet is derived from your Zcash recovery phrase.</li>
         </ul>
       </div>
       <div class="wallet card reveal">
@@ -111,10 +103,10 @@
     </div>
   </section>
   <section class="section" id="trail" aria-labelledby="trail-title">
-    <p class="hud sec">The shielded bridge</p>
-    <h2 class="title" id="trail-title">Swap with dollars. Your ZEC stays shielded.</h2>
+    <p class="hud sec">Swap ZEC for dollars</p>
+    <h2 class="title" id="trail-title">The first shielded Zcash bridge.</h2>
     <div class="prose reveal">
-      <p>Veylor's bridge never unshields your ZEC.</p>
+      <p>An atomic, trustless swap between ZEC and dollars. Your ZEC never unshields.</p>
     </div>
 
     <div class="routes">
@@ -180,12 +172,12 @@
   <section class="section" id="trustless" aria-labelledby="trustless-title">
     <p class="hud sec">Trustless at every step</p>
     <h2 class="title" id="trustless-title">Verifiable at every step.</h2>
-    <p class="prose intro reveal">Don't trust the maker, or us. Your app checks the chain before every move, and a public contract enforces the deal.</p>
+    <p class="prose intro reveal">Don't trust the maker, or us.</p>
     <div class="cards">
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.5H19.5V20.5H4.5Z M8 10.5V6.5L10 4.5H14L16 6.5V10.5 M12 14V17"/></svg>
         <h3>The maker locks first</h3>
-        <p>Before you send anything, the maker locks the dollars in a public contract, its source <a href="https://github.com/JustZappIt/zecSwap/blob/32cc6efca0f22589655eb2e61b00ec6d582e8570/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
+        <p>Before you send anything, the maker locks the dollars in a public contract, its source <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12L8.5 17L20.5 5"/></svg>
@@ -282,14 +274,13 @@
     <h2 class="title" id="source-title">Nobody holds your keys. Not even us.</h2>
     <div class="prose reveal">
       <p>Your recovery phrase is the only way in. Your Railgun wallet is derived from it with BIP-85, so one phrase restores both. Keep a copy offline, because nobody, including us, can recover it.</p>
-      <p>Veylor has no accounts, analytics or trackers. Read the <a href="/privacy/">privacy policy</a>, or read the code.</p>
     </div>
     <ul class="links">
-      <li class="reveal"><a class="link-card plate" href="https://github.com/JustZappIt/zecSwap">
+      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/zecSwap">
         <span class="hud">Bridge protocol</span>
         <span class="link-name">zecSwap</span>
         <span class="link-desc">The swap contract and the client the app runs.</span>
-        <span class="link-url">github.com/JustZappIt/zecSwap</span>
+        <span class="link-url">github.com/ChinmayGopal931/zecSwap</span>
       </a></li>
       <li class="reveal"><a class="link-card plate" href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f">
         <span class="hud">On Ethereum</span>
@@ -333,12 +324,18 @@
     <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
     <p>Shielded ZEC and shielded dollars, in one wallet.</p>
   </div>
-  <nav aria-label="Footer">
-    <a href="/how-it-works/">How it works</a>
-    <a href="/privacy/">Privacy policy</a>
-    <a href="#support">Support</a>
-    <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
-  </nav>
+  <div class="ft-links">
+    <nav aria-label="Footer">
+      <a href="/how-it-works/">How it works</a>
+      <a href="/privacy/">Privacy policy</a>
+      <a href="#support">Support</a>
+      <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
+    </nav>
+    <button class="sound plate" type="button" aria-pressed="true" hidden>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+    </button>
+  </div>
 </footer>
 </body>
 </html>

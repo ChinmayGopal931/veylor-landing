@@ -7,7 +7,7 @@ HTML, no build step.
 | File | What it is |
 | --- | --- |
 | `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, getting the app (`#beta`) and support (https://veylor.cash/#support) |
-| `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if, the dollars-to-ZEC direction) and the comparison with NEAR Intents (`#compare`) |
+| `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
 | `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
@@ -33,10 +33,10 @@ beta until it leaves it (below).
 
 Buttons and links make a short square-wave blip, synthesized with the Web
 Audio API in `site.js`; there are no audio files. The audio context is made on
-the visitor's first press, never before. The SOUND switch in the top bar
-turns it off and on (on by default) and remembers the choice in
-`localStorage` under `veylor.sound`; if storage is blocked the page still
-works and the sound stays on.
+the visitor's first press, never before. The SOUND switch in the footer of the
+home page and the how-it-works page turns it off and on (on by default) and
+remembers the choice in `localStorage` under `veylor.sound`; if storage is
+blocked the page still works and the sound stays on.
 
 ## The Railgun mark
 
@@ -52,7 +52,7 @@ recolor or redraw it.
 ## Keeping the copy true
 
 The bridge copy comes from the bridge's own documentation
-(https://github.com/JustZappIt/zecSwap) and Railgun's descriptions of itself.
+(https://github.com/ChinmayGopal931/zecSwap) and Railgun's descriptions of itself.
 Never claim an audit, a speed or a fee. When the bridge changes (an audit is
 published, the per-swap caps or units change, it leaves beta), update the
 "How it works" page, its comparison and the beta sections to match.

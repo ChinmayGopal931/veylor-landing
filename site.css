@@ -521,15 +521,6 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .wi dt { margin: 0 0 6px; font-size: 16px; line-height: 1.35; color: #fff; }
 .wi dd { margin: 0; font-size: 15px; line-height: 1.5; color: var(--muted); }
 
-/* The other way: four steps in a row (a column on phones). */
-.flowline { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 28px; }
-@media (min-width: 900px) { .flowline { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.flowline li { padding: 16px 16px 18px; font-size: 15px; line-height: 1.5; --c: 10px; --edge: linear-gradient(135deg, rgba(255, 46, 62, 0.75), rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.14)); }
-.fl-n { display: block; margin-bottom: 6px; font-size: 11px; letter-spacing: 0.26em; color: var(--red); text-shadow: 0 0 8px rgba(255, 46, 62, 0.5); }
-.fl-wire { position: absolute; left: 26px; top: -29px; width: 2px; height: 28px; background: var(--red-hot); box-shadow: 0 0 8px var(--red); }
-@media (min-width: 900px) { .fl-wire { left: -29px; top: 28px; width: 28px; height: 2px; } }
-.after { margin-top: 20px; }
-
 /* ---------- Comparison ---------- */
 .compare { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
 .compare th, .compare td { padding: 16px 18px; text-align: left; vertical-align: top; border-top: 1px solid var(--rule); }
@@ -552,9 +543,6 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   .compare td.c-veylor { width: auto; margin-top: 8px; }
   .compare td.c-veylor::before { color: var(--red); }
 }
-.fair { margin-top: 28px; max-width: 780px; padding: 20px 22px 22px; --c: 12px; }
-.fair .hud { color: #d9d9d9; text-shadow: none; }
-.fair p:last-child { margin: 8px 0 0; color: var(--muted); }
 
 /* ---------- Railgun ---------- */
 .railgun { display: grid; gap: 32px; align-items: center; }
@@ -630,6 +618,25 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 10px 28px; }
 .site-footer nav a { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); }
 .site-footer nav a:hover { color: var(--red-hot); text-decoration: none; text-shadow: 0 0 10px rgba(255, 46, 62, 0.6); }
+.ft-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+
+/* The sound switch, a HUD readout beside the footer's links. */
+.sound {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 7px; height: 30px; margin: 0; padding: 0 11px 0 10px;
+  border: 0; background: none; color: var(--text); cursor: pointer;
+  font: 400 11px/1 var(--font); letter-spacing: 0.22em; text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+  --c: 7px; --edge: rgba(255, 46, 62, 0.6); --fill: rgba(0, 0, 0, 0.85);
+}
+.sound[hidden] { display: none; }
+.sound:hover { --edge: var(--red-hot); }
+.sound:focus-visible { outline-offset: -5px; }
+.sound svg { flex: none; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; stroke-linejoin: miter; }
+.sound-state { min-width: 2.4em; color: var(--red); text-shadow: 0 0 8px rgba(255, 46, 62, 0.6); }
+.sound[aria-pressed="true"] .mute, .sound[aria-pressed="false"] .wave { display: none; }
+.sound[aria-pressed="false"] { --edge: rgba(255, 255, 255, 0.22); color: var(--muted); }
+.sound[aria-pressed="false"] .sound-state { color: var(--dim); text-shadow: none; }
 
 /* The scroll's sync line: it rises as the page is read, behind the content. */
 .sync {
@@ -678,25 +685,6 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .tb-end { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 .tb-links + .tb-end { margin-left: 0; }
 @media (max-width: 900px) { .tb-links { display: none; } .tb-links + .tb-end { margin-left: auto; } }
-@media (max-width: 420px) { .sound > span:not(.sound-state) { display: none; } }
-
-/* The sound switch, a HUD readout in the bar. */
-.sound {
-  position: relative;
-  display: inline-flex; align-items: center; gap: 8px; height: 34px; margin: 0; padding: 0 12px 0 11px;
-  border: 0; background: none; color: var(--text); cursor: pointer;
-  font: 400 11px/1 var(--font); letter-spacing: 0.24em; text-transform: uppercase;
-  -webkit-tap-highlight-color: transparent;
-  --c: 8px; --edge: rgba(255, 46, 62, 0.6); --fill: rgba(0, 0, 0, 0.85);
-}
-.sound[hidden] { display: none; }
-.sound:hover { --edge: var(--red-hot); }
-.sound:focus-visible { outline-offset: -5px; }
-.sound svg { flex: none; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: square; stroke-linejoin: miter; }
-.sound-state { min-width: 2.4em; color: var(--red); text-shadow: 0 0 8px rgba(255, 46, 62, 0.6); }
-.sound[aria-pressed="true"] .mute, .sound[aria-pressed="false"] .wave { display: none; }
-.sound[aria-pressed="false"] { --edge: rgba(255, 255, 255, 0.22); color: var(--muted); }
-.sound[aria-pressed="false"] .sound-state { color: var(--dim); text-shadow: none; }
 
 /* ---------- Long text (privacy policy) ---------- */
 .doc { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; padding: 40px 20px 72px; }
@@ -836,13 +824,6 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(1)::before { transition-delay: 1.3s; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(2)::before { transition-delay: 1.55s; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(3)::before { transition-delay: 1.8s; }
-
-  /* The other way: the four steps arrive in order. */
-  .js .flowline li { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
-  .js .flowline.in li { opacity: 1; transform: none; }
-  .js .flowline.in li:nth-child(2) { transition-delay: 0.25s; }
-  .js .flowline.in li:nth-child(3) { transition-delay: 0.5s; }
-  .js .flowline.in li:nth-child(4) { transition-delay: 0.75s; }
 }
 
 /* ---------- Sub-pages ---------- */
