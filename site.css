@@ -619,6 +619,7 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .site-footer nav a { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); }
 .site-footer nav a:hover { color: var(--red-hot); text-decoration: none; text-shadow: 0 0 10px rgba(255, 46, 62, 0.6); }
 .ft-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+.site-footer .ft-social { flex-wrap: nowrap; }
 
 /* The sound switch, a HUD readout beside the footer's links. */
 .sound {
