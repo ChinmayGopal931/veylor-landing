@@ -831,3 +831,25 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 .section.page-top { padding-top: 40px; padding-bottom: 0; }
 .section.page-top + .section { padding-top: 40px; }
 .cta.left { justify-content: flex-start; }
+
+/* Get Veylor: one tile per platform; Windows and Linux are coming. */
+.platforms { list-style: none; margin: 34px auto 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; max-width: 760px; position: relative; z-index: 2; }
+.platform {
+  --c: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 20px 10px 16px;
+  color: var(--text); background: linear-gradient(to bottom, rgba(20, 3, 8, 0.86), rgba(8, 1, 4, 0.9));
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.platform svg { width: 30px; height: 30px; margin-bottom: 6px; fill: var(--red-hot); filter: drop-shadow(0 0 8px rgba(255, 46, 62, 0.55)); transition: fill 0.2s; }
+.platform-note { font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red-core); }
+.platform-name { font-weight: 300; font-size: 16px; letter-spacing: 0.04em; }
+a.platform:hover { background: linear-gradient(to bottom, rgba(60, 6, 16, 0.9), rgba(24, 3, 8, 0.92)); text-decoration: none; }
+a.platform:hover svg { fill: #fff; }
+a.platform:focus-visible { outline: none; background: rgba(60, 6, 16, 0.95); box-shadow: inset 0 0 0 2px var(--red-core); }
+.platform.soon { color: var(--dim); cursor: default; }
+.platform.soon svg { fill: var(--dim); filter: none; }
+.platform.soon .platform-note { color: var(--dim); }
+.platforms-note { position: relative; z-index: 2; margin: 18px auto 0; max-width: 34em; font-size: 13px; color: var(--muted); }
+@media (max-width: 640px) { .platforms { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
