@@ -1,0 +1,113 @@
+{
+  "repo": "ChinmayGopal931/vizor-fork",
+  "workflows": {
+    "linux": ".github/workflows/veylor-linux.yml",
+    "android": ".github/workflows/veylor-android.yml",
+    "windows": ".github/workflows/veylor-windows.yml"
+  },
+  "android_certificate_sha256": "83f16e2037b09e731e51b3472466db43c4a962ada1fb4e40eaa4c3215a2174f5",
+  "summaries": {
+    "veylor-linux/v0.9.1": "The first release GitHub builds and publishes itself, with a signed record of each file's build. Adds Shielded USD's failure codes.",
+    "veylor-linux/v0.9.0": "The first Linux release: Shielded USD, bridges both ways, and the neon look."
+  },
+  "platforms": [
+    {
+      "id": "android",
+      "name": "Android",
+      "icon": "Android",
+      "group": "main",
+      "release": "android",
+      "status": "Available",
+      "requirements": "Android 11 or later",
+      "store": {
+        "label": "Google Play",
+        "href": "https://play.google.com/store/apps/details?id=com.veylor.app"
+      },
+      "download": {
+        "match": "^veylor-[0-9.]+-[0-9]+\\.apk$",
+        "label": "Download APK"
+      },
+      "without_release": "On Google Play now. A direct APK, with its signing certificate and a signed build record, is coming here.",
+      "headline": "On Google Play"
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "icon": "Linux",
+      "group": "main",
+      "release": "linux",
+      "status": "Beta",
+      "requirements": "x86_64 and ARM · glibc 2.35 or later, as on Ubuntu 22.04 and Debian 12",
+      "download": {
+        "match": "^veylor_[0-9.]+_amd64\\.deb$",
+        "label": "Download .deb · x86_64"
+      }
+    },
+    {
+      "id": "iphone",
+      "name": "iPhone",
+      "icon": "iPhone",
+      "group": "more",
+      "status": "Beta",
+      "headline": "TestFlight beta",
+      "summary": "The same wallet as on Android, through Apple's TestFlight.",
+      "store": {
+        "label": "Join the beta",
+        "href": "https://testflight.apple.com/join/D9gw2Kwm"
+      }
+    },
+    {
+      "id": "mac",
+      "name": "Mac",
+      "icon": "Mac",
+      "group": "more",
+      "release": "macos",
+      "status": "Coming soon",
+      "requirements": "macOS 12 or later · Shielded USD on macOS 14 or later",
+      "without_release": "Signed by Zapp LLC and notarized by Apple, with updates built in. Waiting on Apple.",
+      "headline": "Signed and notarized"
+    },
+    {
+      "id": "windows",
+      "name": "Windows",
+      "icon": "Windows",
+      "group": "more",
+      "release": "windows",
+      "status": "Coming soon",
+      "requirements": "x64 and ARM",
+      "without_release": "Built and checked on GitHub. Out once it has run on real Windows computers.",
+      "headline": "In testing"
+    }
+  ],
+  "files": [
+    {
+      "match": "^veylor-[0-9.]+-[0-9]+\\.apk$",
+      "label": "Signed APK: install this one.",
+      "signed_from": "-unsigned.apk"
+    },
+    {
+      "match": "-unsigned\\.apk$",
+      "label": "The build GitHub made and attested, before signing. For checking, not for installing."
+    },
+    {
+      "match": "^veylor_[0-9.]+_amd64\\.deb$",
+      "label": ".deb for Ubuntu and Debian, on most PCs (amd64)."
+    },
+    {
+      "match": "^veylor_[0-9.]+_arm64\\.deb$",
+      "label": ".deb for Ubuntu and Debian, on ARM computers (arm64)."
+    },
+    {
+      "match": "^Veylor-linux-x86_64\\.AppImage$",
+      "label": "AppImage for other distributions, on most PCs (x86_64)."
+    },
+    {
+      "match": "^Veylor-linux-aarch64\\.AppImage$",
+      "label": "AppImage for other distributions, on ARM computers (aarch64)."
+    },
+    {
+      "match": "^SHA256SUMS$",
+      "label": "Every file's SHA-256, in the format sha256sum -c reads."
+    }
+  ]
+}

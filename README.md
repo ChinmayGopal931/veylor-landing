@@ -9,6 +9,8 @@ HTML, no build step.
 | `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, getting the app (`#beta`) and support (https://veylor.cash/#support) |
 | `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
+| `releases/index.html` | https://veylor.cash/releases/: every release, each file with its size, SHA-256 and build attestation, how to check a download, and each release's notes. Written by `tools/build-releases.py`, never by hand (below) |
+| `tools/` | `build-releases.py`, which writes the releases page, and `releases.json`, the words it can't take from GitHub |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
 | `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
 | `fonts/` | Montserrat (SIL Open Font License, `fonts/OFL.txt`), self-hosted so the site makes no third-party requests |
@@ -28,6 +30,32 @@ point at the iPhone beta's public TestFlight link
 When the iPhone app leaves TestFlight, point its buttons at its App Store
 listing and drop "beta" from the copy beside them. The bridge itself stays in
 beta until it leaves it (below).
+
+## The releases page
+
+`releases/index.html` is generated. After a release is published on the app's
+repository (a tag `veylor-<platform>/v<version>`: `android`, `linux`, `macos`
+or `windows`), write the page again and commit it:
+
+```sh
+python3 -I tools/build-releases.py
+```
+
+It needs `gh`, signed in. From GitHub's API it takes every such release, its
+notes, the commit its tag names, its files' sizes and SHA-256 digests, and
+each file's build attestation, and it refuses to write the page when:
+
+- a release's `SHA256SUMS` disagrees with GitHub's digests;
+- an attestation names another repository or workflow;
+- a file's attestations name no build of its tag's commit;
+- a signed APK has no attested unsigned build beside it.
+
+`tools/releases.json` holds the rest: each platform card's words and links,
+the file labels, a short summary per release, and the Android APK's signing
+certificate (its SHA-256, as `apksigner verify --print-certs` prints it). The
+page loads nothing from GitHub; its links go there only when clicked. The top
+bar, footer and platform icons come from `how-it-works/index.html` and the
+home page's tiles, so change them there and run the script again.
 
 ## The click sound
 
