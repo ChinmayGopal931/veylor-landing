@@ -308,6 +308,19 @@ def asset(release: dict, pattern: str) -> dict:
     fail(f"{release['tag']} has no file like {pattern}")
 
 
+def anchor(release: dict) -> str:
+    return f"v-{release['platform']}-{release['version']}"
+
+
+def whats_new(body: str) -> str:
+    """Only the notes' "What's New" (the rest is one click away, on GitHub)."""
+    match = re.search(r"^## What's New\n(.*?)(?=^## |\Z)", body, re.M | re.S)
+    if match:
+        return notes_html(match.group(1))
+    paragraph = re.search(r"^(?!#)(\S.*(?:\n\S.*)*)", body, re.M)
+    return notes_html(paragraph.group(1)) if paragraph else ""
+
+
 def card(p: dict, release, icons: dict) -> str:
     soon = p["status"] == "Coming soon"
     if release:
@@ -317,64 +330,77 @@ def card(p: dict, release, icons: dict) -> str:
     else:
         head = f'<div class="rel-version quiet">{esc(p["headline"])}</div>' if p.get("headline") else ""
         meta = p.get("requirements", "")
-        summary = p.get("without_release") or p.get("summary", "")
-    actions = []
+        summary = p.get("without_release") or p.get("summary") or ""
+    links = []
+    primary = None
     if release and p.get("download"):
-        f = asset(release, p["download"]["match"])
-        actions.append(f'<span class="btn-glow"><a class="btn btn-sm" href="{esc(f["url"])}">{esc(p["download"]["label"])}</a></span>')
-    if p.get("store"):
-        if actions:
-            actions.append(f'<a class="link-hud" href="{esc(p["store"]["href"])}">{esc(p["store"]["label"])}</a>')
-        else:
-            actions.append(f'<span class="btn-glow"><a class="btn btn-sm" href="{esc(p["store"]["href"])}">{esc(p["store"]["label"])}</a></span>')
+        primary = (asset(release, p["download"]["match"])["url"], p["download"]["label"])
+        if p.get("store"):
+            links.append((p["store"]["href"], p["store"]["label"]))
+    elif p.get("store"):
+        primary = (p["store"]["href"], p["store"]["label"])
     if release:
-        actions.append(f'<a class="link-hud" href="#{p["id"]}-files">Files and SHA-256</a>')
-    status_class = "rel-status dim" if soon else "rel-status"
+        links.append((f"#{anchor(release)}", "Notes and SHA-256"))
+    actions = ""
+    if primary or links:
+        actions = '<div class="rel-actions">'
+        if primary:
+            actions += f'<span class="btn-glow"><a class="btn btn-sm" href="{esc(primary[0])}">{esc(primary[1])}</a></span>'
+        actions += "".join(f'<a class="link-hud" href="{esc(h)}">{esc(t)}</a>' for h, t in links) + "</div>"
     return f"""
       <article class="card rel-card reveal{' soon' if soon else ''}" id="{p['id']}" aria-labelledby="{p['id']}-name"><div class="card-in">
-        <div class="rel-head">{icons[p['icon']]}<h3 id="{p['id']}-name">{esc(p['name'])}</h3><span class="{status_class}">{esc(p['status'])}</span></div>
+        <div class="rel-head">{icons[p['icon']]}<h3 id="{p['id']}-name">{esc(p['name'])}</h3><span class="rel-status{' dim' if soon else ''}">{esc(p['status'])}</span></div>
         {head}
-        <div class="rel-meta">{esc(meta)}</div>
-        <p class="rel-summary">{esc(summary)}</p>
-        {'<div class="rel-actions">' + ''.join(actions) + '</div>' if actions else ''}
+        {f'<div class="rel-meta">{esc(meta)}</div>' if meta else ''}
+        {f'<p class="rel-summary">{esc(summary)}</p>' if summary else ''}
+        {actions}
       </div></article>"""
+
+
+def copy_button(value: str, label: str) -> str:
+    return f'<button class="copy" type="button" data-copy="{esc(value)}" aria-label="{esc(label)}" hidden>Copy</button>'
 
 
 def file_row(f: dict) -> str:
     if f["build"]:
         badge = f'<a class="badge ok" href="{esc(f["build"]["run"])}" title="The GitHub Actions run that built it">Attested</a>'
     elif f["signed_from"]:
-        badge = '<a class="badge" href="#check-apk">Signed by Veylor</a>'
-    elif f["name"] == "SHA256SUMS":
+        badge = '<span class="badge">Signed by Veylor</span>'
+    else:
         badge = ""
+    return f"""
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="{esc(f['url'])}">{esc(f['name'])}</a><span class="file-label">{esc(f['label'])}</span><span class="file-size">{size(f['size'])}</span>{badge}</div>
+              <div class="hash"><code class="hash-v">{f['sha256']}</code>{copy_button(f['sha256'], 'Copy the SHA-256 of ' + f['name'])}</div>
+            </li>"""
+
+
+def version_item(release: dict) -> str:
+    builds = [f["build"] for f in release["files"] if f["name"] != "SHA256SUMS" and not f["signed_from"]]
+    if builds and all(builds):
+        badge = '<span class="badge ok">Attested</span>'
+    elif any(builds):
+        badge = '<span class="badge">Partly attested</span>'
     else:
         badge = '<span class="badge">No build record</span>'
-    return f"""
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="{esc(f['url'])}">{esc(f['name'])}</a><span class="file-size">{size(f['size'])}</span>{badge}</div>
-            <p class="file-label">{esc(f['label'])}</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">{f['sha256']}</code><button class="copy" type="button" data-copy="{f['sha256']}" aria-label="Copy the SHA-256 of {esc(f['name'])}" hidden>Copy</button></div>
-          </li>"""
-
-
-def files_block(p: dict, release: dict) -> str:
     commit = release["commit"]
-    rows = "".join(file_row(f) for f in release["files"])
     return f"""
-    <div class="rel-files reveal" id="{p['id']}-files">
-      <div class="rel-files-head">
-        <h3 class="sub"><span class="sub-n">{esc(p['name'])}</span> v{esc(release['version'])}</h3>
-        <p class="rel-files-meta">{day(release['published'])} · built from <a href="{GITHUB}/commit/{commit}"><code>{commit[:9]}</code></a> · <a href="{esc(release['url'])}">Release on GitHub</a></p>
-      </div>
-      <ul class="files">{rows}
-      </ul>
-    </div>"""
+      <div class="ver plate reveal"><details id="{anchor(release)}">
+        <summary><span class="ver-plat">{PLATFORM_NAMES[release['platform']]}</span><span class="ver-num">v{esc(release['version'])}</span><span class="ver-date">{day(release['published'])}</span>{badge}</summary>
+        <div class="ver-body">
+          <ul class="files">{''.join(file_row(f) for f in release['files'])}
+          </ul>
+          <div class="notes">
+{whats_new(release['notes'])}
+          </div>
+          <p class="ver-links"><a class="link-hud" href="{esc(release['url'])}">Full notes</a><a class="link-hud" href="{GITHUB}/commit/{commit}">Commit {commit[:9]}</a></p>
+        </div>
+      </details></div>"""
 
 
 def cmd(command: str, label: str = "") -> str:
     os_label = f'<span class="cmd-os">{esc(label)}</span>' if label else ""
-    return (f'<div class="cmd plate">{os_label}<code>{esc(command)}</code>'
-            f'<button class="copy" type="button" data-copy="{esc(command)}" aria-label="Copy the command" hidden>Copy</button></div>')
+    return f'<div class="cmd plate">{os_label}<code>{esc(command)}</code>{copy_button(command, "Copy the command")}</div>'
 
 
 def attest_cmd(file_name: str, platform: str, commit: bool = False) -> str:
@@ -385,80 +411,51 @@ def attest_cmd(file_name: str, platform: str, commit: bool = False) -> str:
     return command
 
 
+def step(number: str, title: str, text: str, body: str) -> str:
+    return f"""
+        <div class="vstep">
+          <h3><span class="sub-n">{number}</span>{title}</h3>
+          <p>{text}</p>{body}
+        </div>"""
+
+
 def verify_section(latest: dict) -> str:
-    linux = latest.get("linux")
-    android = latest.get("android")
+    linux, android = latest.get("linux"), latest.get("android")
     sample = asset(linux, r"_amd64\.deb$")["name"] if linux else "Veylor-linux-x86_64.AppImage"
-    # A Mac or a Windows computer checks the APK it's about to put on a phone.
     other = asset(android, r"^veylor-[0-9.]+-[0-9]+\.apk$")["name"] if android else sample
     hashes = (cmd("sha256sum " + sample, "Linux") + cmd("shasum -a 256 " + other, "Mac")
               + cmd("Get-FileHash .\\" + other, "Windows"))
-    steps = [f"""
-      <div class="vstep reveal" id="check-hash">
-        <h3 class="sub"><span class="sub-n">01</span> Is it the file we published?</h3>
-        <div class="prose"><p>Work out the file's SHA-256 and compare all 64 characters with the one on this page. If any differ, delete the file. A match shows the file is the one published here; the next check shows where it came from.</p></div>
-        {hashes}
-      </div>""", f"""
-      <div class="vstep reveal" id="check-build">
-        <h3 class="sub"><span class="sub-n">02</span> Was it built from the public code?</h3>
-        <div class="prose"><p>GitHub Actions builds each file from a public commit of Veylor's code and signs a record of that build: the file's SHA-256, the repository, the workflow and the commit. With <a href="https://cli.github.com/">GitHub's CLI</a>, signed in to any GitHub account, check the record:</p></div>
-        {cmd(attest_cmd(sample, "linux"))}
-        <div class="prose after"><p>It fails unless GitHub signed a record of this exact file from Veylor's repository and its release workflow. To see the commit the file was built from, ask for the record's commit: it's the one the release is tagged at, listed with the files above.</p></div>
-        {cmd(attest_cmd(sample, "linux", commit=True))}
-        <div class="prose after"><p>This trusts GitHub's build machines, not us. Linux 0.9.0 came before these records and has none.</p></div>
-      </div>"""]
+    steps = [
+        step("01", "SHA-256", "All 64 characters must match the ones listed under its version.", hashes),
+        step("02", "Build record",
+             'GitHub signs a record of each build from Veylor\'s public code. Check it with <a href="https://cli.github.com/">GitHub\'s CLI</a>; the second command prints the commit it was built from.',
+             cmd(attest_cmd(sample, "linux"), "Verify") + cmd(attest_cmd(sample, "linux", commit=True), "Commit")),
+    ]
     if android:
         fingerprint = CONFIG.get("android_certificate_sha256") or fail("an Android release is out, but tools/releases.json has no android_certificate_sha256")
         apk = asset(android, r"^veylor-[0-9.]+-[0-9]+\.apk$")["name"]
         unsigned = asset(android, r"-unsigned\.apk$")["name"]
-        steps += [f"""
-      <div class="vstep reveal" id="check-apk">
-        <h3 class="sub"><span class="sub-n">03</span> Is the APK signed by Veylor?</h3>
-        <div class="prose"><p>Android installs an update only when it carries the same signing certificate as the installed app. Before you install the APK, check its certificate with <code>apksigner</code>, from Android's build tools, or an app such as AppVerifier:</p></div>
-        {cmd(f"apksigner verify --print-certs {apk}")}
-        <div class="hash wide"><span class="hash-k">Certificate SHA-256</span><code class="hash-v">{esc(fingerprint)}</code><button class="copy" type="button" data-copy="{esc(fingerprint)}" aria-label="Copy the certificate's SHA-256" hidden>Copy</button></div>
-        <div class="prose after"><p>Veylor from Google Play is signed by Google with Play's key instead, so the two never update each other. To switch, write down your recovery phrase, uninstall Veylor, install the other one and restore.</p></div>
-      </div>""", f"""
-      <div class="vstep reveal" id="check-apk-build">
-        <h3 class="sub"><span class="sub-n">04</span> Is the APK the build GitHub made?</h3>
-        <div class="prose"><p>The APK is GitHub's attested build with our signature added, on a computer that holds the key and never gives it to GitHub. Check the unsigned build as in step 2, then that the signature is the only difference, with <a href="https://github.com/obfusk/apksigcopier">apksigcopier</a>:</p></div>
-        {cmd(attest_cmd(unsigned, "android", commit=True))}
-        {cmd(f"apksigcopier compare {apk} --unsigned {unsigned}")}
-        <div class="prose after"><p>It prints nothing when they match.</p></div>
-      </div>"""]
+        steps += [
+            step("03", "APK certificate",
+                 "It must be Veylor's, below. Google Play's copy is signed by Google, so the two don't update each other.",
+                 cmd(f"apksigner verify --print-certs {apk}")
+                 + f'<div class="hash cert"><span class="hash-k">SHA-256</span><code class="hash-v">{esc(fingerprint)}</code>{copy_button(fingerprint, "Copy the certificate SHA-256")}</div>'),
+            step("04", "APK and its build",
+                 "The APK is the attested build plus Veylor's signature. Check the build, then that the signature is the only difference.",
+                 cmd(attest_cmd(unsigned, "android", commit=True), "Build") + cmd(f"apksigcopier compare {apk} --unsigned {unsigned}", "Compare")),
+        ]
     return f"""
   <section class="section rel" id="verify" aria-labelledby="verify-title">
-    <p class="hud sec">Check</p>
+    <p class="hud sec">Verify</p>
     <h2 class="title" id="verify-title">Check your download.</h2>
-    <div class="vsteps">{''.join(steps)}
-    </div>
-    <ul class="limits">
-      <li class="limit plate reveal"><span class="hud">iPhone</span><p>Apple encrypts and re-signs every TestFlight and App Store app, so nobody can compare the app on a phone with its source.</p></li>
-      <li class="limit plate reveal"><span class="hud">Mac, coming soon</span><p>Signed by Zapp LLC and notarized by Apple. macOS checks both before it opens the app: keep Gatekeeper on.</p></li>
-    </ul>
+    <div class="howto plate reveal"><details>
+      <summary>How to verify a download</summary>
+      <div class="howto-body">{''.join(steps)}
+        <p class="howto-note">iPhone apps are encrypted and re-signed by Apple, so they can't be compared with their source.</p>
+      </div>
+    </details></div>
+    <p class="rel-foot reveal"><a class="link-hud" href="{GITHUB}">Source code</a><a class="link-hud" href="{GITHUB}/tree/main/.github/workflows">Build workflows</a></p>
   </section>"""
-
-
-def version_item(release: dict, first: bool) -> str:
-    builds = [f["build"] for f in release["files"] if f["name"] != "SHA256SUMS" and not f["signed_from"]]
-    if builds and all(builds):
-        badge = '<span class="badge ok">Attested</span>'
-    elif any(builds):
-        badge = '<span class="badge">Partly attested</span>'
-    else:
-        badge = '<span class="badge">No build record</span>'
-    commit = release["commit"]
-    anchor = f"v-{release['platform']}-{release['version']}"
-    return f"""
-      <div class="ver plate reveal"><details id="{anchor}"{' open' if first else ''}>
-        <summary><span class="ver-plat">{PLATFORM_NAMES[release['platform']]}</span><span class="ver-num">v{esc(release['version'])}</span><span class="ver-date">{day(release['published'])}</span>{badge}</summary>
-        <div class="ver-body">
-          <p class="ver-links"><a href="{esc(release['url'])}">Release on GitHub</a> · tag <code>{esc(release['tag'])}</code> at <a href="{GITHUB}/commit/{commit}"><code>{commit[:9]}</code></a></p>
-          <div class="notes">
-{notes_html(release['notes'])}
-          </div>
-        </div>
-      </details></div>"""
 
 
 def page(releases: list[dict]) -> str:
@@ -468,13 +465,9 @@ def page(releases: list[dict]) -> str:
         if not r["prerelease"]:
             latest.setdefault(r["platform"], r)
     cards = {"main": [], "more": []}
-    files = []
     for p in CONFIG["platforms"]:
-        release = latest.get(p.get("release"))
-        cards[p["group"]].append(card(p, release, icons))
-        if release:
-            files.append(files_block(p, release))
-    versions = "".join(version_item(r, i == 0) for i, r in enumerate(releases))
+        cards[p["group"]].append(card(p, latest.get(p.get("release")), icons))
+    versions = "".join(version_item(r) for r in releases)
     built = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     return f"""<!doctype html>
 <!-- Generated by tools/build-releases.py from GitHub's releases ({built}). Edit tools/releases.json and run it again rather than editing this file. -->
@@ -483,10 +476,10 @@ def page(releases: list[dict]) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Releases · Veylor</title>
-<meta name="description" content="Every Veylor download, with its SHA-256, the signed record of the build that made it from Veylor's public code, and how to check both.">
+<meta name="description" content="Every Veylor download, with its SHA-256 and GitHub's signed record of its build.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor releases">
-<meta property="og:description" content="Every Veylor download, with its SHA-256 and the signed record of where it was built.">
+<meta property="og:description" content="Every Veylor download, with its SHA-256 and GitHub's signed record of its build.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/releases/">
 <link rel="icon" href="/icon.png">
@@ -504,54 +497,21 @@ def page(releases: list[dict]) -> str:
 
   <section class="section first rel" id="latest" aria-labelledby="latest-title">
     <p class="hud sec">Releases</p>
-    <h1 class="title" id="latest-title">Every download, and how to check it.</h1>
-    <p class="lead reveal">Veylor is open source. Each file here lists its SHA-256 and, from Linux 0.9.1 on, a signed record of the build that made it from Veylor's public code.</p>
-    <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="#verify">Check a download</a></span><a class="link-hud" href="{GITHUB}">Source code</a></div>
+    <h1 class="title" id="latest-title">Latest releases.</h1>
+    <div class="rel-jump reveal"><a class="link-hud" href="#versions">Browse versions</a><a class="link-hud" href="#verify">How to verify</a></div>
     <div class="cards rel-grid main">{''.join(cards['main'])}
     </div>
     <div class="cards rel-grid more">{''.join(cards['more'])}
     </div>
   </section>
 
-  <section class="section rel" id="files" aria-labelledby="files-title">
-    <p class="hud sec">Files</p>
-    <h2 class="title" id="files-title">Every file, with its fingerprint.</h2>
-    <div class="prose reveal"><p>A file marked attested has a signed record of the GitHub build that made it. Its badge opens that build's run.</p></div>{''.join(files)}
-  </section>
-{verify_section(latest)}
-
   <section class="section rel" id="versions" aria-labelledby="versions-title">
     <p class="hud sec">Versions</p>
-    <h2 class="title" id="versions-title">Every release, with its notes.</h2>
+    <h2 class="title" id="versions-title">Every version.</h2>
     <div class="versions">{versions}
     </div>
   </section>
-
-  <section class="section rel" id="source" aria-labelledby="source-title">
-    <p class="hud sec">Source</p>
-    <h2 class="title" id="source-title">Read the code.</h2>
-    <div class="prose reveal"><p>Veylor is a fork of Vizor, open source under the Apache License 2.0. Shielded USD's Railgun page is GPL-3.0 and ships with its notices.</p></div>
-    <ul class="links">
-      <li class="reveal"><a class="link-card plate" href="{GITHUB}">
-        <span class="hud">Wallet</span>
-        <span class="link-name">Veylor</span>
-        <span class="link-desc">The app for every platform, and the release notes.</span>
-        <span class="link-url">github.com/{REPO}</span>
-      </a></li>
-      <li class="reveal"><a class="link-card plate" href="{GITHUB}/tree/main/.github/workflows">
-        <span class="hud">Builds</span>
-        <span class="link-name">Workflows</span>
-        <span class="link-desc">The GitHub Actions workflows that build, attest and publish each release.</span>
-        <span class="link-url">github.com/{REPO}/…/workflows</span>
-      </a></li>
-      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/zecSwap">
-        <span class="hud">Bridge protocol</span>
-        <span class="link-name">zecSwap</span>
-        <span class="link-desc">The swap contract and the client the app runs.</span>
-        <span class="link-url">github.com/ChinmayGopal931/zecSwap</span>
-      </a></li>
-    </ul>
-  </section>
+{verify_section(latest)}
 </main>
 
 {footer}

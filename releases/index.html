@@ -5,10 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Releases · Veylor</title>
-<meta name="description" content="Every Veylor download, with its SHA-256, the signed record of the build that made it from Veylor's public code, and how to check both.">
+<meta name="description" content="Every Veylor download, with its SHA-256 and GitHub's signed record of its build.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor releases">
-<meta property="og:description" content="Every Veylor download, with its SHA-256 and the signed record of where it was built.">
+<meta property="og:description" content="Every Veylor download, with its SHA-256 and GitHub's signed record of its build.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/releases/">
 <link rel="icon" href="/icon.png">
@@ -43,176 +43,136 @@
 
   <section class="section first rel" id="latest" aria-labelledby="latest-title">
     <p class="hud sec">Releases</p>
-    <h1 class="title" id="latest-title">Every download, and how to check it.</h1>
-    <p class="lead reveal">Veylor is open source. Each file here lists its SHA-256 and, from Linux 0.9.1 on, a signed record of the build that made it from Veylor's public code.</p>
-    <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="#verify">Check a download</a></span><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork">Source code</a></div>
+    <h1 class="title" id="latest-title">Latest releases.</h1>
+    <div class="rel-jump reveal"><a class="link-hud" href="#versions">Browse versions</a><a class="link-hud" href="#verify">How to verify</a></div>
     <div class="cards rel-grid main">
       <article class="card rel-card reveal" id="android" aria-labelledby="android-name"><div class="card-in">
         <div class="rel-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.463 11.463 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg><h3 id="android-name">Android</h3><span class="rel-status">Available</span></div>
         <div class="rel-version quiet">On Google Play</div>
-        <div class="rel-meta">Android 11 or later</div>
-        <p class="rel-summary">On Google Play now. A direct APK, with its signing certificate and a signed build record, is coming here.</p>
+        <div class="rel-meta">Android 11+</div>
+        <p class="rel-summary">Direct APK coming soon.</p>
         <div class="rel-actions"><span class="btn-glow"><a class="btn btn-sm" href="https://play.google.com/store/apps/details?id=com.veylor.app">Google Play</a></span></div>
       </div></article>
       <article class="card rel-card reveal" id="linux" aria-labelledby="linux-name"><div class="card-in">
         <div class="rel-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.1-4.2 4.9 0 1.4.4 2.4.9 3.4-1.9 1.7-3.7 4.4-3.7 7.4 0 1.2.3 2.2.9 3l-1.4 1.2c-.4.4-.1 1.1.5 1.1h3.9c.9.6 2 .9 3.1.9s2.2-.3 3.1-.9h3.9c.6 0 .9-.7.5-1.1l-1.4-1.2c.6-.8.9-1.8.9-3 0-3-1.8-5.7-3.7-7.4.5-1 .9-2 .9-3.4 0-2.8-1.6-4.9-4.2-4.9zm-1.6 3.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm3.2 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM10.9 7.6h2.2L12 9zM12 10.2c2.3 0 4.2 2.9 4.2 6.2s-1.9 4.6-4.2 4.6-4.2-1.3-4.2-4.6 1.9-6.2 4.2-6.2z"/></svg><h3 id="linux-name">Linux</h3><span class="rel-status">Beta</span></div>
         <div class="rel-version">v0.9.1</div>
-        <div class="rel-meta">Nov 21, 2026 · x86_64 and ARM · glibc 2.35 or later, as on Ubuntu 22.04 and Debian 12</div>
-        <p class="rel-summary">The first release GitHub builds and publishes itself, with a signed record of each file&#x27;s build. Adds Shielded USD&#x27;s failure codes.</p>
-        <div class="rel-actions"><span class="btn-glow"><a class="btn btn-sm" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_amd64.deb">Download .deb · x86_64</a></span><a class="link-hud" href="#linux-files">Files and SHA-256</a></div>
+        <div class="rel-meta">Nov 21, 2026 · x86_64 and ARM · Ubuntu 22.04+, Debian 12+</div>
+        <p class="rel-summary">Built and published by GitHub, with a signed record of every file&#x27;s build.</p>
+        <div class="rel-actions"><span class="btn-glow"><a class="btn btn-sm" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_amd64.deb">Download .deb</a></span><a class="link-hud" href="#v-linux-0.9.1">Notes and SHA-256</a></div>
       </div></article>
     </div>
     <div class="cards rel-grid more">
       <article class="card rel-card reveal" id="iphone" aria-labelledby="iphone-name"><div class="card-in">
         <div class="rel-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><h3 id="iphone-name">iPhone</h3><span class="rel-status">Beta</span></div>
         <div class="rel-version quiet">TestFlight beta</div>
-        <div class="rel-meta"></div>
-        <p class="rel-summary">The same wallet as on Android, through Apple&#x27;s TestFlight.</p>
+        
+        
         <div class="rel-actions"><span class="btn-glow"><a class="btn btn-sm" href="https://testflight.apple.com/join/D9gw2Kwm">Join the beta</a></span></div>
       </div></article>
       <article class="card rel-card reveal soon" id="mac" aria-labelledby="mac-name"><div class="card-in">
         <div class="rel-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><h3 id="mac-name">Mac</h3><span class="rel-status dim">Coming soon</span></div>
-        <div class="rel-version quiet">Signed and notarized</div>
-        <div class="rel-meta">macOS 12 or later · Shielded USD on macOS 14 or later</div>
-        <p class="rel-summary">Signed by Zapp LLC and notarized by Apple, with updates built in. Waiting on Apple.</p>
+        <div class="rel-version quiet">Waiting on Apple</div>
+        <div class="rel-meta">macOS 12+ · signed and notarized</div>
+        
         
       </div></article>
       <article class="card rel-card reveal soon" id="windows" aria-labelledby="windows-name"><div class="card-in">
         <div class="rel-head"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg><h3 id="windows-name">Windows</h3><span class="rel-status dim">Coming soon</span></div>
         <div class="rel-version quiet">In testing</div>
         <div class="rel-meta">x64 and ARM</div>
-        <p class="rel-summary">Built and checked on GitHub. Out once it has run on real Windows computers.</p>
+        
         
       </div></article>
     </div>
   </section>
 
-  <section class="section rel" id="files" aria-labelledby="files-title">
-    <p class="hud sec">Files</p>
-    <h2 class="title" id="files-title">Every file, with its fingerprint.</h2>
-    <div class="prose reveal"><p>A file marked attested has a signed record of the GitHub build that made it. Its badge opens that build's run.</p></div>
-    <div class="rel-files reveal" id="linux-files">
-      <div class="rel-files-head">
-        <h3 class="sub"><span class="sub-n">Linux</span> v0.9.1</h3>
-        <p class="rel-files-meta">Nov 21, 2026 · built from <a href="https://github.com/ChinmayGopal931/vizor-fork/commit/d9c0ae1a5128bfecfc6294b16ccded538bdc4fbc"><code>d9c0ae1a5</code></a> · <a href="https://github.com/ChinmayGopal931/vizor-fork/releases/tag/veylor-linux/v0.9.1">Release on GitHub</a></p>
-      </div>
-      <ul class="files">
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_amd64.deb">veylor_0.9.1_amd64.deb</a><span class="file-size">68.7 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
-            <p class="file-label">.deb for Ubuntu and Debian, on most PCs (amd64).</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">187fc83df3490108d258994fafe9929fcbb1b170f08c5dcbf338d639e6cb79c8</code><button class="copy" type="button" data-copy="187fc83df3490108d258994fafe9929fcbb1b170f08c5dcbf338d639e6cb79c8" aria-label="Copy the SHA-256 of veylor_0.9.1_amd64.deb" hidden>Copy</button></div>
-          </li>
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_arm64.deb">veylor_0.9.1_arm64.deb</a><span class="file-size">66.7 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
-            <p class="file-label">.deb for Ubuntu and Debian, on ARM computers (arm64).</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">71ee5ac657b00338035098a2016bc8d52a41bee4c7d56f71f30fd8a7fe2b5887</code><button class="copy" type="button" data-copy="71ee5ac657b00338035098a2016bc8d52a41bee4c7d56f71f30fd8a7fe2b5887" aria-label="Copy the SHA-256 of veylor_0.9.1_arm64.deb" hidden>Copy</button></div>
-          </li>
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/Veylor-linux-x86_64.AppImage">Veylor-linux-x86_64.AppImage</a><span class="file-size">84.1 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
-            <p class="file-label">AppImage for other distributions, on most PCs (x86_64).</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">02f445e5e280e595d79d48c8b72bbb7eaabdb5b0cf2e1915154b7a92dd838387</code><button class="copy" type="button" data-copy="02f445e5e280e595d79d48c8b72bbb7eaabdb5b0cf2e1915154b7a92dd838387" aria-label="Copy the SHA-256 of Veylor-linux-x86_64.AppImage" hidden>Copy</button></div>
-          </li>
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/Veylor-linux-aarch64.AppImage">Veylor-linux-aarch64.AppImage</a><span class="file-size">85.3 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
-            <p class="file-label">AppImage for other distributions, on ARM computers (aarch64).</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">1b1bd112e11c4cc009c1e18c324e0afd1b66808269c169d419f4296bb69a0a43</code><button class="copy" type="button" data-copy="1b1bd112e11c4cc009c1e18c324e0afd1b66808269c169d419f4296bb69a0a43" aria-label="Copy the SHA-256 of Veylor-linux-aarch64.AppImage" hidden>Copy</button></div>
-          </li>
-          <li class="file plate">
-            <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/SHA256SUMS">SHA256SUMS</a><span class="file-size">369 bytes</span></div>
-            <p class="file-label">Every file&#x27;s SHA-256, in the format sha256sum -c reads.</p>
-            <div class="hash"><span class="hash-k">SHA-256</span><code class="hash-v">1b2413d9029da4f3309b10ed152632be169cf11769ad3316255f08f6ce2681a9</code><button class="copy" type="button" data-copy="1b2413d9029da4f3309b10ed152632be169cf11769ad3316255f08f6ce2681a9" aria-label="Copy the SHA-256 of SHA256SUMS" hidden>Copy</button></div>
-          </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section rel" id="verify" aria-labelledby="verify-title">
-    <p class="hud sec">Check</p>
-    <h2 class="title" id="verify-title">Check your download.</h2>
-    <div class="vsteps">
-      <div class="vstep reveal" id="check-hash">
-        <h3 class="sub"><span class="sub-n">01</span> Is it the file we published?</h3>
-        <div class="prose"><p>Work out the file's SHA-256 and compare all 64 characters with the one on this page. If any differ, delete the file. A match shows the file is the one published here; the next check shows where it came from.</p></div>
-        <div class="cmd plate"><span class="cmd-os">Linux</span><code>sha256sum veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="sha256sum veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div><div class="cmd plate"><span class="cmd-os">Mac</span><code>shasum -a 256 veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="shasum -a 256 veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div><div class="cmd plate"><span class="cmd-os">Windows</span><code>Get-FileHash .\veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="Get-FileHash .\veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div>
-      </div>
-      <div class="vstep reveal" id="check-build">
-        <h3 class="sub"><span class="sub-n">02</span> Was it built from the public code?</h3>
-        <div class="prose"><p>GitHub Actions builds each file from a public commit of Veylor's code and signs a record of that build: the file's SHA-256, the repository, the workflow and the commit. With <a href="https://cli.github.com/">GitHub's CLI</a>, signed in to any GitHub account, check the record:</p></div>
-        <div class="cmd plate"><code>gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml</code><button class="copy" type="button" data-copy="gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml" aria-label="Copy the command" hidden>Copy</button></div>
-        <div class="prose after"><p>It fails unless GitHub signed a record of this exact file from Veylor's repository and its release workflow. To see the commit the file was built from, ask for the record's commit: it's the one the release is tagged at, listed with the files above.</p></div>
-        <div class="cmd plate"><code>gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml --format json --jq &#x27;.[].verificationResult.signature.certificate.sourceRepositoryDigest&#x27;</code><button class="copy" type="button" data-copy="gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml --format json --jq &#x27;.[].verificationResult.signature.certificate.sourceRepositoryDigest&#x27;" aria-label="Copy the command" hidden>Copy</button></div>
-        <div class="prose after"><p>This trusts GitHub's build machines, not us. Linux 0.9.0 came before these records and has none.</p></div>
-      </div>
-    </div>
-    <ul class="limits">
-      <li class="limit plate reveal"><span class="hud">iPhone</span><p>Apple encrypts and re-signs every TestFlight and App Store app, so nobody can compare the app on a phone with its source.</p></li>
-      <li class="limit plate reveal"><span class="hud">Mac, coming soon</span><p>Signed by Zapp LLC and notarized by Apple. macOS checks both before it opens the app: keep Gatekeeper on.</p></li>
-    </ul>
-  </section>
-
   <section class="section rel" id="versions" aria-labelledby="versions-title">
     <p class="hud sec">Versions</p>
-    <h2 class="title" id="versions-title">Every release, with its notes.</h2>
+    <h2 class="title" id="versions-title">Every version.</h2>
     <div class="versions">
-      <div class="ver plate reveal"><details id="v-linux-0.9.1" open>
+      <div class="ver plate reveal"><details id="v-linux-0.9.1">
         <summary><span class="ver-plat">Linux</span><span class="ver-num">v0.9.1</span><span class="ver-date">Nov 21, 2026</span><span class="badge ok">Attested</span></summary>
         <div class="ver-body">
-          <p class="ver-links"><a href="https://github.com/ChinmayGopal931/vizor-fork/releases/tag/veylor-linux/v0.9.1">Release on GitHub</a> · tag <code>veylor-linux/v0.9.1</code> at <a href="https://github.com/ChinmayGopal931/vizor-fork/commit/d9c0ae1a5128bfecfc6294b16ccded538bdc4fbc"><code>d9c0ae1a5</code></a></p>
+          <ul class="files">
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_amd64.deb">veylor_0.9.1_amd64.deb</a><span class="file-label">Ubuntu, Debian · x86_64</span><span class="file-size">68.7 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
+              <div class="hash"><code class="hash-v">187fc83df3490108d258994fafe9929fcbb1b170f08c5dcbf338d639e6cb79c8</code><button class="copy" type="button" data-copy="187fc83df3490108d258994fafe9929fcbb1b170f08c5dcbf338d639e6cb79c8" aria-label="Copy the SHA-256 of veylor_0.9.1_amd64.deb" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/veylor_0.9.1_arm64.deb">veylor_0.9.1_arm64.deb</a><span class="file-label">Ubuntu, Debian · ARM</span><span class="file-size">66.7 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
+              <div class="hash"><code class="hash-v">71ee5ac657b00338035098a2016bc8d52a41bee4c7d56f71f30fd8a7fe2b5887</code><button class="copy" type="button" data-copy="71ee5ac657b00338035098a2016bc8d52a41bee4c7d56f71f30fd8a7fe2b5887" aria-label="Copy the SHA-256 of veylor_0.9.1_arm64.deb" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/Veylor-linux-x86_64.AppImage">Veylor-linux-x86_64.AppImage</a><span class="file-label">Other distributions · x86_64</span><span class="file-size">84.1 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
+              <div class="hash"><code class="hash-v">02f445e5e280e595d79d48c8b72bbb7eaabdb5b0cf2e1915154b7a92dd838387</code><button class="copy" type="button" data-copy="02f445e5e280e595d79d48c8b72bbb7eaabdb5b0cf2e1915154b7a92dd838387" aria-label="Copy the SHA-256 of Veylor-linux-x86_64.AppImage" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/Veylor-linux-aarch64.AppImage">Veylor-linux-aarch64.AppImage</a><span class="file-label">Other distributions · ARM</span><span class="file-size">85.3 MB</span><a class="badge ok" href="https://github.com/ChinmayGopal931/vizor-fork/actions/runs/44940247191" title="The GitHub Actions run that built it">Attested</a></div>
+              <div class="hash"><code class="hash-v">1b1bd112e11c4cc009c1e18c324e0afd1b66808269c169d419f4296bb69a0a43</code><button class="copy" type="button" data-copy="1b1bd112e11c4cc009c1e18c324e0afd1b66808269c169d419f4296bb69a0a43" aria-label="Copy the SHA-256 of Veylor-linux-aarch64.AppImage" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.1/SHA256SUMS">SHA256SUMS</a><span class="file-label">Every SHA-256 above</span><span class="file-size">369 bytes</span></div>
+              <div class="hash"><code class="hash-v">1b2413d9029da4f3309b10ed152632be169cf11769ad3316255f08f6ce2681a9</code><button class="copy" type="button" data-copy="1b2413d9029da4f3309b10ed152632be169cf11769ad3316255f08f6ce2681a9" aria-label="Copy the SHA-256 of SHA256SUMS" hidden>Copy</button></div>
+            </li>
+          </ul>
           <div class="notes">
-<p>Veylor for Linux, in beta: a private Zcash wallet, a fork of Vizor, with a new neon look and Shielded USD, a private dollar balance you can bridge to and from shielded ZEC. From this release on, every file is built and published by GitHub Actions from the release&#x27;s commit, with a signed record of that build, so you can check that what you download comes from Veylor&#x27;s public code.</p>
-<h4>What&#x27;s New</h4>
 <ul><li>Settings can copy Shielded USD&#x27;s failure codes (Shielded USD, &quot;Copy failure codes&quot;): a short record of what failed, kept on your computer, to send us when something goes wrong. It holds no amounts, addresses, keys or messages.</li></ul>
-<h4>Check your download</h4>
-<ul><li>Compare the file&#x27;s SHA-256 with <code>SHA256SUMS</code>, all 64 characters: <code>sha256sum Veylor-linux-x86_64.AppImage</code>. If they differ, don&#x27;t open the file.</li><li>Check where it was built, with GitHub&#x27;s CLI: <code>gh attestation verify Veylor-linux-x86_64.AppImage --repo ChinmayGopal931/vizor-fork</code>. It confirms the file was built by this repository&#x27;s Linux workflow, and shows the commit it was built from: the one this release is tagged at.</li></ul>
-<h4>Which file to download</h4>
-<ul><li><strong>Ubuntu or Debian: the .deb.</strong> It installs Veylor to <code>/opt/veylor</code>, with the permission Ubuntu 23.10 and later require for Shielded USD&#x27;s protected page. Install it with <code>sudo apt install ./veylor_0.9.1_amd64.deb</code> (or the <code>arm64</code> file on an ARM computer).</li><li><strong>Other distributions: the AppImage.</strong> Make it executable and run it. On Ubuntu 23.10 and later, Shielded USD stays hidden in the AppImage, because Ubuntu only lets an installed app use the sandbox it needs: use the .deb there.</li><li><code>x86_64</code> and <code>amd64</code> are for most PCs; <code>aarch64</code> and <code>arm64</code> are for ARM computers.</li></ul>
-<h4>Notes</h4>
-<ul><li>This is a beta. Start with small amounts.</li><li>Veylor needs a 64-bit system with glibc 2.35 or later, such as Ubuntu 22.04 or Debian 12 and newer.</li><li>Veylor keeps its secrets in your desktop&#x27;s keyring (GNOME Keyring, or another Secret Service). If your system asks to unlock it, use your login password.</li><li>Shielded USD needs WebKitGTK 4.1 (<code>libwebkit2gtk-4.1-0</code>), which Ubuntu&#x27;s desktop already includes; the .deb recommends it. Without it, Veylor runs without Shielded USD.</li><li>Shielded USD isn&#x27;t available for Ledger or Keystone accounts.</li><li>Keep Veylor open, unlocked and visible while a bridge needs it. The bridge tells you when you can leave: with &quot;Let the relayer claim for me&quot; on, the default, you can leave a bridge to Shielded USD once the market maker confirms your deposit.</li><li>Shielded USD uses a public Ethereum RPC. To use your own, set it in Settings under Ethereum RPC.</li><li>Shielded USD&#x27;s first sync can take a while. &quot;Sync history from Anon&#x27;s archive&quot; in Settings, on by default, can shorten it.</li><li>Veylor on Linux doesn&#x27;t update itself yet: download new versions from veylor.cash.</li><li>Veylor keeps its own wallet data, apart from Vizor&#x27;s, so an installed Vizor is unaffected. To use an existing wallet in Veylor, restore it from its recovery phrase.</li><li>Veylor runs on Zcash mainnet.</li></ul>
           </div>
+          <p class="ver-links"><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork/releases/tag/veylor-linux/v0.9.1">Full notes</a><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork/commit/d9c0ae1a5128bfecfc6294b16ccded538bdc4fbc">Commit d9c0ae1a5</a></p>
         </div>
       </details></div>
       <div class="ver plate reveal"><details id="v-linux-0.9.0">
         <summary><span class="ver-plat">Linux</span><span class="ver-num">v0.9.0</span><span class="ver-date">Nov 21, 2026</span><span class="badge">No build record</span></summary>
         <div class="ver-body">
-          <p class="ver-links"><a href="https://github.com/ChinmayGopal931/vizor-fork/releases/tag/veylor-linux/v0.9.0">Release on GitHub</a> · tag <code>veylor-linux/v0.9.0</code> at <a href="https://github.com/ChinmayGopal931/vizor-fork/commit/f199881b0c04eb14eca09ba53bb6bfb9055aa0b7"><code>f199881b0</code></a></p>
+          <ul class="files">
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.0/veylor_0.9.0_amd64.deb">veylor_0.9.0_amd64.deb</a><span class="file-label">Ubuntu, Debian · x86_64</span><span class="file-size">68.7 MB</span></div>
+              <div class="hash"><code class="hash-v">0caa73bd57855b552fcd3284671de552e3307de633d1fe56dee10ef1274cfa2b</code><button class="copy" type="button" data-copy="0caa73bd57855b552fcd3284671de552e3307de633d1fe56dee10ef1274cfa2b" aria-label="Copy the SHA-256 of veylor_0.9.0_amd64.deb" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.0/veylor_0.9.0_arm64.deb">veylor_0.9.0_arm64.deb</a><span class="file-label">Ubuntu, Debian · ARM</span><span class="file-size">66.7 MB</span></div>
+              <div class="hash"><code class="hash-v">611609601a07d8a0bf1f9cfab9b0f439ddc2360e99bcecd22977a76f54ff93a7</code><button class="copy" type="button" data-copy="611609601a07d8a0bf1f9cfab9b0f439ddc2360e99bcecd22977a76f54ff93a7" aria-label="Copy the SHA-256 of veylor_0.9.0_arm64.deb" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.0/Veylor-linux-x86_64.AppImage">Veylor-linux-x86_64.AppImage</a><span class="file-label">Other distributions · x86_64</span><span class="file-size">84.1 MB</span></div>
+              <div class="hash"><code class="hash-v">d0c140407554ad441d12dc0d779af75b75319b839ef6ce43998f7897871284d2</code><button class="copy" type="button" data-copy="d0c140407554ad441d12dc0d779af75b75319b839ef6ce43998f7897871284d2" aria-label="Copy the SHA-256 of Veylor-linux-x86_64.AppImage" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.0/Veylor-linux-aarch64.AppImage">Veylor-linux-aarch64.AppImage</a><span class="file-label">Other distributions · ARM</span><span class="file-size">85.3 MB</span></div>
+              <div class="hash"><code class="hash-v">e3def4d6562d01e94ab346562cf5eb6b8ffab28d9ca4b22e494aa37a286205b0</code><button class="copy" type="button" data-copy="e3def4d6562d01e94ab346562cf5eb6b8ffab28d9ca4b22e494aa37a286205b0" aria-label="Copy the SHA-256 of Veylor-linux-aarch64.AppImage" hidden>Copy</button></div>
+            </li>
+            <li class="file">
+              <div class="file-top"><a class="file-name" href="https://github.com/ChinmayGopal931/vizor-fork/releases/download/veylor-linux/v0.9.0/SHA256SUMS">SHA256SUMS</a><span class="file-label">Every SHA-256 above</span><span class="file-size">369 bytes</span></div>
+              <div class="hash"><code class="hash-v">35b2e02d9bed1997b970623e63b30e531b759b735b277727bd5968b0cfa124fb</code><button class="copy" type="button" data-copy="35b2e02d9bed1997b970623e63b30e531b759b735b277727bd5968b0cfa124fb" aria-label="Copy the SHA-256 of SHA256SUMS" hidden>Copy</button></div>
+            </li>
+          </ul>
           <div class="notes">
-<p>The first public release of Veylor for Linux, in beta. Veylor is a private Zcash wallet, a fork of Vizor, with a new neon look and Shielded USD: a private dollar balance you can bridge to and from shielded ZEC.</p>
-<h4>What&#x27;s New</h4>
 <ul><li>Shielded USD: hold USDC privately on Railgun, beside your shielded ZEC.</li><li>Bridge shielded ZEC to Shielded USD and back. If a bridge can&#x27;t complete, Veylor refunds it.</li><li>Send Shielded USD to a 0zk address, or withdraw it to an Ethereum address.</li><li>Receive Shielded USD at your 0zk address, or receive USDC on Ethereum at your deposit address. Veylor shields deposits while it&#x27;s open and unlocked.</li><li>Shielded USD payments and bridges appear in Home&#x27;s recent activity and in Activity.</li><li>A new look: true black and neon red, with your balance as a lit sign and sync progress as a line of light.</li></ul>
-<h4>Which file to download</h4>
-<ul><li><strong>Ubuntu or Debian: the .deb.</strong> It installs Veylor to <code>/opt/veylor</code>, with the permission Ubuntu 23.10 and later require for Shielded USD&#x27;s protected page. Install it with <code>sudo apt install ./veylor_0.9.0_amd64.deb</code> (or the <code>arm64</code> file on an ARM computer).</li><li><strong>Other distributions: the AppImage.</strong> Make it executable and run it. On Ubuntu 23.10 and later, Shielded USD stays hidden in the AppImage, because Ubuntu only lets an installed app use the sandbox it needs: use the .deb there.</li><li><code>x86_64</code> and <code>amd64</code> are for most PCs; <code>aarch64</code> and <code>arm64</code> are for ARM computers.</li></ul>
-<h4>Notes</h4>
-<ul><li>This is a beta. Start with small amounts.</li><li>Veylor needs a 64-bit system with glibc 2.35 or later, such as Ubuntu 22.04 or Debian 12 and newer.</li><li>Veylor keeps its secrets in your desktop&#x27;s keyring (GNOME Keyring, or another Secret Service). If your system asks to unlock it, use your login password.</li><li>Shielded USD needs WebKitGTK 4.1 (<code>libwebkit2gtk-4.1-0</code>), which Ubuntu&#x27;s desktop already includes; the .deb recommends it. Without it, Veylor runs without Shielded USD.</li><li>Shielded USD isn&#x27;t available for Ledger or Keystone accounts.</li><li>Keep Veylor open, unlocked and visible while a bridge needs it. The bridge tells you when you can leave: with &quot;Let the relayer claim for me&quot; on, the default, you can leave a bridge to Shielded USD once the market maker confirms your deposit.</li><li>Shielded USD uses a public Ethereum RPC. To use your own, set it in Settings under Ethereum RPC.</li><li>Shielded USD&#x27;s first sync can take a while. &quot;Sync history from Anon&#x27;s archive&quot; in Settings, on by default, can shorten it.</li><li>Veylor on Linux doesn&#x27;t update itself yet: download new versions from veylor.cash.</li><li>Veylor keeps its own wallet data, apart from Vizor&#x27;s, so an installed Vizor is unaffected. To use an existing wallet in Veylor, restore it from its recovery phrase.</li><li>Veylor runs on Zcash mainnet.</li></ul>
           </div>
+          <p class="ver-links"><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork/releases/tag/veylor-linux/v0.9.0">Full notes</a><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork/commit/f199881b0c04eb14eca09ba53bb6bfb9055aa0b7">Commit f199881b0</a></p>
         </div>
       </details></div>
     </div>
   </section>
 
-  <section class="section rel" id="source" aria-labelledby="source-title">
-    <p class="hud sec">Source</p>
-    <h2 class="title" id="source-title">Read the code.</h2>
-    <div class="prose reveal"><p>Veylor is a fork of Vizor, open source under the Apache License 2.0. Shielded USD's Railgun page is GPL-3.0 and ships with its notices.</p></div>
-    <ul class="links">
-      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/vizor-fork">
-        <span class="hud">Wallet</span>
-        <span class="link-name">Veylor</span>
-        <span class="link-desc">The app for every platform, and the release notes.</span>
-        <span class="link-url">github.com/ChinmayGopal931/vizor-fork</span>
-      </a></li>
-      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/vizor-fork/tree/main/.github/workflows">
-        <span class="hud">Builds</span>
-        <span class="link-name">Workflows</span>
-        <span class="link-desc">The GitHub Actions workflows that build, attest and publish each release.</span>
-        <span class="link-url">github.com/ChinmayGopal931/vizor-fork/…/workflows</span>
-      </a></li>
-      <li class="reveal"><a class="link-card plate" href="https://github.com/ChinmayGopal931/zecSwap">
-        <span class="hud">Bridge protocol</span>
-        <span class="link-name">zecSwap</span>
-        <span class="link-desc">The swap contract and the client the app runs.</span>
-        <span class="link-url">github.com/ChinmayGopal931/zecSwap</span>
-      </a></li>
-    </ul>
+  <section class="section rel" id="verify" aria-labelledby="verify-title">
+    <p class="hud sec">Verify</p>
+    <h2 class="title" id="verify-title">Check your download.</h2>
+    <div class="howto plate reveal"><details>
+      <summary>How to verify a download</summary>
+      <div class="howto-body">
+        <div class="vstep">
+          <h3><span class="sub-n">01</span>SHA-256</h3>
+          <p>All 64 characters must match the ones listed under its version.</p><div class="cmd plate"><span class="cmd-os">Linux</span><code>sha256sum veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="sha256sum veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div><div class="cmd plate"><span class="cmd-os">Mac</span><code>shasum -a 256 veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="shasum -a 256 veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div><div class="cmd plate"><span class="cmd-os">Windows</span><code>Get-FileHash .\veylor_0.9.1_amd64.deb</code><button class="copy" type="button" data-copy="Get-FileHash .\veylor_0.9.1_amd64.deb" aria-label="Copy the command" hidden>Copy</button></div>
+        </div>
+        <div class="vstep">
+          <h3><span class="sub-n">02</span>Build record</h3>
+          <p>GitHub signs a record of each build from Veylor's public code. Check it with <a href="https://cli.github.com/">GitHub's CLI</a>; the second command prints the commit it was built from.</p><div class="cmd plate"><span class="cmd-os">Verify</span><code>gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml</code><button class="copy" type="button" data-copy="gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml" aria-label="Copy the command" hidden>Copy</button></div><div class="cmd plate"><span class="cmd-os">Commit</span><code>gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml --format json --jq &#x27;.[].verificationResult.signature.certificate.sourceRepositoryDigest&#x27;</code><button class="copy" type="button" data-copy="gh attestation verify veylor_0.9.1_amd64.deb --repo ChinmayGopal931/vizor-fork --signer-workflow ChinmayGopal931/vizor-fork/.github/workflows/veylor-linux.yml --format json --jq &#x27;.[].verificationResult.signature.certificate.sourceRepositoryDigest&#x27;" aria-label="Copy the command" hidden>Copy</button></div>
+        </div>
+        <p class="howto-note">iPhone apps are encrypted and re-signed by Apple, so they can't be compared with their source.</p>
+      </div>
+    </details></div>
+    <p class="rel-foot reveal"><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork">Source code</a><a class="link-hud" href="https://github.com/ChinmayGopal931/vizor-fork/tree/main/.github/workflows">Build workflows</a></p>
   </section>
 </main>
 
