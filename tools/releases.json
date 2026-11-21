@@ -7,6 +7,7 @@
   },
   "android_certificate_sha256": "83f16e2037b09e731e51b3472466db43c4a962ada1fb4e40eaa4c3215a2174f5",
   "summaries": {
+    "veylor-android/v1.0.3": "Now also a direct download, built by GitHub and signed by Veylor.",
     "veylor-linux/v0.9.1": "Built and published by GitHub, with a signed record of every file's build.",
     "veylor-linux/v0.9.0": "The first Linux release."
   },
