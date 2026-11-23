@@ -9,6 +9,7 @@
   "summaries": {
     "veylor-android/v1.0.6": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and Shielded USD keeps your language to itself.",
     "veylor-linux/v0.9.4": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and Shielded USD keeps your language to itself.",
+    "veylor-windows/v0.9.4": "The first Windows release, in beta: the neon look and Shielded USD, as on Linux.",
     "veylor-android/v1.0.5": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
     "veylor-linux/v0.9.3": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
     "veylor-android/v1.0.4": "Bridges to Shielded USD can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
@@ -51,6 +52,19 @@
       }
     },
     {
+      "id": "windows",
+      "name": "Windows",
+      "icon": "Windows",
+      "group": "main",
+      "release": "windows",
+      "status": "Beta",
+      "requirements": "Windows 11 · x64 and ARM",
+      "download": {
+        "match": "^Veylor-windows-x64-Setup\\.exe$",
+        "label": "Download installer"
+      }
+    },
+    {
       "id": "iphone",
       "name": "iPhone",
       "icon": "iPhone",
@@ -71,16 +85,6 @@
       "status": "Coming soon",
       "requirements": "macOS 12+ · signed and notarized",
       "headline": "Waiting on Apple"
-    },
-    {
-      "id": "windows",
-      "name": "Windows",
-      "icon": "Windows",
-      "group": "more",
-      "release": "windows",
-      "status": "Coming soon",
-      "requirements": "x64 and ARM",
-      "headline": "In testing"
     }
   ],
   "files": [
@@ -108,6 +112,14 @@
     {
       "match": "^Veylor-linux-aarch64\\.AppImage$",
       "label": "Other distributions · ARM"
+    },
+    {
+      "match": "^Veylor-windows-x64-Setup\\.exe$",
+      "label": "Windows · x64"
+    },
+    {
+      "match": "^Veylor-windows-arm64-Setup\\.exe$",
+      "label": "Windows · ARM"
     },
     {
       "match": "^SHA256SUMS$",
