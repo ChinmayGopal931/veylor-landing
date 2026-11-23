@@ -423,8 +423,10 @@ def verify_section(latest: dict) -> str:
     linux, android = latest.get("linux"), latest.get("android")
     sample = asset(linux, r"_amd64\.deb$")["name"] if linux else "Veylor-linux-x86_64.AppImage"
     other = asset(android, r"^veylor-[0-9.]+-[0-9]+\.apk$")["name"] if android else sample
+    windows = latest.get("windows")
+    win = asset(windows, r"-x64-Setup\.exe$")["name"] if windows else other
     hashes = (cmd("sha256sum " + sample, "Linux") + cmd("shasum -a 256 " + other, "Mac")
-              + cmd("Get-FileHash .\\" + other, "Windows"))
+              + cmd("Get-FileHash .\\" + win, "Windows"))
     steps = [
         step("01", "SHA-256", "All 64 characters must match the ones listed under its version.", hashes),
         step("02", "Build record",
