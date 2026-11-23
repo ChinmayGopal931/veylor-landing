@@ -6,9 +6,10 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the home page. It leads with the shielded bridge (shielded ZEC to 0zkUSDC and back), then the problem with NEAR Intents routes, why the swap needs no trust, holding dollars, a short how-it-works teaser, Railgun, the rest of the app, the source links, getting the app (`#beta`) and support (https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the home page. It leads with the wallet (one wallet for shielded ZEC and shielded USDC, with the swap built in), then getting paid in 0zkUSDC (a Receive card that switches between USDC and 0zkUSDC), the rest of the app, its languages (pills that switch a line of the app's words), the shielded bridge against NEAR Intents routes, why the swap needs no trust, private DeFi (coming soon, greyed out), Railgun, the source links, the FAQ (`#faq`), getting the app (`#beta`) and help (https://veylor.cash/#support) |
 | `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
+| `support-veylor/index.html` | https://veylor.cash/support-veylor/: the ZEC donation address and its QR code (see below), linked from every footer |
 | `releases/index.html` | https://veylor.cash/releases/: every release, each file with its size, SHA-256 and build attestation, how to check a download, and each release's notes. Written by `tools/build-releases.py`, never by hand (below) |
 | `tools/` | `build-releases.py`, which writes the releases page, and `releases.json`, the words it can't take from GitHub |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
@@ -23,8 +24,9 @@ app's license doesn't cover websites. All motion stops for visitors who ask
 for reduced motion: the stylesheet draws the still page first and keeps every
 animation inside one `prefers-reduced-motion: no-preference` block.
 
-The download buttons (two pairs in `index.html`, one in `how-it-works/index.html`)
-point at the iPhone beta's public TestFlight link
+The download links (the hero's platform marks and the `#beta` tiles in
+`index.html`; the other pages' buttons go to `/#beta`) point at the iPhone
+beta's public TestFlight link
 (https://testflight.apple.com/join/D9gw2Kwm) and the Android app's Play listing
 (https://play.google.com/store/apps/details?id=com.veylor.app), in production.
 When the iPhone app leaves TestFlight, point its buttons at its App Store
@@ -66,6 +68,15 @@ home page and the how-it-works page turns it off and on (on by default) and
 remembers the choice in `localStorage` under `veylor.sound`; if storage is
 blocked the page still works and the sound stays on.
 
+## The donation address
+
+`support-veylor/` shows the owner's Zcash donation address and
+`zcash-donation-qr.png`, both from the app's repository: the address is the
+one in its README's "Support Veylor" (and `kVizorDonationAddress` in the app),
+and the PNG is its `.github/assets/zcash-donation-qr.png` byte for byte, a QR
+code of `zcash:` and that address. When the address changes there, change
+both here, and decode the new QR code to check it before you push.
+
 ## The Railgun mark
 
 `logos/railgun.svg` is the file railgun.org serves at
@@ -74,8 +85,9 @@ for byte (SHA-256
 `41da269bcffb887d9ce74c81a6f478618e1dda3cb69fa2e06303265fd2614e0f`). Railgun
 publishes no brand kit or logo terms on railgun.org, railgun.ch,
 docs.railgun.org or its GitHub organizations, and railgun.org describes
-itself as an independent info site. The mark links to railgun.org. Don't
-recolor or redraw it.
+itself as an independent info site. The mark links to railgun.org, and it is
+also the badge on the 0zkUSDC coin, on a black disc. Don't recolor or redraw
+it.
 
 ## Keeping the copy true
 

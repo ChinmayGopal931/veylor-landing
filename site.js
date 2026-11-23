@@ -1,6 +1,7 @@
 // The sync line rises with the scroll, the top bar frosts once the page
 // moves, panels light up as they arrive, cards tilt toward the pointer, the
-// swap's rail fills as its steps are read, and presses make a quiet blip.
+// swap's rail fills as its steps are read, presses make a quiet blip, and a
+// copy button copies.
 (function () {
   'use strict';
 
@@ -162,7 +163,7 @@
     document.addEventListener('click', function (event) {
       if (!soundOn) return;
       var target = event.target;
-      var el = target && target.closest ? target.closest('a[href], button') : null;
+      var el = target && target.closest ? target.closest('a[href], button, label[for]') : null;
       if (!el || el === toggle) return;
       blip(el.classList.contains('btn') ? 'press' : 'tap');
     }, true);
@@ -184,4 +185,33 @@
       else if (ctx && ctx.state === 'running' && ctx.suspend) quiet(ctx.suspend());
     });
   }
+
+  /* ---- Copy: a button copies the text of the element its data-copy-from names ---- */
+  each(document.querySelectorAll('[data-copy-from]'), function (button) {
+    var source = document.getElementById(button.getAttribute('data-copy-from'));
+    if (!source) return;
+    var label = button.textContent;
+    var timer;
+    var show = function (text) {
+      button.textContent = text;
+      clearTimeout(timer);
+      timer = setTimeout(function () { button.textContent = label; }, 2000);
+    };
+    var select = function () {
+      var range = document.createRange();
+      range.selectNodeContents(source);
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    };
+    button.addEventListener('click', function () {
+      var text = source.textContent.trim();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { show('Copied'); }, function () { select(); show('Selected'); });
+      } else {
+        select();
+        show('Selected');
+      }
+    });
+  });
 })();

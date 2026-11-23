@@ -195,6 +195,21 @@ var { font-style: normal; color: var(--red-core); }
 }
 .btn:hover { background: linear-gradient(180deg, #ff7a85 0%, var(--red-hot) 46%, #e8253a 100%); text-decoration: none; }
 .btn:active { box-shadow: inset 0 2px 6px rgba(80, 0, 10, 0.5); }
+.btn-lg { --c: 13px; min-height: 58px; padding: 0 44px; font-size: 14px; letter-spacing: 0.32em; }
+/* The hero's one button, and under it a quiet row of platform marks; each names itself on hover. */
+.hero-platforms { list-style: none; display: flex; justify-content: center; align-items: center; gap: 26px; margin: 30px 0 0; padding: 0; }
+.hero-platforms a { position: relative; display: grid; place-items: center; width: 40px; height: 40px; }
+.hero-platforms svg { width: 22px; height: 22px; fill: var(--muted); opacity: 0.6; transition: fill 0.2s, opacity 0.2s, filter 0.2s; }
+.hero-platforms a:hover svg, .hero-platforms a:focus-visible svg { fill: var(--red-hot); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 46, 62, 0.7)); }
+.hero-platforms a:focus-visible { outline: 1px solid var(--red-core); outline-offset: 2px; }
+.hero-platforms a::after {
+  content: attr(data-label); position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 4px;
+  white-space: nowrap; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red-core);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.hero-platforms a:hover::after, .hero-platforms a:focus-visible::after { opacity: 1; }
+.hero-platforms a:hover { text-decoration: none; }
+@media (max-width: 420px) { .hero-platforms { gap: 14px; } }
 .btn-sm { --c: 8px; min-height: 36px; padding: 0 16px; font-size: 11px; letter-spacing: 0.22em; }
 /* The cut corners clip an outline, so focus shows inside the slab and around its glow. */
 .btn:focus-visible { outline: none; background: var(--red-hot); box-shadow: inset 0 0 0 2px #fff; }
@@ -391,11 +406,13 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 }
 .asset .glyph, .asset .token-logo { grid-row: 1 / span 2; }
 .asset .glyph { width: 34px; height: 34px; }
-/* A coin, with Railgun's badge past its bottom right for 0zkUSDC (the app's
-   PrivateUsdLogo: 14 on 32, 2 past the corner). */
+/* A coin, with Railgun's mark past its bottom right for 0zkUSDC: logos/railgun.svg
+   as served, on a black disc, so it reads on the dark plates. */
 .token-logo { position: relative; display: block; width: 40px; height: 40px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6)); }
 .token-logo img { display: block; width: 100%; height: 100%; }
-.token-logo .badge { position: absolute; right: -6.25%; bottom: -6.25%; width: 43.75%; height: 43.75%; }
+.token-logo .token-badge { position: absolute; right: -10%; bottom: -10%; width: 55%; height: 55%; border-radius: 50%; background: #000; box-shadow: 0 0 0 2px #0b0607; }
+.token-logo.sm { flex: none; width: 24px; height: 24px; }
+.hop-name.has-logo { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
 .asset-name { font-weight: 100; font-size: 26px; line-height: 1.15; color: #fff; }
 .asset-where { font-size: 11px; line-height: 1.4; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
 .ticks { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; max-width: 560px; }
@@ -751,7 +768,7 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   .wordmark:not(.lit) .core { stroke-dasharray: 1 1; stroke-dashoffset: 1; animation: trace 1.7s cubic-bezier(0.6, 0, 0.2, 1) 0.25s forwards; }
   .wordmark:not(.lit) .halo, .wordmark:not(.lit) .glow { opacity: 0; animation: ignite 1.2s linear 1.45s forwards; }
   .rise { opacity: 0; transform: translateY(14px); animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
-  .rise.d1 { animation-delay: 1.9s; } .rise.d2 { animation-delay: 2.05s; } .rise.d3 { animation-delay: 2.2s; } .rise.d4 { animation-delay: 2.35s; }
+  .rise.d1 { animation-delay: 1.9s; } .rise.d2 { animation-delay: 2.05s; } .rise.d3 { animation-delay: 2.2s; } .rise.d4 { animation-delay: 2.35s; } .rise.d5 { animation-delay: 2.5s; }
 
   /* Panels light up as they arrive. */
   .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
@@ -825,6 +842,15 @@ main > .section#support::before, main > .section.beta::before { content: none; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(1)::before { transition-delay: 1.3s; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(2)::before { transition-delay: 1.55s; }
   .js .rule.in .lane:nth-child(2) .seg:nth-child(3)::before { transition-delay: 1.8s; }
+
+  /* Private DeFi: the standby light breathes, and each sign flickers as if about to light. */
+  .soon-tag i { animation: standby 2.4s ease-in-out infinite; }
+  .cards.defi h3 { animation: warm 7s linear infinite; }
+  .defi .glyph { animation: warm-glyph 7s linear infinite; }
+  .defi .card:nth-child(2) h3, .defi .card:nth-child(2) .glyph { animation-delay: -2.4s; }
+  .defi .card:nth-child(3) h3, .defi .card:nth-child(3) .glyph { animation-delay: -4.7s; }
+  .defi .card:hover h3, .defi .card:hover .glyph { animation: none; }
+  .pills label, .receive .tabs label { transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s; }
 }
 
 /* ---------- Sub-pages ---------- */
@@ -943,4 +969,123 @@ a.badge:hover { text-decoration: none; background: rgba(255, 46, 62, 0.24); }
 @media (prefers-reduced-motion: no-preference) {
   .ver summary::after, .howto summary::after { transition: transform 0.2s ease; }
   .copy, .badge, .file-name, .howto summary { transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
+}
+
+/* ---------- Home: get paid, languages, what's next, FAQ ---------- */
+@media (min-width: 900px) { .split.flip { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } .split.flip > .wallet { order: -1; } }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; max-width: 560px; }
+.steps li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; }
+.step-n {
+  padding: 5px 8px 4px; font-size: 11px; letter-spacing: 0.14em; line-height: 1; color: var(--red-core);
+  border: 1px solid rgba(255, 46, 62, 0.55); background: rgba(255, 46, 62, 0.1); box-shadow: inset 0 0 10px rgba(255, 46, 62, 0.25);
+}
+.steps h3 { margin: 0 0 4px; font-weight: 400; font-size: 17px; color: #fff; }
+.steps p { margin: 0; color: var(--muted); }
+.fine { margin: 26px 0 0; max-width: 34em; font-size: 13px; line-height: 1.55; color: var(--dim); }
+
+.receive .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 14px; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(0, 0, 0, 0.6); }
+.addr { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding: 14px 16px; --c: 8px; --edge: rgba(255, 255, 255, 0.16); --fill: #050505; }
+.addr-text { font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em; color: var(--text); }
+.addr-tag { font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--dim); }
+.actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.actions span { padding: 11px 0 10px; text-align: center; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red-core); --c: 7px; --edge: rgba(255, 46, 62, 0.45); --fill: #0b0607; }
+
+
+
+.faq-wrap { display: grid; gap: 28px; }
+@media (min-width: 900px) { .faq-wrap { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; } .faq-wrap > div:first-child { position: sticky; top: 96px; } }
+.faq { display: grid; gap: 10px; }
+.faq details { --c: 10px; --edge: linear-gradient(135deg, rgba(255, 46, 62, 0.45), rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.14)); --fill: #080707; }
+.faq details[open] { --edge: var(--lit-edge); --fill: #0b0607; }
+.faq summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 18px 20px; font-size: 16px; color: #fff;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; flex: none; width: 12px; height: 12px;
+  background: linear-gradient(var(--red-hot), var(--red-hot)) center / 12px 1.5px no-repeat, linear-gradient(var(--red-hot), var(--red-hot)) center / 1.5px 12px no-repeat;
+  filter: drop-shadow(0 0 4px rgba(255, 46, 62, 0.8));
+}
+.faq details[open] summary::after { background: linear-gradient(var(--red-hot), var(--red-hot)) center / 12px 1.5px no-repeat; }
+.faq summary:hover { color: var(--red-core); }
+.faq summary:focus-visible { outline: 1px solid var(--red-core); outline-offset: -4px; }
+.faq details p { margin: 0; padding: 0 20px 20px; color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 40em; }
+
+/* ---------- Support Veylor ---------- */
+.donate { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .donate { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; } }
+.donate-card { width: 100%; max-width: 380px; justify-self: center; }
+.donate-card .card-in { display: grid; justify-items: center; gap: 18px; padding: 24px 22px 26px; text-align: center; }
+.donate-card .qr { display: block; width: 100%; max-width: 240px; height: auto; padding: 12px; background: #fff; image-rendering: pixelated; box-shadow: 0 0 0 1px rgba(255, 46, 62, 0.5), 0 0 28px rgba(255, 46, 62, 0.25); }
+.addr-full { display: block; width: 100%; font-family: var(--mono); font-size: 12.5px; line-height: 1.6; color: var(--text); word-break: break-all; text-align: left; user-select: all; -webkit-user-select: all; }
+.copy-address { display: block; width: 100%; }
+.copy-address .btn { width: 100%; border: 0; cursor: pointer; }
+
+/* ---------- Home, round three: toggles, compact bands, private DeFi ---------- */
+/* Receive: USDC or 0zkUSDC, picked with radio buttons drawn as tabs. */
+.receive .tabs label { padding: 8px 0 7px; text-align: center; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim); cursor: pointer; }
+.receive .tabs label:hover { color: var(--text); }
+#rx-usdc:checked ~ .tabs [for="rx-usdc"], #rx-0zk:checked ~ .tabs [for="rx-0zk"] { color: #fff; background: rgba(255, 46, 62, 0.16); box-shadow: inset 0 0 0 1px rgba(255, 46, 62, 0.6), 0 0 12px rgba(255, 46, 62, 0.25); }
+#rx-usdc:focus-visible ~ .tabs [for="rx-usdc"], #rx-0zk:focus-visible ~ .tabs [for="rx-0zk"] { outline: 1px solid var(--red-core); outline-offset: 2px; }
+.receive .rx { display: none; }
+#rx-usdc:checked ~ .rx-usdc, #rx-0zk:checked ~ .rx-0zk { display: block; }
+.rx-note { margin: 12px 0 0; font-size: 12px; color: var(--muted); text-align: center; }
+
+/* Compact bands: words on the left, the thing on the right. */
+.section.tight { padding-top: 72px; padding-bottom: 72px; }
+.tight .title { font-size: clamp(26px, 3.2vw, 34px); margin-bottom: 14px; }
+.band { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 900px) { .band { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; } }
+
+/* Languages: pills that switch a line of the app's own words. */
+.lang-pick { display: grid; gap: 14px; justify-items: start; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills label { padding: 10px 18px 9px; font-size: 14px; color: var(--muted); border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(0, 0, 0, 0.5); cursor: pointer; }
+.pills label:hover { color: #fff; border-color: rgba(255, 46, 62, 0.6); }
+#lang-en:checked ~ .pills [for="lang-en"], #lang-ko:checked ~ .pills [for="lang-ko"], #lang-zh:checked ~ .pills [for="lang-zh"] {
+  color: #fff; border-color: rgba(255, 46, 62, 0.85); background: rgba(255, 46, 62, 0.14); box-shadow: 0 0 14px rgba(255, 46, 62, 0.3), inset 0 0 10px rgba(255, 46, 62, 0.2);
+}
+#lang-en:focus-visible ~ .pills [for="lang-en"], #lang-ko:focus-visible ~ .pills [for="lang-ko"], #lang-zh:focus-visible ~ .pills [for="lang-zh"] { outline: 1px solid var(--red-core); outline-offset: 3px; }
+.lang-preview { margin: 0; padding: 4px 0 4px 14px; border-left: 2px solid var(--red-hot); box-shadow: -6px 0 12px -8px var(--red); font-size: 16px; color: var(--text); }
+.lang-preview i { font-style: normal; margin: 0 10px; color: var(--red); }
+.lp { display: none; }
+#lang-en:checked ~ .lang-preview .lp-en, #lang-ko:checked ~ .lang-preview .lp-ko, #lang-zh:checked ~ .lang-preview .lp-zh { display: inline; }
+
+/* Open source: a spec sheet of links. */
+.src-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.src-list li { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.src-list a { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 14px 4px; color: var(--text); }
+.src-list a:hover { text-decoration: none; background: linear-gradient(90deg, rgba(255, 46, 62, 0.1), transparent 70%); }
+.src-k { flex: none; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--red); }
+.src-v { min-width: 0; font-size: 13px; color: var(--muted); text-align: right; overflow-wrap: anywhere; }
+.src-v::after { content: "\2197"; margin-left: 8px; color: var(--red-hot); }
+.src-list a:hover .src-v { color: #fff; }
+
+/* Private DeFi: greyed out, a neon sign about to light. */
+.defi .card { --card-edge: linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12)); }
+.defi .card-in { background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 7px), #070707; }
+.defi .glyph { stroke: #565656; filter: none; }
+.defi .card .defi-kind { margin: 18px 0 0; font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: #6c6c6c; }
+.cards.defi h3 { margin: 4px 0 8px; font-weight: 100; font-size: 32px; line-height: 1.15; letter-spacing: 0.01em; text-transform: none; color: #8c8c8c; }
+.defi .card p:last-child { color: #6e6e6e; }
+.defi .card:hover .glyph { stroke: var(--red-hot); filter: drop-shadow(0 0 5px rgba(255, 46, 62, 0.8)); }
+.defi .card:hover .card-in p:last-child { color: var(--muted); }
+.soon-tag {
+  position: absolute; top: 22px; right: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 5px 9px 4px;
+  font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #a0a0a0; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(0, 0, 0, 0.5);
+}
+.soon-tag i { width: 6px; height: 6px; border-radius: 50%; background: var(--red-hot); box-shadow: 0 0 6px var(--red), 0 0 12px rgba(255, 46, 62, 0.6); }
+@keyframes standby { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+@keyframes warm {
+  0%, 82%, 100% { color: #8c8c8c; text-shadow: none; }
+  84% { color: var(--red-core); text-shadow: 0 0 14px rgba(255, 46, 62, 0.85); }
+  85.5% { color: #8c8c8c; text-shadow: none; }
+  88% { color: var(--red-core); text-shadow: 0 0 14px rgba(255, 46, 62, 0.85); }
+  90% { color: #9a9a9a; text-shadow: none; }
+}
+@keyframes warm-glyph {
+  0%, 82%, 100% { stroke: #565656; filter: none; }
+  84%, 88% { stroke: var(--red-hot); filter: drop-shadow(0 0 5px rgba(255, 46, 62, 0.8)); }
+  85.5%, 90% { stroke: #565656; filter: none; }
 }
