@@ -6,7 +6,7 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the home page. It leads with the wallet (one wallet for shielded ZEC and shielded USDC, with the swap built in), then getting paid in 0zkUSDC (a Receive card that switches between USDC and 0zkUSDC), the rest of the app, its languages (pills that switch a line of the app's words), the shielded bridge against NEAR Intents routes, why the swap needs no trust, private DeFi (coming soon, greyed out), Railgun, the source links, the FAQ (`#faq`), getting the app (`#beta`) and help (https://veylor.cash/#support) |
+| `index.html` | https://veylor.cash: the home page. It leads with the wallet (one wallet for shielded ZEC and shielded USDC, with the swap built in), then getting paid in 0zkUSDC (a Receive card that switches between USDC and 0zkUSDC), the rest of the app, its languages (pills that switch a line of the app's words), the shielded bridge against NEAR Intents routes, why the swap needs no trust, private DeFi (coming soon, greyed out), Railgun, the source links, the FAQ (`#faq`), and getting the app (`#beta`). https://veylor.cash/#support, the support URL the App Store listing and the footers use, lands on the FAQ's contact line |
 | `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if) and the comparison with NEAR Intents (`#compare`) |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `support-veylor/index.html` | https://veylor.cash/support-veylor/: the ZEC donation address and its QR code (see below), linked from every footer |
@@ -85,9 +85,8 @@ for byte (SHA-256
 `41da269bcffb887d9ce74c81a6f478618e1dda3cb69fa2e06303265fd2614e0f`). Railgun
 publishes no brand kit or logo terms on railgun.org, railgun.ch,
 docs.railgun.org or its GitHub organizations, and railgun.org describes
-itself as an independent info site. The mark links to railgun.org, and it is
-also the badge on the 0zkUSDC coin, on a black disc. Don't recolor or redraw
-it.
+itself as an independent info site. The mark links to railgun.org. Don't
+recolor or redraw it.
 
 ## Keeping the copy true
 

@@ -7,7 +7,7 @@
 <meta name="description" content="Veylor is a self-custody wallet for shielded ZEC and shielded USDC, with a trustless swap built in. Send and receive either one privately, and swap without ever unshielding your ZEC.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor">
-<meta property="og:description" content="Shielded ZEC and shielded USDC, finally in one wallet, with a trustless swap built in. Your ZEC never unshields.">
+<meta property="og:description" content="Shielded ZEC and shielded USDC, all in one wallet, with a trustless swap built in. Your ZEC never unshields.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/">
 <link rel="icon" href="/icon.png">
@@ -21,9 +21,8 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
-    <a href="/#dollars">Shielded USD</a>
-    <a href="/#trail">The bridge</a>
-    <a href="/how-it-works/">How it works</a>
+    <a href="/#paid">Shielded USD</a>
+    <a href="/how-it-works/">The bridge</a>
     <a href="/releases/">Releases</a>
   </nav>
   <div class="tb-end">
@@ -79,9 +78,9 @@
     <div class="split">
       <div>
         <p class="hud sec">A new kind of wallet</p>
-        <h2 class="title" id="dollars-title">Shielded ZEC and shielded dollars, finally in one wallet.</h2>
+        <h2 class="title" id="dollars-title">Shielded ZEC and shielded USDC, all in one wallet.</h2>
         <div class="prose reveal">
-          <p>Until now, shielded ZEC and shielded dollars lived in separate apps, and moving from one to the other meant going public. Veylor holds both, and swaps one for the other without either going public.</p>
+          <p>Until now, shielded ZEC and shielded dollars lived in separate apps, and moving from one to the other meant going public. Veylor lets you self-custody shielded Zcash and 0zkUSDC in one wallet, and swap one for the other without either going public.</p>
         </div>
         <ul class="ticks reveal">
           <li><strong>Native shielded ZEC.</strong> Zcash&rsquo;s own shielded pool, private by default.</li>
@@ -103,7 +102,7 @@
             <span class="bl-tag">Shielded bridge</span>
           </div>
           <div class="asset plate">
-            <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun.svg" width="18" height="18" alt=""></span>
+            <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="18" height="18" alt=""></span>
             <span class="asset-name">0zkUSDC</span>
             <span class="asset-where">Shielded in Railgun on Ethereum</span>
           </div>
@@ -132,7 +131,7 @@
           <div class="tabs"><label for="rx-usdc">USDC</label><label for="rx-0zk">0zkUSDC</label></div>
           <div class="rx rx-0zk">
             <div class="asset plate">
-              <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun.svg" width="18" height="18" alt=""></span>
+              <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="18" height="18" alt=""></span>
               <span class="asset-name">Your 0zk address</span>
               <span class="asset-where">For any Railgun wallet</span>
             </div>
@@ -270,7 +269,7 @@
             </li>
             <li class="hop plate zone-shielded">
               <span class="hop-zone">Shielded in Railgun</span>
-              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/usdc.webp" width="24" height="24" alt=""><img class="token-badge" src="/logos/railgun.svg" width="12" height="12" alt=""></span>0zkUSDC in your Railgun note</span>
+              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/usdc.webp" width="24" height="24" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="12" height="12" alt=""></span>0zkUSDC in your Railgun note</span>
             </li>
           </ol>
           <p class="route-note">Zcash sees one ordinary shielded transaction.</p>
@@ -343,7 +342,7 @@
           <p>Veylor runs one inside the app, so there's no second wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
         </div>
         <div class="pool plate">
-          <span class="token-logo"><img src="/logos/usdc.webp" width="52" height="52" alt=""><img class="token-badge" src="/logos/railgun.svg" width="23" height="23" alt=""></span>
+          <span class="token-logo"><img src="/logos/usdc.webp" width="52" height="52" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="23" height="23" alt=""></span>
           <span class="pool-text">
             <span class="hud">The pool Veylor uses</span>
             <span class="pool-name">0zkUSDC</span>
@@ -375,7 +374,8 @@
       <div>
         <p class="hud sec">FAQ</p>
         <h2 class="title" id="faq-title">Questions?</h2>
-        <p class="prose reveal">Anything else? Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>.</p>
+        <p class="prose reveal" id="support">Anything else? Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>.</p>
+        <p class="fine reveal">Never share your recovery phrase, keys or passcode, with us or anyone.</p>
       </div>
       <div class="faq">
         <details class="plate reveal"><summary>What is Veylor?</summary><p>A new kind of private wallet: native shielded ZEC and shielded USDC in one place, with a trustless, atomic swap built in. It&rsquo;s self-custody, built on <a href="https://vizor.cash/">Vizor</a>, and one recovery phrase restores everything.</p></details>
@@ -407,11 +407,6 @@
         <p class="platforms-note">On Linux, take the .deb on Ubuntu and Debian (Shielded USD needs it there) and the AppImage on other distributions. On Windows, take the x64 installer, or arm64 on an ARM PC. The Mac app is coming soon. Every file's SHA-256, and how to check a download, are on the <a href="/releases/">releases page</a>.</p>
       <div class="beta-scene" aria-hidden="true"><div class="sun-glow"></div><div class="sun"></div><div class="floor"><div class="grid"></div></div></div>
     </div></div>
-  </section>
-
-  <section class="section" id="support">
-    <p class="hud">Support</p>
-    <p class="prose">Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a> with questions or feedback. Never share your recovery phrase, keys or passcode.</p>
   </section>
 </main>
 

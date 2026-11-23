@@ -310,7 +310,7 @@ main > .section + .section::after {
   background: linear-gradient(90deg, transparent, rgba(255, 46, 62, 0.55) 50%, transparent);
   box-shadow: 0 0 14px rgba(255, 46, 62, 0.35);
 }
-main > .section#support::before, main > .section.beta::before { content: none; }
+main > .section.beta::before { content: none; }
 .section.first { padding-top: 128px; }
 /* Numbered section labels: [01] THE PROBLEM ───── */
 .hud.sec { display: flex; align-items: center; gap: 14px; }
@@ -406,11 +406,12 @@ main > .section#support::before, main > .section.beta::before { content: none; }
 }
 .asset .glyph, .asset .token-logo { grid-row: 1 / span 2; }
 .asset .glyph { width: 34px; height: 34px; }
-/* A coin, with Railgun's mark past its bottom right for 0zkUSDC: logos/railgun.svg
-   as served, on a black disc, so it reads on the dark plates. */
+/* A coin, with Railgun's badge past its bottom right for 0zkUSDC (the app's
+   PrivateUsdLogo: 14 on 32, 2 past the corner). Not .badge: the releases
+   page's .badge pads and borders it to nothing. */
 .token-logo { position: relative; display: block; width: 40px; height: 40px; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6)); }
 .token-logo img { display: block; width: 100%; height: 100%; }
-.token-logo .token-badge { position: absolute; right: -10%; bottom: -10%; width: 55%; height: 55%; border-radius: 50%; background: #000; box-shadow: 0 0 0 2px #0b0607; }
+.token-logo .token-badge { position: absolute; right: -6.25%; bottom: -6.25%; width: 43.75%; height: 43.75%; }
 .token-logo.sm { flex: none; width: 24px; height: 24px; }
 .hop-name.has-logo { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
 .asset-name { font-weight: 100; font-size: 26px; line-height: 1.15; color: #fff; }
