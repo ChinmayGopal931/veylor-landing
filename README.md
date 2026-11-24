@@ -111,6 +111,13 @@ docs.railgun.org or its GitHub organizations, and railgun.org describes
 itself as an independent info site. The mark links to railgun.org. Don't
 recolor or redraw it.
 
+## The Morpho and Aave marks
+
+The private DeFi cards draw Morpho's butterfly and Aave's ghost ("Logomark
+Light.svg" from Aave's own kit, https://aave.com/aave-brand-assets.zip,
+SHA-256 `025ee678cc531c0a818424d33d9a8bf061e22353858a5c34ae6373f5c94f1a28`)
+inline, in white and dimmed. Don't recolor or redraw them.
+
 ## Keeping the copy true
 
 The bridge copy comes from the bridge's own documentation

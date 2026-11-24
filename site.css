@@ -835,9 +835,10 @@ main > .section + .section::after {
   .soon-tag i { animation: standby 2.4s ease-in-out infinite; }
   .cards.defi h3 { animation: warm 7s linear infinite; }
   .defi .glyph { animation: warm-glyph 7s linear infinite; }
-  .defi .card:nth-child(2) h3, .defi .card:nth-child(2) .glyph { animation-delay: -2.4s; }
+  .defi .logo { animation: warm-logo 7s linear infinite; }
+  .defi .card:nth-child(2) h3, .defi .card:nth-child(2) .logo { animation-delay: -2.4s; }
   .defi .card:nth-child(3) h3, .defi .card:nth-child(3) .glyph { animation-delay: -4.7s; }
-  .defi .card:hover h3, .defi .card:hover .glyph { animation: none; }
+  .defi .card:hover h3, .defi .card:hover .glyph, .defi .card:hover .logo { animation: none; }
   .pills label, .receive .tabs label { transition: color 0.2s, background-color 0.2s, border-color 0.2s, box-shadow 0.2s; }
 }
 
@@ -1054,6 +1055,10 @@ a.badge:hover { text-decoration: none; background: rgba(255, 46, 62, 0.24); }
 .defi .card { --card-edge: linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12)); }
 .defi .card-in { background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 7px), #070707; }
 .defi .glyph { stroke: #565656; filter: none; }
+/* Morpho's and Aave's own marks, in white and only dimmed: never recoloured. */
+.defi .logo { display: block; width: auto; height: 30px; color: #fff; opacity: 0.4; transition: opacity 0.2s; }
+.defi .logo.wide { height: 23px; margin: 4px 0 3px; }
+.defi .card:hover .logo { opacity: 1; }
 .defi .card .defi-kind { margin: 18px 0 0; font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; color: #6c6c6c; }
 .cards.defi h3 { margin: 4px 0 8px; font-weight: 100; font-size: 32px; line-height: 1.15; letter-spacing: 0.01em; text-transform: none; color: #8c8c8c; }
 .defi .card p:last-child { color: #6e6e6e; }
@@ -1072,6 +1077,7 @@ a.badge:hover { text-decoration: none; background: rgba(255, 46, 62, 0.24); }
   88% { color: var(--red-core); text-shadow: 0 0 14px rgba(255, 46, 62, 0.85); }
   90% { color: #9a9a9a; text-shadow: none; }
 }
+@keyframes warm-logo { 0%, 82%, 100% { opacity: 0.4; } 84%, 88% { opacity: 1; } 85.5%, 90% { opacity: 0.4; } }
 @keyframes warm-glyph {
   0%, 82%, 100% { stroke: #565656; filter: none; }
   84%, 88% { stroke: var(--red-hot); filter: drop-shadow(0 0 5px rgba(255, 46, 62, 0.8)); }

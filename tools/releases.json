@@ -9,7 +9,7 @@
   "summaries": {
     "veylor-android/v1.0.6": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and 0zkUSDC keeps your language to itself.",
     "veylor-linux/v0.9.4": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and 0zkUSDC keeps your language to itself.",
-    "veylor-windows/v0.9.4": "The first Windows release, in beta: the neon look and 0zkUSDC, as on Linux.",
+    "veylor-windows/v0.9.4": "The first Windows release: the neon look and 0zkUSDC, as on Linux.",
     "veylor-android/v1.0.5": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
     "veylor-linux/v0.9.3": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
     "veylor-android/v1.0.4": "Bridges to 0zkUSDC can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
@@ -44,7 +44,7 @@
       "icon": "Linux",
       "group": "main",
       "release": "linux",
-      "status": "Beta",
+      "status": "Available",
       "requirements": "x86_64 and ARM · Ubuntu 22.04+, Debian 12+",
       "download": {
         "match": "^veylor_[0-9.]+_amd64\\.deb$",
@@ -57,7 +57,7 @@
       "icon": "Windows",
       "group": "main",
       "release": "windows",
-      "status": "Beta",
+      "status": "Available",
       "requirements": "Windows 11 · x64 and ARM",
       "download": {
         "match": "^Veylor-windows-x64-Setup\\.exe$",
