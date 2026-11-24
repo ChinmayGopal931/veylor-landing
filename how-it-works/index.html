@@ -111,7 +111,8 @@
 
   <section class="section" id="compare" aria-labelledby="compare-title">
     <p class="hud sec">Compared with NEAR Intents</p>
-    <h2 class="title" id="compare-title">One takes custody. The other can't.</h2>
+    <h2 class="title" id="compare-title">NEAR Intents isn't trustless. Veylor's bridge is.</h2>
+    <p class="prose intro reveal">With NEAR Intents you unshield first, which shows your size and timing, then trust a third-party service to pay you. With Veylor your ZEC stays shielded, and you verify each step yourself.</p>
     <div class="routes">
       <div class="route route-public card reveal">
         <figure class="card-in">
@@ -180,11 +181,12 @@
           </tr>
         </thead>
         <tbody role="rowgroup">
-          <tr role="row"><th scope="row" role="rowheader">Who holds your ZEC</th><td role="cell" class="c-near" data-label="NEAR Intents">The operator</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">Neither side alone</td></tr>
-          <tr role="row"><th scope="row" role="rowheader">Can it be frozen</th><td role="cell" class="c-near" data-label="NEAR Intents">Yes</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">No pause switch</td></tr>
-          <tr role="row"><th scope="row" role="rowheader">If they go quiet</th><td role="cell" class="c-near" data-label="NEAR Intents">You wait</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">You claim without them</td></tr>
-          <tr role="row"><th scope="row" role="rowheader">Check before you pay</th><td role="cell" class="c-near" data-label="NEAR Intents">No, you send first</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">Yes, on Ethereum</td></tr>
-          <tr role="row"><th scope="row" role="rowheader">What Zcash shows</th><td role="cell" class="c-near" data-label="NEAR Intents">A public unshield</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">One shielded transaction</td></tr>
+          <tr role="row"><th scope="row" role="rowheader">Unshielding</th><td role="cell" class="c-near" data-label="NEAR Intents">Required: it takes <a href="https://docs.near-intents.org/resources/chain-support">transparent addresses only</a></td><td role="cell" class="c-veylor" data-label="Veylor's bridge">Never: your ZEC stays in the shielded pool</td></tr>
+          <tr role="row"><th scope="row" role="rowheader">Your ZEC size</th><td role="cell" class="c-near" data-label="NEAR Intents">Public on chain</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">Encrypted and hidden, and tied to no account of yours</td></tr>
+          <tr role="row"><th scope="row" role="rowheader">Timing analysis</th><td role="cell" class="c-near" data-label="NEAR Intents">Size and time can tie your ZEC to your payout</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">No public amount to match</td></tr>
+          <tr role="row"><th scope="row" role="rowheader">Trust</th><td role="cell" class="c-near" data-label="NEAR Intents">You're trusting a third-party service, and <a href="https://docs.near-intents.org/security-compliance/terms-of-service">its terms</a> don't promise a refund</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">We made the bridge trustless on purpose: the USDC is locked before you send. <a href="https://github.com/ChinmayGopal931/zecSwap#how-it-works">Read more here</a></td></tr>
+          <tr role="row"><th scope="row" role="rowheader">Verifying</th><td role="cell" class="c-near" data-label="NEAR Intents">You wait on a status from its API</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">You check each step on Ethereum yourself</td></tr>
+          <tr role="row"><th scope="row" role="rowheader">The contract</th><td role="cell" class="c-near" data-label="NEAR Intents"><a href="https://docs.near-intents.org/security-compliance/terms-of-service">Admin roles</a> may pause it, lock accounts or move balances</td><td role="cell" class="c-veylor" data-label="Veylor's bridge">No admin, and not upgradable. Open source, and <a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f#code">verified on Etherscan</a></td></tr>
         </tbody>
       </table>
     </div>

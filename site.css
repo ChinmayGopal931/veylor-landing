@@ -506,6 +506,9 @@ main > .section + .section::after {
 .compare td.c-near { width: 38%; color: var(--muted); }
 .compare td.c-veylor { width: 38%; color: var(--text); background: linear-gradient(to right, rgba(255, 46, 62, 0.08), rgba(255, 46, 62, 0) 75%); }
 .compare .c-veylor { box-shadow: inset 1px 0 0 rgba(255, 46, 62, 0.55); }
+.compare td a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(255, 255, 255, 0.32); }
+.compare td a:hover { color: #fff; text-decoration-color: currentColor; }
+.compare td.c-veylor a { text-decoration-color: var(--red-hot); }
 @media (max-width: 719px) {
   .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: auto; }
   .compare thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
