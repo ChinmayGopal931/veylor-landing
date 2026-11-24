@@ -14,9 +14,14 @@ HTML, no build step.
 | `tools/` | `build-releases.py`, which writes the releases page, and `releases.json`, the words it can't take from GitHub |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, the how-it-works stage, the footer's sign, and the press sounds |
 | `art/helmet.webp` | the helmet in the footer, cut out of the app icon (`ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png` in the app's repository) with its visor's light taken out: the footer draws that itself |
-| `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
 | `fonts/` | Gotham Thin and Light, subset from the app's files (see below), and Montserrat (SIL Open Font License, `fonts/OFL.txt`) behind them; self-hosted so the site makes no third-party requests |
 | `icon.png` | favicon, from the app icon |
+| `art/app-desktop.webp`, `art/app-phone.webp`, `art/app-0zkusdc.webp` | the app's own screens on the home page (below) |
+| `art/og.png` | the share image, 1200×630, that every page's `og:image` and `twitter:image` name |
+| `404.html` | what GitHub Pages serves for an address that is no page: a line, links back, and the top bar and footer copied from `how-it-works/index.html`. Search engines are told not to index it |
+| `robots.txt`, `sitemap.xml` | for search engines: everything may be crawled, and the five pages with the day each last changed (below) |
+| `llms.txt` | the site's facts and pages as plain text, for language models (below) |
+| `site.webmanifest` | names the site "Veylor", with its icon and colours, where a browser adds it to a home screen |
 | `CNAME` | tells GitHub Pages to serve the site on veylor.cash |
 
 Every push to `main` redeploys the site. The VEYLOR wordmark is the app's
@@ -100,16 +105,15 @@ and the PNG is its `.github/assets/zcash-donation-qr.png` byte for byte, a QR
 code of `zcash:` and that address. When the address changes there, change
 both here, and decode the new QR code to check it before you push.
 
-## The Railgun mark
+## The app's screens
 
-`logos/railgun.svg` is the file railgun.org serves at
-https://railgun.org/favicon-dark.svg, downloaded on 2026-10-18 and kept byte
-for byte (SHA-256
-`41da269bcffb887d9ce74c81a6f478618e1dda3cb69fa2e06303265fd2614e0f`). Railgun
-publishes no brand kit or logo terms on railgun.org, railgun.ch,
-docs.railgun.org or its GitHub organizations, and railgun.org describes
-itself as an independent info site. The mark links to railgun.org. Don't
-recolor or redraw it.
+`art/app-*.webp` are the app's real screens, drawn by its own capture tool
+(`scripts/figma-compare.sh widget` in the app's repository) from fixtures: no
+wallet, server or phone is involved, and every balance, address and date is a
+sample, which the caption says. Never publish a capture of a real wallet. Their
+amounts are consistent with each other and inside the bridge's cap, and they are
+cropped clear of the app's "Shielded USD" title ("Names"). When the app's look
+changes, capture them again.
 
 ## The Morpho and Aave marks
 
@@ -135,6 +139,32 @@ before changing that column. The copy calls the swap's market maker
 the bridge changes (an audit is published, the per-swap caps or units change,
 it leaves beta), update the "How it works" page, its comparison and the beta
 sections to match.
+
+## Search and sharing
+
+Every page's `<head>` carries its title and description, a canonical link,
+Open Graph and Twitter tags (the image is `art/og.png`, and its alt text
+repeats the words on it) and a JSON-LD block. They are copy too, so "Names"
+and "Keeping the copy true" apply to them:
+
+- The home page's JSON-LD describes Veylor (the project, the site, the app and
+  its publisher, Zapp LLC) and repeats the FAQ; `how-it-works/` repeats its
+  what-if questions. Each question and answer must match the page word for
+  word, so change both together. No ratings, reviews, prices or audits go in.
+- The home page's description, its JSON-LD (`operatingSystem`) and `llms.txt`
+  name the platforms and call the iPhone app a beta, and `llms.txt` carries
+  the bridge's status. Change them with the copy they repeat.
+- NEAR Intents stays out of every title. Only the `how-it-works/` description
+  names it, once, as does that page's line in `llms.txt`.
+- `sitemap.xml` gives each page the day (UTC) it last changed. Set it when you
+  change a page; the releases generator sets its own page's.
+- The releases page's title and description name the platforms
+  `tools/releases.json` marks `Available`.
+- The home page's `<h1>` is the hero's headline (`.tagline`), and the wordmark
+  above it is an image named Veylor. `.tagline` sets every property a browser
+  gives a heading, so it draws as the paragraph it was.
+- `404.html` holds its own copy of the top bar and footer, as `privacy/` and
+  `support-veylor/` hold the footer: change them with the others.
 
 ## Publish on GitHub Pages
 

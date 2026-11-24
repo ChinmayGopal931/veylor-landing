@@ -1,0 +1,33 @@
+# Veylor
+
+> Veylor is a self-custodial, open-source wallet for shielded ZEC (Zcash) and 0zkUSDC (USDC shielded in Railgun on Ethereum), with an atomic, trustless bridge between the two built in.
+
+## Facts
+
+- Platforms: Android (Google Play, or a direct APK), Windows and Linux. iPhone is a TestFlight beta. Mac is coming.
+- Custody: self-custodial. There is no account. One recovery phrase restores both ZEC and 0zkUSDC, and it stays in the device's secure storage.
+- ZEC is held in Zcash's own shielded pool.
+- 0zkUSDC is USDC shielded in Railgun, a non-custodial privacy system on Ethereum, at the wallet's own 0zk address. A USDC deposit is public on Ethereum until it shields, and so is a withdrawal. Between 0zk addresses, nothing is.
+- The bridge swaps shielded ZEC and 0zkUSDC with no custodian. It locks the USDC in a public Ethereum contract first, the ZEC goes to a fresh shielded address whose key is split between the user and the bridge, and a swap that stalls ends in a refund. The ZEC never leaves the shielded pool.
+- Status: the bridge is in beta on mainnet with real funds. Each swap is capped, the app uses a single bridge for now, and no audit is published.
+- Also in the wallet: Keystone and Ledger hardware wallets, Tor, private queries, coinholder voting, and English, Korean and Chinese.
+- Veylor is built on Vizor (https://vizor.cash/) and published by Zapp LLC. Contact: hello@veylor.cash.
+
+## Pages
+
+- [Veylor](https://veylor.cash/): the wallet, 0zkUSDC, the bridge in brief, the FAQ and where to get the app.
+- [How the bridge works](https://veylor.cash/how-it-works/): a swap step by step, what happens if something goes wrong, and how it compares with NEAR Intents.
+- [Releases](https://veylor.cash/releases/): every download with its SHA-256 and GitHub's signed record of its build, and how to verify one.
+- [Privacy policy](https://veylor.cash/privacy/): what the app keeps on the device and every network service it contacts.
+- [Support Veylor](https://veylor.cash/support-veylor/): the ZEC donation address.
+
+## Source
+
+- [The app](https://github.com/ChinmayGopal931/vizor-fork)
+- [The bridge](https://github.com/ChinmayGopal931/zecSwap): the protocol in full.
+- [The bridge's contract](https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f), verified on Etherscan.
+
+## Elsewhere
+
+- [X](https://x.com/veylorwallet)
+- [Telegram](https://t.me/veylorwallet)

@@ -3,20 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Veylor</title>
-<meta name="description" content="Hold, send and swap ZEC and 0zkUSDC from one self-custodial, open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.">
+<title>Veylor: shielded Zcash wallet with private USDC in Railgun</title>
+<meta name="description" content="Veylor: a self-custodial wallet for shielded Zcash (ZEC) and private USDC in Railgun (0zkUSDC), with an atomic, trustless bridge. On Android, Windows and Linux.">
+<meta name="robots" content="max-image-preview:large">
+<link rel="canonical" href="https://veylor.cash/">
 <meta name="theme-color" content="#000000">
-<meta property="og:title" content="Veylor">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Veylor">
+<meta property="og:title" content="Veylor: shielded Zcash wallet with private USDC in Railgun">
 <meta property="og:description" content="The self-custodial wallet for shielded ZEC and 0zkUSDC, with the first shielded, atomic, trustless bridge built in.">
-<meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/">
-<link rel="icon" href="/icon.png">
+<meta property="og:image" content="https://veylor.cash/art/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Veylor's neon sign, under the words: The self-custodial wallet for shielded ZEC and 0zkUSDC.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@veylorwallet">
+<meta name="twitter:image" content="https://veylor.cash/art/og.png">
+<meta name="twitter:image:alt" content="Veylor's neon sign, under the words: The self-custodial wallet for shielded ZEC and 0zkUSDC.">
+<link rel="icon" type="image/png" sizes="256x256" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Veylor">
 <link rel="preload" href="/fonts/gotham-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/gotham-thin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/site.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://veylor.cash/#organization","name":"Veylor","url":"https://veylor.cash/","logo":"https://veylor.cash/icon.png","email":"hello@veylor.cash","sameAs":["https://x.com/veylorwallet","https://t.me/veylorwallet","https://github.com/ChinmayGopal931/vizor-fork"]},
+{"@type":"WebSite","@id":"https://veylor.cash/#website","url":"https://veylor.cash/","name":"Veylor","alternateName":"Veylor wallet","inLanguage":"en","publisher":{"@id":"https://veylor.cash/#organization"}},
+{"@type":"SoftwareApplication","@id":"https://veylor.cash/#app","name":"Veylor","description":"A self-custodial wallet for shielded ZEC and 0zkUSDC, with an atomic bridge between them built in.","url":"https://veylor.cash/","image":"https://veylor.cash/icon.png","applicationCategory":"FinanceApplication","operatingSystem":"Android, Windows, Linux, iOS (TestFlight beta)","downloadUrl":"https://veylor.cash/releases/","screenshot":["https://veylor.cash/art/app-desktop.webp","https://veylor.cash/art/app-phone.webp","https://veylor.cash/art/app-0zkusdc.webp"],"installUrl":"https://play.google.com/store/apps/details?id=com.veylor.app","inLanguage":["en","ko","zh-Hans"],"isBasedOn":{"@type":"SoftwareApplication","name":"Vizor","url":"https://vizor.cash/"},"publisher":{"@type":"Organization","name":"Zapp LLC"}},
+{"@type":"FAQPage","@id":"https://veylor.cash/#faq","url":"https://veylor.cash/#faq","isPartOf":{"@id":"https://veylor.cash/#website"},"about":{"@id":"https://veylor.cash/#app"},"mainEntity":[
+{"@type":"Question","name":"What is Veylor?","acceptedAnswer":{"@type":"Answer","text":"A self-custodial wallet for shielded ZEC and 0zkUSDC, with an atomic bridge between them built in. It’s built on <a href=\"https://vizor.cash/\">Vizor</a>."}},
+{"@type":"Question","name":"Where does it run?","acceptedAnswer":{"@type":"Answer","text":"Android, from Google Play or as an APK, Windows and Linux, and in beta on iPhone. Mac is coming. Every download is on the <a href=\"https://veylor.cash/releases/\">releases page</a>."}},
+{"@type":"Question","name":"Can I bring my Zcash?","acceptedAnswer":{"@type":"Answer","text":"Yes. Import your recovery phrase, or send your ZEC to a new Veylor wallet."}},
+{"@type":"Question","name":"What is 0zkUSDC?","acceptedAnswer":{"@type":"Answer","text":"USDC shielded in Railgun, a non-custodial privacy system on Ethereum. Zero-knowledge proofs hide its balances and transfers."}},
+{"@type":"Question","name":"Why Railgun?","acceptedAnswer":{"@type":"Answer","text":"It shields USDC where USDC lives, on Ethereum, with no custodian. Anyone on Railgun can pay you, not only Veylor users."}},
+{"@type":"Question","name":"Why is the bridge a first?","acceptedAnswer":{"@type":"Answer","text":"Every other way out of Zcash unshields: a public address, an exact amount, an exact time. Here your ZEC never leaves the shielded pool. <a href=\"https://veylor.cash/how-it-works/#compare\">Compare them</a>"}},
+{"@type":"Question","name":"Has it been audited?","acceptedAnswer":{"@type":"Answer","text":"Not yet: no audit is published. Swaps run on mainnet with real funds, each one is capped, and the app uses a single bridge for now. Start small."}},
+{"@type":"Question","name":"Who holds my keys?","acceptedAnswer":{"@type":"Answer","text":"You do. There is no account, and nobody, including us, can recover your phrase."}}
+]}
+]}
+</script>
 </head>
 <body class="home">
 <div class="topbar">
@@ -35,7 +65,7 @@
 
 <header class="hero">
   <div class="hero-top">
-    <h1>
+    <div>
       <svg class="wordmark" viewBox="-5 -5 92.5 24" role="img" aria-labelledby="vw-title">
         <title id="vw-title">Veylor</title>
         <defs>
@@ -49,9 +79,9 @@
           <use href="#vw" class="core"/>
         </g>
       </svg>
-    </h1>
+    </div>
     <p class="hud rise d1">Private by default</p>
-    <p class="tagline rise d2">The self-custodial wallet for shielded ZEC and 0zkUSDC.</p>
+    <h1 class="tagline rise d2">The self-custodial wallet for shielded ZEC and 0zkUSDC.</h1>
     <p class="lede rise d3">With the first shielded, atomic, trustless bridge built in.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn btn-lg" href="#beta">Get Veylor</a></span>
@@ -76,38 +106,22 @@
 
 <main>
   <section class="section" id="wallet" aria-labelledby="wallet-title">
-    <div class="split">
-      <div>
-        <p class="hud sec">A new kind of wallet</p>
-        <h2 class="title" id="wallet-title">Hold, send and swap ZEC and 0zkUSDC atomically.</h2>
-        <p class="prose reveal">Both live in one open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.</p>
-        <ul class="ticks reveal">
-          <li><strong>Native shielded ZEC.</strong> Held in Zcash&rsquo;s own shielded pool, private by default.</li>
-          <li><strong>0zkUSDC through Railgun.</strong> USDC shielded on Ethereum, at your own private 0zk address.</li>
-          <li><strong>A bridge built in.</strong> Swap one for the other without leaving the app, with no custodian.</li>
-          <li><strong>One recovery phrase.</strong> It restores both, so keep a copy offline.</li>
-        </ul>
-      </div>
-      <div class="wallet card reveal">
-        <figure class="card-in">
-          <figcaption class="hud">Your Veylor wallet</figcaption>
-          <div class="asset plate">
-            <span class="token-logo"><img src="/logos/zec.webp" width="40" height="40" alt=""></span>
-            <span class="asset-name">ZEC</span>
-            <span class="asset-where">Shielded on Zcash</span>
-          </div>
-          <div class="bridge-link" aria-hidden="true">
-            <span class="bl-line"><span class="bl-port"></span><span class="packet down"></span><span class="packet up"></span></span>
-            <span class="bl-tag">Shielded bridge</span>
-          </div>
-          <div class="asset plate">
-            <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="18" height="18" alt=""></span>
-            <span class="asset-name">0zkUSDC</span>
-            <span class="asset-where">Shielded in Railgun on Ethereum</span>
-          </div>
-        </figure>
-      </div>
+    <p class="hud sec">A new kind of wallet</p>
+    <h2 class="title" id="wallet-title">Hold, send and swap ZEC and 0zkUSDC atomically.</h2>
+    <div class="band top">
+      <p class="prose reveal">Both live in one open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.</p>
+      <ul class="ticks reveal">
+      <li><strong>Native shielded ZEC.</strong> Held in Zcash&rsquo;s own shielded pool, private by default.</li>
+      <li><strong>0zkUSDC through Railgun.</strong> USDC shielded on Ethereum, at your own private 0zk address.</li>
+      <li><strong>A bridge built in.</strong> Swap one for the other without leaving the app, with no custodian.</li>
+      <li><strong>One recovery phrase.</strong> It restores both, so keep a copy offline.</li>
+      </ul>
     </div>
+    <figure class="app-shots reveal">
+      <div class="shot shot-desk plate"><img src="/art/app-desktop.webp" width="2160" height="1400" alt="Veylor on desktop: a shielded ZEC balance with its chart, Send and Receive, and recent shielded activity" loading="lazy" decoding="async"></div>
+      <div class="shot shot-phone plate"><img src="/art/app-phone.webp" width="786" height="1624" alt="Veylor on a phone: the same balance, with Send, Receive and Swap" loading="lazy" decoding="async"></div>
+      <figcaption class="fine">The app itself, with sample balances.</figcaption>
+    </figure>
   </section>
 
   <section class="section" id="paid" aria-labelledby="paid-title">
@@ -265,7 +279,7 @@
 
   <section class="section" id="railgun" aria-labelledby="railgun-title">
     <div class="railgun">
-      <a class="railgun-mark plate reveal" href="https://railgun.org/"><img src="/logos/railgun.svg" width="88" height="88" alt="Railgun"></a>
+      <figure class="shot shot-0zk plate reveal"><img src="/art/app-0zkusdc.webp" width="900" height="1297" alt="0zkUSDC in Veylor: the balance, Send, Withdraw and Receive, and activity with the sender hidden" loading="lazy" decoding="async"></figure>
       <div class="reveal">
         <p class="hud sec">Powered by Railgun</p>
         <h2 class="title" id="railgun-title">Your USDC stays shielded in Railgun.</h2>
