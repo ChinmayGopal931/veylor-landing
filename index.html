@@ -4,15 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Veylor</title>
-<meta name="description" content="Veylor is a self-custody wallet for shielded ZEC and shielded USDC, with a trustless swap built in. Send and receive either one privately, and swap without ever unshielding your ZEC.">
+<meta name="description" content="Hold, send and swap ZEC and 0zkUSDC from one self-custodial, open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Veylor">
-<meta property="og:description" content="Shielded ZEC and shielded USDC, all in one wallet, with a trustless swap built in. Your ZEC never unshields.">
+<meta property="og:description" content="The self-custodial wallet for shielded ZEC and 0zkUSDC, with the first shielded, atomic, trustless bridge built in.">
 <meta property="og:image" content="https://veylor.cash/icon.png">
 <meta property="og:url" content="https://veylor.cash/">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
-<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-thin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/site.js" defer></script>
@@ -21,7 +22,7 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
-    <a href="/#paid">Shielded USD</a>
+    <a class="tk" href="/#paid">0zkUSDC</a>
     <a href="/how-it-works/">The bridge</a>
     <a href="/releases/">Releases</a>
   </nav>
@@ -49,9 +50,9 @@
         </g>
       </svg>
     </h1>
-    <p class="hud rise d1">Shielded ZEC &middot; Shielded USDC</p>
-    <p class="tagline rise d2">Your Zcash wallet now holds Shielded USD.</p>
-    <p class="lede rise d3">Native shielded ZEC and shielded USDC, in one wallet. Swap trustlessly, without ever unshielding.</p>
+    <p class="hud rise d1">Private by default</p>
+    <p class="tagline rise d2">The self-custodial wallet for shielded ZEC and 0zkUSDC.</p>
+    <p class="lede rise d3">With the first shielded, atomic, trustless bridge built in.</p>
     <div class="cta rise d4">
       <span class="btn-glow"><a class="btn btn-lg" href="#beta">Get Veylor</a></span>
     </div>
@@ -69,24 +70,22 @@
     <div class="sun"></div>
     <div class="floor"><div class="grid"></div><div class="shots"><i class="shot s1"></i><i class="shot s2"></i><i class="shot s3"></i><i class="shot s4"></i></div><div class="reflect"></div></div>
     <span class="hz hz-l">ZEC <i></i> Shielded on Zcash</span>
-    <span class="hz hz-r">0zkUSDC <i></i> Shielded in Railgun</span>
+    <span class="hz hz-r"><span class="tk">0zkUSDC</span> <i></i> Shielded in Railgun</span>
   </div>
 </header>
 
 <main>
-  <section class="section" id="dollars" aria-labelledby="dollars-title">
+  <section class="section" id="wallet" aria-labelledby="wallet-title">
     <div class="split">
       <div>
         <p class="hud sec">A new kind of wallet</p>
-        <h2 class="title" id="dollars-title">Shielded ZEC and shielded USDC, all in one wallet.</h2>
-        <div class="prose reveal">
-          <p>Until now, shielded ZEC and shielded dollars lived in separate apps, and moving from one to the other meant going public. Veylor lets you self-custody shielded Zcash and 0zkUSDC in one wallet, and swap one for the other without either going public.</p>
-        </div>
+        <h2 class="title" id="wallet-title">Hold, send and swap ZEC and 0zkUSDC atomically.</h2>
+        <p class="prose reveal">Both live in one open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.</p>
         <ul class="ticks reveal">
-          <li><strong>Native shielded ZEC.</strong> Zcash&rsquo;s own shielded pool, private by default.</li>
-          <li><strong>Shielded dollars.</strong> 0zkUSDC: USDC shielded on Ethereum, powered by Railgun.</li>
-          <li><strong>A swap built in.</strong> Trustless and atomic. Nobody, including us, ever holds your money.</li>
-          <li><strong>One recovery phrase.</strong> It restores everything.</li>
+          <li><strong>Native shielded ZEC.</strong> Held in Zcash&rsquo;s own shielded pool, private by default.</li>
+          <li><strong>0zkUSDC through Railgun.</strong> USDC shielded on Ethereum, at your own private 0zk address.</li>
+          <li><strong>A bridge built in.</strong> Swap one for the other without leaving the app, with no custodian.</li>
+          <li><strong>One recovery phrase.</strong> It restores both, so keep a copy offline.</li>
         </ul>
       </div>
       <div class="wallet card reveal">
@@ -98,7 +97,7 @@
             <span class="asset-where">Shielded on Zcash</span>
           </div>
           <div class="bridge-link" aria-hidden="true">
-            <span class="bl-line"><span class="packet down"></span><span class="packet up"></span></span>
+            <span class="bl-line"><span class="bl-port"></span><span class="packet down"></span><span class="packet up"></span></span>
             <span class="bl-tag">Shielded bridge</span>
           </div>
           <div class="asset plate">
@@ -114,8 +113,8 @@
   <section class="section" id="paid" aria-labelledby="paid-title">
     <div class="split flip">
       <div>
-        <p class="hud sec">Shielded USD</p>
-        <h2 class="title" id="paid-title">Pay and get paid in dollars. Privately.</h2>
+        <p class="hud sec"><span class="tk">0zkUSDC</span></p>
+        <h2 class="title" id="paid-title">Get paid in USDC and keep it shielded.</h2>
         <ol class="steps">
           <li class="reveal"><span class="step-n">01</span><div><h3>Share your 0zk address.</h3><p>Anyone with a Railgun wallet pays you 0zkUSDC. Who sent it, and how much, stay hidden.</p></div></li>
           <li class="reveal"><span class="step-n">02</span><div><h3>Or take USDC from anyone.</h3><p>Share your USDC address. USDC from any Ethereum account or exchange shields into your balance when it arrives.</p></div></li>
@@ -128,7 +127,7 @@
           <figcaption class="hud">Receive</figcaption>
           <input class="sr-only" type="radio" name="rx" id="rx-usdc">
           <input class="sr-only" type="radio" name="rx" id="rx-0zk" checked>
-          <div class="tabs"><label for="rx-usdc">USDC</label><label for="rx-0zk">0zkUSDC</label></div>
+          <div class="tabs"><label for="rx-usdc">USDC</label><label for="rx-0zk" class="tk">0zkUSDC</label></div>
           <div class="rx rx-0zk">
             <div class="asset plate">
               <span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="18" height="18" alt=""></span>
@@ -164,8 +163,8 @@
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5L5.5 7H9.5L12 9.5V12L9.5 14.5H5.5L3 12Z M12 10.75H21V14 M17.5 10.75V13.25"/></svg>
-        <h3>Your keys, your phone</h3>
-        <p>No account. Your recovery phrase stays in your phone's secure storage.</p>
+        <h3>Your keys, your device</h3>
+        <p>No account. Your recovery phrase stays in your device's secure storage.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8H19 M15.5 4.5L19 8L15.5 11.5 M20 16H5 M8.5 12.5L5 16L8.5 19.5"/></svg>
@@ -180,7 +179,7 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2.5H17V18.5L14 21.5H7Z M9.5 5.5H14.5V11H9.5Z M10 15.5H14"/></svg>
         <h3>Hardware wallets</h3>
-        <p>Sign with Keystone or Ledger, so your keys never touch your phone.</p>
+        <p>Sign with Keystone or Ledger, so your keys stay off your device.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L21 12L12 21L3 12Z M12 7.5L16.5 12L12 16.5L7.5 12Z M12 11L13 12L12 13L11 12Z"/></svg>
@@ -203,77 +202,10 @@
         <input class="sr-only" type="radio" name="lang" id="lang-zh">
         <div class="pills"><label for="lang-en">English</label><label for="lang-ko" lang="ko">한국어</label><label for="lang-zh" lang="zh-Hans">中文</label></div>
         <p class="lang-preview">
-          <span class="lp lp-en" lang="en">Shielded USD<i>&middot;</i>Send<i>&middot;</i>Receive<i>&middot;</i>Swap</span>
-          <span class="lp lp-ko" lang="ko">비공개 USD<i>&middot;</i>보내기<i>&middot;</i>받기<i>&middot;</i>스왑</span>
-          <span class="lp lp-zh" lang="zh-Hans">隐私 USD<i>&middot;</i>发送<i>&middot;</i>接收<i>&middot;</i>兑换</span>
+          <span class="lp lp-en" lang="en">Shielded ZEC<i>&middot;</i>Send<i>&middot;</i>Receive<i>&middot;</i>Swap</span>
+          <span class="lp lp-ko" lang="ko">비공개 ZEC<i>&middot;</i>보내기<i>&middot;</i>받기<i>&middot;</i>스왑</span>
+          <span class="lp lp-zh" lang="zh-Hans">隐私 ZEC<i>&middot;</i>发送<i>&middot;</i>接收<i>&middot;</i>兑换</span>
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="trail" aria-labelledby="trail-title">
-    <p class="hud sec">Swap ZEC for dollars</p>
-    <h2 class="title" id="trail-title">The first shielded Zcash bridge.</h2>
-    <div class="prose reveal">
-      <p>An atomic, trustless swap between ZEC and dollars. Your ZEC never unshields.</p>
-    </div>
-
-    <div class="routes">
-      <div class="route route-public card reveal">
-        <figure class="card-in">
-          <figcaption class="hud">Through NEAR Intents</figcaption>
-          <ol class="hops">
-            <li class="hop plate zone-shielded">
-              <span class="hop-zone">Shielded</span>
-              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/zec.webp" width="24" height="24" alt=""></span>Your ZEC</span>
-              <span class="wire" aria-hidden="true"></span>
-              <span class="edge" aria-hidden="true">Unshield</span>
-            </li>
-            <li class="hop plate zone-public">
-              <span class="hop-zone">Public</span>
-              <span class="hop-name">A NEAR Intents deposit address</span>
-              <dl class="leak">
-                <div><dt>Amount</dt><dd>Exact</dd></div>
-                <div><dt>Time</dt><dd>Exact</dd></div>
-                <div><dt>To</dt><dd>Known</dd></div>
-              </dl>
-              <span class="wire" aria-hidden="true"></span>
-            </li>
-            <li class="hop plate zone-public">
-              <span class="hop-zone">Public</span>
-              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/usdc.webp" width="24" height="24" alt=""></span>USDC from a solver, for about the same value</span>
-            </li>
-          </ol>
-          <p class="route-note">The unshield is public for good. Amount and timing link it to the payout.</p>
-        </figure>
-      </div>
-
-      <div class="route route-shielded card reveal">
-        <figure class="card-in">
-          <figcaption class="hud">Through Veylor's bridge</figcaption>
-          <ol class="hops">
-            <li class="hop plate zone-shielded">
-              <span class="hop-zone">Shielded</span>
-              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/zec.webp" width="24" height="24" alt=""></span>Your ZEC</span>
-              <span class="wire" aria-hidden="true"><span class="packet"></span></span>
-            </li>
-            <li class="hop plate zone-shielded">
-              <span class="hop-zone">Shielded</span>
-              <span class="hop-name">A fresh joint address. Its key is split in two.</span>
-              <dl class="leak sealed">
-                <div><dt>Amount</dt><dd>Hidden</dd></div>
-                <div><dt>To</dt><dd>Hidden</dd></div>
-                <div><dt>Unshield</dt><dd>None</dd></div>
-              </dl>
-              <span class="wire" aria-hidden="true"><span class="packet"></span></span>
-            </li>
-            <li class="hop plate zone-shielded">
-              <span class="hop-zone">Shielded in Railgun</span>
-              <span class="hop-name has-logo"><span class="token-logo sm"><img src="/logos/usdc.webp" width="24" height="24" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="12" height="12" alt=""></span>0zkUSDC in your Railgun note</span>
-            </li>
-          </ol>
-          <p class="route-note">Zcash sees one ordinary shielded transaction.</p>
-        </figure>
       </div>
     </div>
   </section>
@@ -286,7 +218,7 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 10.5H19.5V20.5H4.5Z M8 10.5V6.5L10 4.5H14L16 6.5V10.5 M12 14V17"/></svg>
         <h3>The bridge locks first</h3>
-        <p>Before you send anything, the bridge locks the dollars in a public contract, its source <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
+        <p>Before you send anything, the bridge locks the USDC in a public contract, its source <a href="https://github.com/ChinmayGopal931/zecSwap/blob/64917fc90175dc25a0f6d522f0481807d7fe78f2/contracts/src/ZecSwap.sol">open on GitHub</a>.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 9L5 6.5H8L10.5 9V12L8 14.5H5L2.5 12Z M10.5 10.5H12 M13.5 10.5H21.5 M18.5 10.5V13.5 M21.5 10.5V13"/></svg>
@@ -296,15 +228,15 @@
       <article class="card reveal"><div class="card-in">
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.5V16.5L16.5 19.5H7.5L4.5 16.5V7.5L7.5 4.5H15 M12.5 2L15 4.5L12.5 7"/></svg>
         <h3>Every failure ends in a refund</h3>
-        <p>If a swap stalls, the bridge takes its dollars back, which hands your app the key to bring your ZEC home.</p>
+        <p>If a swap stalls, the bridge takes its USDC back, which hands your app the key to bring your ZEC home.</p>
       </div></article>
     </div>
-    <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="/how-it-works/">How it works</a></span><a class="link-hud" href="/how-it-works/#compare">Compared with NEAR Intents</a></div>
+    <div class="cta left reveal"><span class="btn-glow"><a class="btn" href="/how-it-works/">How it works</a></span><a class="link-hud" href="/how-it-works/#compare">Compare it with NEAR Intents</a></div>
   </section>
 
   <section class="section" id="defi" aria-labelledby="defi-title">
     <p class="hud sec">Private DeFi</p>
-    <h2 class="title" id="defi-title">Put your shielded dollars to work.</h2>
+    <h2 class="title" id="defi-title">Put your 0zkUSDC to work.</h2>
     <p class="prose intro reveal">Earn, lend and trade on Ethereum, straight from your shielded balance.</p>
     <div class="cards defi">
       <article class="card reveal"><div class="card-in">
@@ -312,21 +244,21 @@
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 19.5H20.5 M5 15.5L9.5 11L13 14L19.5 7.5 M15.5 7.5H19.5V11.5"/></svg>
         <p class="defi-kind">Earn</p>
         <h3>Morpho</h3>
-        <p>Deposit shielded USDC into Morpho vaults.</p>
+        <p>Deposit 0zkUSDC into Morpho vaults.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <span class="soon-tag"><i></i>Coming soon</span>
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 9.5L12 4.5L20.5 9.5 M5.5 9.5V17 M10 9.5V17 M14 9.5V17 M18.5 9.5V17 M3.5 20H20.5"/></svg>
         <p class="defi-kind">Lend</p>
         <h3>Aave</h3>
-        <p>Supply shielded USDC to Aave and earn interest.</p>
+        <p>Supply 0zkUSDC to Aave and earn interest.</p>
       </div></article>
       <article class="card reveal"><div class="card-in">
         <span class="soon-tag"><i></i>Coming soon</span>
         <svg class="glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8H19 M15.5 4.5L19 8L15.5 11.5 M20 16H5 M8.5 12.5L5 16L8.5 19.5"/></svg>
         <p class="defi-kind">Trade</p>
         <h3>Swaps</h3>
-        <p>Trade shielded USDC for ETH and other tokens.</p>
+        <p>Trade 0zkUSDC for ETH and other tokens.</p>
       </div></article>
     </div>
   </section>
@@ -336,7 +268,7 @@
       <a class="railgun-mark plate reveal" href="https://railgun.org/"><img src="/logos/railgun.svg" width="88" height="88" alt="Railgun"></a>
       <div class="reveal">
         <p class="hud sec">Powered by Railgun</p>
-        <h2 class="title" id="railgun-title">Your dollars stay shielded in Railgun.</h2>
+        <h2 class="title" id="railgun-title">Your USDC stays shielded in Railgun.</h2>
         <div class="prose">
           <p>Railgun is a non-custodial privacy system for Ethereum. Zero-knowledge proofs keep tokens at private 0zk addresses.</p>
           <p>Veylor runs one inside the app, so there's no second wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
@@ -353,19 +285,29 @@
     </div>
   </section>
 
-  <section class="section tight" id="source" aria-labelledby="source-title">
+  <section class="section" id="source" aria-labelledby="source-title">
     <div class="band">
       <div>
-        <p class="hud sec">Open source</p>
-        <h2 class="title" id="source-title">Nobody holds your keys. Not even us.</h2>
-        <p class="prose">One recovery phrase restores your whole wallet, ZEC and dollars alike. Keep a copy offline: nobody, including us, can recover it.</p>
+        <p class="hud sec">Verify</p>
+        <h2 class="title" id="source-title">Open source and attestable.</h2>
+        <p class="prose reveal">Check any Android, Linux or Windows download against the public code GitHub built it from.</p>
+        <ul class="src-list reveal">
+          <li><a href="https://github.com/ChinmayGopal931/vizor-fork"><span class="src-k">App</span><span class="src-v">vizor-fork</span></a></li>
+          <li><a href="https://github.com/ChinmayGopal931/zecSwap"><span class="src-k">Bridge</span><span class="src-v">zecSwap</span></a></li>
+          <li><a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f"><span class="src-k">Contract</span><span class="src-v">0xeB3A&hellip;898f</span></a></li>
+        </ul>
       </div>
-      <ul class="src-list reveal">
-        <li><a href="https://github.com/ChinmayGopal931/vizor-fork"><span class="src-k">The app</span><span class="src-v">github.com/ChinmayGopal931/vizor-fork</span></a></li>
-        <li><a href="https://github.com/ChinmayGopal931/zecSwap"><span class="src-k">Bridge protocol</span><span class="src-v">github.com/ChinmayGopal931/zecSwap</span></a></li>
-        <li><a href="https://etherscan.io/address/0xeB3A00bcB6c9fF626fE57a5dBbDCf01730e7898f"><span class="src-k">Live contract</span><span class="src-v">etherscan.io &middot; 0xeB3A&hellip;898f</span></a></li>
-        <li><a href="https://railgun.org/"><span class="src-k">Railgun</span><span class="src-v">railgun.org</span></a></li>
-      </ul>
+      <figure class="term plate reveal">
+        <figcaption class="term-bar"><i></i><i></i><i></i><span>Check a download</span></figcaption>
+        <div class="term-body">
+          <p class="term-cmd"><span class="term-type">gh attestation verify Veylor-windows-x64-Setup.exe \
+  --repo ChinmayGopal931/vizor-fork</span></p>
+          <p class="term-ok">&#10003; Verification succeeded!</p>
+          <p class="term-dim">Build repo: ChinmayGopal931/vizor-fork</p>
+          <p class="term-dim">Build workflow: veylor-windows.yml@refs/heads/main</p>
+        </div>
+        <a class="link-hud" href="/releases/#verify">Check yours</a>
+      </figure>
     </div>
   </section>
 
@@ -374,65 +316,97 @@
       <div>
         <p class="hud sec">FAQ</p>
         <h2 class="title" id="faq-title">Questions?</h2>
-        <p class="prose reveal" id="support">Anything else? Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>.</p>
+        <p class="prose reveal" id="support">Write to <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>.</p>
         <p class="fine reveal">Never share your recovery phrase, keys or passcode, with us or anyone.</p>
       </div>
       <div class="faq">
-        <details class="plate reveal"><summary>What is Veylor?</summary><p>A new kind of private wallet: native shielded ZEC and shielded USDC in one place, with a trustless, atomic swap built in. It&rsquo;s self-custody, built on <a href="https://vizor.cash/">Vizor</a>, and one recovery phrase restores everything.</p></details>
-        <details class="plate reveal"><summary>Which platforms does Veylor run on?</summary><p>Android, from Google Play or as an APK, and in beta on iPhone (TestFlight), Windows and Linux. The Mac app is coming soon. Every download is on the <a href="/releases/">releases page</a>.</p></details>
-        <details class="plate reveal"><summary>Can I bring my Zcash from another wallet?</summary><p>Yes. Import its recovery phrase into Veylor, or send your ZEC to a new Veylor wallet.</p></details>
-        <details class="plate reveal"><summary>What is the shielded bridge?</summary><p>An atomic swap between shielded ZEC and 0zkUSDC. The bridge locks its dollars in a public contract first. Your ZEC goes to a fresh shielded address whose key is split between you and the bridge, and revealing your half commits the dollars to your Railgun note before the bridge can take the ZEC. If a swap stalls, it ends in a refund. <a href="/how-it-works/">How it works</a></p></details>
-        <details class="plate reveal"><summary>Why is it the first shielded bridge?</summary><p>Every other way out of Zcash, through NEAR Intents or an exchange, unshields: your ZEC passes through a public address, its exact amount and time on show. Through Veylor&rsquo;s bridge your ZEC never leaves the shielded pool, and the dollars land straight in Railgun. <a href="/how-it-works/#compare">Compared with NEAR Intents</a></p></details>
-        <details class="plate reveal"><summary>What is Railgun?</summary><p>A non-custodial privacy system for Ethereum. Zero-knowledge proofs keep tokens at private 0zk addresses, where balances and transfers stay hidden. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p></details>
-        <details class="plate reveal"><summary>Why Railgun?</summary><p>Dollars live on Ethereum, and Railgun shields them there without a custodian. It already runs on mainnet with its own wallets and users, so you can pay and get paid by anyone on Railgun, not only by Veylor. Veylor runs it inside the app, from the same recovery phrase.</p></details>
-        <details class="plate reveal"><summary>Is the code open source?</summary><p>Yes. The app is at <a href="https://github.com/ChinmayGopal931/vizor-fork">github.com/ChinmayGopal931/vizor-fork</a> and the bridge protocol at <a href="https://github.com/ChinmayGopal931/zecSwap">github.com/ChinmayGopal931/zecSwap</a>, and every swap is public on the live contract. GitHub builds the Android, Linux and Windows releases from that code and signs a record of each build, which you can check on the <a href="/releases/">releases page</a>.</p></details>
+        <details class="plate reveal"><summary>What is Veylor?</summary><p>A self-custodial wallet for shielded ZEC and 0zkUSDC, with an atomic bridge between them built in. It&rsquo;s built on <a href="https://vizor.cash/">Vizor</a>.</p></details>
+        <details class="plate reveal"><summary>Where does it run?</summary><p>Android, from Google Play or as an APK, and in beta on iPhone, Windows and Linux. Mac is coming. Every download is on the <a href="/releases/">releases page</a>.</p></details>
+        <details class="plate reveal"><summary>Can I bring my Zcash?</summary><p>Yes. Import your recovery phrase, or send your ZEC to a new Veylor wallet.</p></details>
+        <details class="plate reveal"><summary>What is 0zkUSDC?</summary><p>USDC shielded in Railgun, a non-custodial privacy system on Ethereum. Zero-knowledge proofs hide its balances and transfers.</p></details>
+        <details class="plate reveal"><summary>Why Railgun?</summary><p>It shields USDC where USDC lives, on Ethereum, with no custodian. Anyone on Railgun can pay you, not only Veylor users.</p></details>
+        <details class="plate reveal"><summary>Why is the bridge a first?</summary><p>Every other way out of Zcash unshields: a public address, an exact amount, an exact time. Here your ZEC never leaves the shielded pool. <a href="/how-it-works/#compare">Compare them</a></p></details>
         <details class="plate reveal"><summary>Has it been audited?</summary><p>Not yet: no audit is published. Swaps run on mainnet with real funds, each one is capped, and the app uses a single bridge for now. Start small.</p></details>
-        <details class="plate reveal"><summary>Who holds my keys?</summary><p>You do. There is no account. Your recovery phrase stays in your phone&rsquo;s secure storage, and nobody, including us, can recover it for you.</p></details>
+        <details class="plate reveal"><summary>Who holds my keys?</summary><p>You do. There is no account, and nobody, including us, can recover your phrase.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="section beta" id="beta">
-    <div class="card beta-card reveal"><div class="card-in">
-        <p class="hud">Get Veylor</p>
-        <h2 class="title">Now on Android, and in beta on iPhone, Linux and Windows.</h2>
-        <p class="prose">Swaps run on mainnet with real funds and are still in beta: the app uses a single bridge for now, each swap is capped, and no audit is published yet. Start small.</p>
-        <ul class="platforms" aria-label="Platforms">
-          <li><span class="platform soon" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span class="platform-note">Coming soon</span><span class="platform-name">Mac</span></span></li>
-          <li><a class="platform" href="https://testflight.apple.com/join/D9gw2Kwm"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span class="platform-note">Beta on</span><span class="platform-name">iPhone</span></a></li>
-          <li><a class="platform" href="https://play.google.com/store/apps/details?id=com.veylor.app"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.463 11.463 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg><span class="platform-note">Available on</span><span class="platform-name">Android</span></a></li>
-          <li><a class="platform" href="/releases/#windows"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg><span class="platform-note">Beta on</span><span class="platform-name">Windows</span></a></li>
-          <li><a class="platform" href="/releases/#linux"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.1-4.2 4.9 0 1.4.4 2.4.9 3.4-1.9 1.7-3.7 4.4-3.7 7.4 0 1.2.3 2.2.9 3l-1.4 1.2c-.4.4-.1 1.1.5 1.1h3.9c.9.6 2 .9 3.1.9s2.2-.3 3.1-.9h3.9c.6 0 .9-.7.5-1.1l-1.4-1.2c.6-.8.9-1.8.9-3 0-3-1.8-5.7-3.7-7.4.5-1 .9-2 .9-3.4 0-2.8-1.6-4.9-4.2-4.9zm-1.6 3.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm3.2 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM10.9 7.6h2.2L12 9zM12 10.2c2.3 0 4.2 2.9 4.2 6.2s-1.9 4.6-4.2 4.6-4.2-1.3-4.2-4.6 1.9-6.2 4.2-6.2z"/></svg><span class="platform-note">Beta on</span><span class="platform-name">Linux</span></a></li>
-        </ul>
-        <p class="platforms-note">On Linux, take the .deb on Ubuntu and Debian (Shielded USD needs it there) and the AppImage on other distributions. On Windows, take the x64 installer, or arm64 on an ARM PC. The Mac app is coming soon. Every file's SHA-256, and how to check a download, are on the <a href="/releases/">releases page</a>.</p>
-      <div class="beta-scene" aria-hidden="true"><div class="sun-glow"></div><div class="sun"></div><div class="floor"><div class="grid"></div></div></div>
-    </div></div>
+  <section class="section beta" id="beta" aria-labelledby="beta-title">
+    <p class="hud">Download</p>
+    <h2 class="title" id="beta-title">Get Veylor.</h2>
+    <ul class="platforms reveal" aria-label="Platforms">
+      <li><a class="platform" href="https://play.google.com/store/apps/details?id=com.veylor.app"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.463 11.463 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg><span class="platform-note">Available on</span><span class="platform-name">Android</span></a></li>
+      <li><a class="platform" href="https://testflight.apple.com/join/D9gw2Kwm"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span class="platform-note">Beta on</span><span class="platform-name">iPhone</span></a></li>
+      <li><a class="platform" href="/releases/#windows"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg><span class="platform-note">Beta on</span><span class="platform-name">Windows</span></a></li>
+      <li><a class="platform" href="/releases/#linux"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M12 1.5c-2.6 0-4.2 2.1-4.2 4.9 0 1.4.4 2.4.9 3.4-1.9 1.7-3.7 4.4-3.7 7.4 0 1.2.3 2.2.9 3l-1.4 1.2c-.4.4-.1 1.1.5 1.1h3.9c.9.6 2 .9 3.1.9s2.2-.3 3.1-.9h3.9c.6 0 .9-.7.5-1.1l-1.4-1.2c.6-.8.9-1.8.9-3 0-3-1.8-5.7-3.7-7.4.5-1 .9-2 .9-3.4 0-2.8-1.6-4.9-4.2-4.9zm-1.6 3.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm3.2 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM10.9 7.6h2.2L12 9zM12 10.2c2.3 0 4.2 2.9 4.2 6.2s-1.9 4.6-4.2 4.6-4.2-1.3-4.2-4.6 1.9-6.2 4.2-6.2z"/></svg><span class="platform-note">Beta on</span><span class="platform-name">Linux</span></a></li>
+      <li><span class="platform soon" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span class="platform-note">Coming soon</span><span class="platform-name">Mac</span></span></li>
+    </ul>
+    <p class="platforms-note">The bridge is in beta on mainnet with real funds: swaps are capped and no audit is published, so start small. On Ubuntu and Debian, 0zkUSDC needs the .deb.</p>
   </section>
 </main>
 
 <footer class="site-footer">
-  <div class="ft-brand">
-    <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
-    <p>Shielded ZEC and Shielded USD, in one wallet.</p>
+  <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+    <path id="sg-v" d="M0 0L4 14L6 14L10 0"/>
+    <path id="sg-e" d="M10 0L0 0L0 14L10 14M2 7L8.5 7"/>
+    <path id="sg-y" d="M0 0L5 7L10 0M5 7L5 14"/>
+    <path id="sg-l" d="M0 0L0 14L10 14"/>
+    <path id="sg-o" d="M3 0L10 0L10 11L7 14L0 14L0 3Z"/>
+    <path id="sg-r" d="M0 14L0 0L7.5 0L10 2.5L10 4.5L7.5 7L0 7M4 7L7 7L10 10L10 14"/>
+    <filter id="sg-halo" x="-90%" y="-70%" width="280%" height="240%"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="sg-glow" x="-40%" y="-30%" width="180%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="vz-halo" x="-30%" y="-400%" width="160%" height="900%"><feGaussianBlur stdDeviation="26"/></filter>
+    <filter id="vz-glow" x="-10%" y="-150%" width="120%" height="400%"><feGaussianBlur stdDeviation="7"/></filter>
+    <path id="vz" pathLength="1" d="M174 579C182.8 582.8 209.3 596.4 227 602C244.7 607.7 262.3 610.3 280 612.7C297.7 615.1 315.3 615.8 333 616.3C350.7 616.8 368.3 616.5 386 615.9C403.7 615.2 421.3 614.3 439 612.4C456.7 610.6 474.3 608.5 492 604.7C509.7 600.8 527.3 596.6 545 589.2C562.7 581.8 589.2 565.2 598 560.4"/>
+  </defs></svg>
+  <div class="ft-top">
+    <div class="ft-intro">
+      <p>Practical privacy for ZEC and 0zkUSDC.</p>
+      <div class="ft-row">
+        <a class="ft-chip plate" href="https://x.com/veylorwallet" aria-label="Veylor on X">X</a>
+        <a class="ft-chip plate" href="https://t.me/veylorwallet" aria-label="Veylor on Telegram">Telegram</a>
+        <button class="sound plate" type="button" aria-pressed="true" hidden>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+          <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+        </button>
+      </div>
+    </div>
+    <nav class="ft-nav" aria-label="Footer">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works/">The bridge</a></li>
+        <li><a href="/releases/">Releases</a></li>
+        <li><a href="/#beta">Get the app</a></li>
+      </ul>
+      <ul>
+        <li><a href="/#support">Help</a></li>
+        <li><a href="mailto:hello@veylor.cash">hello@veylor.cash</a></li>
+        <li><a href="/support-veylor/">Support Veylor</a></li>
+        <li><a href="/privacy/">Privacy policy</a></li>
+      </ul>
+    </nav>
   </div>
-  <div class="ft-links">
-    <nav aria-label="Footer">
-      <a href="/how-it-works/">How it works</a>
-      <a href="/releases/">Releases</a>
-      <a href="/privacy/">Privacy policy</a>
-      <a href="/support-veylor/">Support Veylor</a>
-      <a href="#support">Help</a>
-      <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
-    </nav>
-    <nav class="ft-social" aria-label="Social">
-      <a href="https://x.com/veylorwallet" aria-label="Veylor on X">X</a>
-      <a href="https://t.me/veylorwallet" aria-label="Veylor on Telegram">Telegram</a>
-    </nav>
-    <button class="sound plate" type="button" aria-pressed="true" hidden>
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
-      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+  <div class="ft-stage">
+    <div class="ft-wash" aria-hidden="true"></div>
+    <button class="sign" type="button" aria-pressed="true" aria-label="Veylor's neon sign">
+      <span class="sign-half">
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-v" class="can"/><use href="#sg-v" class="face"/><use href="#sg-v" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-v" class="halo" filter="url(#sg-halo)"/><use href="#sg-v" class="can"/><use href="#sg-v" class="face"/><use href="#sg-v" class="glow" filter="url(#sg-glow)"/><use href="#sg-v" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-e" class="can"/><use href="#sg-e" class="face"/><use href="#sg-e" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-e" class="halo" filter="url(#sg-halo)"/><use href="#sg-e" class="can"/><use href="#sg-e" class="face"/><use href="#sg-e" class="glow" filter="url(#sg-glow)"/><use href="#sg-e" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-y" class="can"/><use href="#sg-y" class="face"/><use href="#sg-y" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-y" class="halo" filter="url(#sg-halo)"/><use href="#sg-y" class="can"/><use href="#sg-y" class="face"/><use href="#sg-y" class="glow" filter="url(#sg-glow)"/><use href="#sg-y" class="core"/></svg></span>
+      </span>
+      <span class="helmet">
+        <img src="/art/helmet.webp" width="740" height="998" alt="" loading="lazy" decoding="async">
+        <svg class="visor" viewBox="0 0 740 998" aria-hidden="true"><use href="#vz" class="v-halo" filter="url(#vz-halo)"/><use href="#vz" class="v-glow" filter="url(#vz-glow)"/><use href="#vz" class="v-core"/><use href="#vz" class="v-hot" filter="url(#vz-glow)"/></svg>
+      </span>
+      <span class="sign-half">
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-l" class="can"/><use href="#sg-l" class="face"/><use href="#sg-l" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-l" class="halo" filter="url(#sg-halo)"/><use href="#sg-l" class="can"/><use href="#sg-l" class="face"/><use href="#sg-l" class="glow" filter="url(#sg-glow)"/><use href="#sg-l" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-o" class="can"/><use href="#sg-o" class="face"/><use href="#sg-o" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-o" class="halo" filter="url(#sg-halo)"/><use href="#sg-o" class="can"/><use href="#sg-o" class="face"/><use href="#sg-o" class="glow" filter="url(#sg-glow)"/><use href="#sg-o" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-r" class="can"/><use href="#sg-r" class="face"/><use href="#sg-r" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-r" class="halo" filter="url(#sg-halo)"/><use href="#sg-r" class="can"/><use href="#sg-r" class="face"/><use href="#sg-r" class="glow" filter="url(#sg-glow)"/><use href="#sg-r" class="core"/></svg></span>
+      </span>
     </button>
   </div>
+  <div class="ft-base"><p>Open source and attestable.</p><p>Built on <a href="https://vizor.cash/">Vizor</a>.</p></div>
 </footer>
 </body>
 </html>

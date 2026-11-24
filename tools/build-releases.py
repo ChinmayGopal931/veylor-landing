@@ -42,6 +42,16 @@ def fail(message: str):
     sys.exit(f"build-releases: {message}")
 
 
+# The site names the asset, never the app's feature: 0zkUSDC, or USDC.
+NAMES = (("a private dollar balance", "a private USDC balance"), ("Shielded USD", "0zkUSDC"))
+
+
+def named(text: str) -> str:
+    for old, new in NAMES:
+        text = text.replace(old, new)
+    return text
+
+
 def esc(text) -> str:
     return html.escape(str(text), quote=True)
 
@@ -274,7 +284,7 @@ def notes_html(body: str) -> str:
 
 
 def first_bullet(body: str) -> str:
-    match = re.search(r"^- (.+(?:\n  .+)*)", body, re.M)
+    match = re.search(r"^- (.+(?:\n  .+)*)", named(body), re.M)
     text = re.sub(r"\s+", " ", match.group(1)) if match else ""
     return re.sub(r"[`*]", "", text)
 
@@ -314,6 +324,7 @@ def anchor(release: dict) -> str:
 
 def whats_new(body: str) -> str:
     """Only the notes' "What's New" (the rest is one click away, on GitHub)."""
+    body = named(body)
     match = re.search(r"^## What's New\n(.*?)(?=^## |\Z)", body, re.M | re.S)
     if match:
         return notes_html(match.group(1))
@@ -486,7 +497,8 @@ def page(releases: list[dict]) -> str:
 <meta property="og:url" content="https://veylor.cash/releases/">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
-<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-thin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/site.js" defer></script>
