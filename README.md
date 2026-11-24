@@ -11,7 +11,7 @@ HTML, no build step.
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `support-veylor/index.html` | https://veylor.cash/support-veylor/: the ZEC donation address and its QR code (see below), linked from every footer |
 | `releases/index.html` | https://veylor.cash/releases/: every release, each file with its size, SHA-256 and build attestation, how to check a download, and each release's notes. Written by `tools/build-releases.py`, never by hand (below) |
-| `tools/` | `build-releases.py`, which writes the releases page, and `releases.json`, the words it can't take from GitHub |
+| `tools/` | `build-releases.py`, which writes the releases page, `releases.json`, the words it can't take from GitHub, and `frame-screens.py`, which draws the devices around the app's screens |
 | `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, the how-it-works stage, the footer's sign, and the press sounds |
 | `art/helmet.webp` | the helmet in the footer, cut out of the app icon (`ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png` in the app's repository) with its visor's light taken out: the footer draws that itself |
 | `fonts/` | Gotham Thin and Light, subset from the app's files (see below), and Montserrat (SIL Open Font License, `fonts/OFL.txt`) behind them; self-hosted so the site makes no third-party requests |
@@ -108,12 +108,14 @@ both here, and decode the new QR code to check it before you push.
 ## The app's screens
 
 `art/app-*.webp` are the app's real screens, drawn by its own capture tool
-(`scripts/figma-compare.sh widget` in the app's repository) from fixtures: no
-wallet, server or phone is involved, and every balance, address and date is a
-sample, which the caption says. Never publish a capture of a real wallet. Their
-amounts are consistent with each other and inside the bridge's cap, and they are
-cropped clear of the app's "Shielded USD" title ("Names"). When the app's look
-changes, capture them again.
+(`scripts/figma-compare.sh widget` in the app's repository) from fixtures, then
+framed by `tools/frame-screens.py`: no wallet, server or phone is involved, and
+every balance, address and date is a sample. Never publish a capture of a real
+wallet. The amounts agree with each other and stay
+inside the bridge's cap. The laptop and phone are drawn, with no maker's logo or
+other app's icon. On the 0zkUSDC phone the page's own tag (`.device-tag`) lies
+over the screen's title, which still reads "Shielded USD" ("Names"). When the
+app's look changes, capture them again.
 
 ## The Morpho and Aave marks
 

@@ -108,19 +108,16 @@
   <section class="section" id="wallet" aria-labelledby="wallet-title">
     <p class="hud sec">A new kind of wallet</p>
     <h2 class="title" id="wallet-title">Hold, send and swap ZEC and 0zkUSDC atomically.</h2>
-    <div class="band top">
-      <p class="prose reveal">Both live in one open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.</p>
-      <ul class="ticks reveal">
+    <p class="prose reveal">Both live in one open-source wallet, backed by verifiable atomic swaps on Ethereum and Zcash.</p>
+    <ul class="ticks two reveal">
       <li><strong>Native shielded ZEC.</strong> Held in Zcash&rsquo;s own shielded pool, private by default.</li>
       <li><strong>0zkUSDC through Railgun.</strong> USDC shielded on Ethereum, at your own private 0zk address.</li>
       <li><strong>A bridge built in.</strong> Swap one for the other without leaving the app, with no custodian.</li>
       <li><strong>One recovery phrase.</strong> It restores both, so keep a copy offline.</li>
-      </ul>
-    </div>
+    </ul>
     <figure class="app-shots reveal">
-      <div class="shot shot-desk plate"><img src="/art/app-desktop.webp" width="2160" height="1400" alt="Veylor on desktop: a shielded ZEC balance with its chart, Send and Receive, and recent shielded activity" loading="lazy" decoding="async"></div>
-      <div class="shot shot-phone plate"><img src="/art/app-phone.webp" width="786" height="1624" alt="Veylor on a phone: the same balance, with Send, Receive and Swap" loading="lazy" decoding="async"></div>
-      <figcaption class="fine">The app itself, with sample balances.</figcaption>
+      <img class="device-laptop" src="/art/app-desktop.webp" width="2240" height="1297" alt="Veylor on a laptop: a shielded ZEC balance with its chart, Send and Receive, and recent shielded activity" loading="lazy" decoding="async">
+      <img class="device-phone" src="/art/app-phone.webp" width="660" height="1353" alt="Veylor on a phone: the same balance, with Send, Receive and Swap" loading="lazy" decoding="async">
     </figure>
   </section>
 
@@ -279,21 +276,16 @@
 
   <section class="section" id="railgun" aria-labelledby="railgun-title">
     <div class="railgun">
-      <figure class="shot shot-0zk plate reveal"><img src="/art/app-0zkusdc.webp" width="900" height="1297" alt="0zkUSDC in Veylor: the balance, Send, Withdraw and Receive, and activity with the sender hidden" loading="lazy" decoding="async"></figure>
+      <figure class="device-0zk reveal">
+        <img src="/art/app-0zkusdc.webp" width="760" height="1558" alt="0zkUSDC in Veylor: the balance, Send, Withdraw and Receive, activity with the sender hidden, and Bridge" loading="lazy" decoding="async">
+        <figcaption class="device-tag asset plate"><span class="token-logo"><img src="/logos/usdc.webp" width="40" height="40" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="18" height="18" alt=""></span><span class="asset-name">0zkUSDC</span><span class="asset-where">Shielded in Railgun</span></figcaption>
+      </figure>
       <div class="reveal">
         <p class="hud sec">Powered by Railgun</p>
         <h2 class="title" id="railgun-title">Your USDC stays shielded in Railgun.</h2>
         <div class="prose">
           <p>Railgun is a non-custodial privacy system for Ethereum. Zero-knowledge proofs keep tokens at private 0zk addresses.</p>
           <p>Veylor runs one inside the app, so there's no second wallet or seed. Learn more at <a href="https://railgun.org/">railgun.org</a>.</p>
-        </div>
-        <div class="pool plate">
-          <span class="token-logo"><img src="/logos/usdc.webp" width="52" height="52" alt=""><img class="token-badge" src="/logos/railgun-badge.webp" width="23" height="23" alt=""></span>
-          <span class="pool-text">
-            <span class="hud">The pool Veylor uses</span>
-            <span class="pool-name">0zkUSDC</span>
-            <span class="pool-desc">USDC in Railgun's shielded pool. It carries Railgun's badge in the app.</span>
-          </span>
         </div>
       </div>
     </div>
