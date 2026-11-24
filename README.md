@@ -6,21 +6,21 @@ HTML, no build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | https://veylor.cash: the home page. It leads with the wallet (one wallet for shielded ZEC and shielded USDC, with the swap built in), then getting paid in 0zkUSDC (a Receive card that switches between USDC and 0zkUSDC), the rest of the app, its languages (pills that switch a line of the app's words), the shielded bridge against NEAR Intents routes, why the swap needs no trust, private DeFi (coming soon, greyed out), Railgun, the source links, the FAQ (`#faq`), and getting the app (`#beta`). https://veylor.cash/#support, the support URL the App Store listing and the footers use, lands on the FAQ's contact line |
-| `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in full (the split key, the swap's steps, the two endings, the deadlines and who may act when, what if) and the comparison with NEAR Intents (`#compare`) |
+| `index.html` | https://veylor.cash: the home page. The hero leads with the wallet and the bridge built into it; then what the wallet holds, getting paid in 0zkUSDC (a Receive card that switches between USDC and 0zkUSDC), the rest of the app, its languages (pills that switch a line of the app's words), why the bridge needs no trust, private DeFi (coming soon, greyed out), Railgun, open source and attestable (a terminal that types a real `gh attestation verify`), the FAQ (`#faq`), and getting the app (`#beta`). https://veylor.cash/#support, the support URL the App Store listing and the footers use, lands on the FAQ's contact line |
+| `how-it-works/index.html` | https://veylor.cash/how-it-works/: the bridge in one animated figure (the stage: four steps when a swap settles, and the same swap stalling), the comparison with NEAR Intents (`#compare`), and what happens if something goes wrong. The protocol's own detail stays in the bridge's README, linked from the page |
 | `privacy/index.html` | https://veylor.cash/privacy/ |
 | `support-veylor/index.html` | https://veylor.cash/support-veylor/: the ZEC donation address and its QR code (see below), linked from every footer |
 | `releases/index.html` | https://veylor.cash/releases/: every release, each file with its size, SHA-256 and build attestation, how to check a download, and each release's notes. Written by `tools/build-releases.py`, never by hand (below) |
 | `tools/` | `build-releases.py`, which writes the releases page, and `releases.json`, the words it can't take from GitHub |
-| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, and the click sound |
+| `site.css`, `site.js` | shared look and motion: the tube wordmark, the sun and grid, the packets that shoot along the grid into the distance (the home page's hero, CSS alone), the top bar (frosted once the page scrolls), the film over the page (grain, scanlines, vignette), the cards that tilt toward the pointer, the scroll's sync line, the diagrams that draw in on scroll, the how-it-works stage, the footer's sign, and the press sounds |
+| `art/helmet.webp` | the helmet in the footer, cut out of the app icon (`ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png` in the app's repository) with its visor's light taken out: the footer draws that itself |
 | `logos/railgun.svg` | Railgun's mark, for the "Powered by Railgun" section (see below) |
-| `fonts/` | Montserrat (SIL Open Font License, `fonts/OFL.txt`), self-hosted so the site makes no third-party requests |
+| `fonts/` | Gotham Thin and Light, subset from the app's files (see below), and Montserrat (SIL Open Font License, `fonts/OFL.txt`) behind them; self-hosted so the site makes no third-party requests |
 | `icon.png` | favicon, from the app icon |
 | `CNAME` | tells GitHub Pages to serve the site on veylor.cash |
 
 Every push to `main` redeploys the site. The VEYLOR wordmark is the app's
-`VeylorWordmarkPainter` geometry drawn as SVG. Gotham isn't used here: the
-app's license doesn't cover websites. All motion stops for visitors who ask
+`VeylorWordmarkPainter` geometry drawn as SVG. All motion stops for visitors who ask
 for reduced motion: the stylesheet draws the still page first and keeps every
 animation inside one `prefers-reduced-motion: no-preference` block.
 
@@ -32,6 +32,28 @@ beta's public TestFlight link
 When the iPhone app leaves TestFlight, point its buttons at its App Store
 listing and drop "beta" from the copy beside them. The bridge itself stays in
 beta until it leaves it (below).
+
+## Gotham
+
+Gotham is a commercial typeface (Hoefler & Co., now Monotype). The app's license
+doesn't cover websites, so publishing `fonts/gotham-*.woff2` needs a web
+license. Without one, delete the two files and their two `@font-face` rules in
+`site.css`: everything falls back to Montserrat.
+
+## The footer's sign
+
+Every page ends in the same full-width footer: the app icon's helmet between
+the letters of the wordmark. The stylesheet draws it lit. `site.js` then takes
+the light over (`.sign.dark`): when the footer arrives the visor opens, the
+letters strike outward from it, hold, and cut out, and it starts again. A press
+switches it off and on, and the visor follows the pointer. Under reduced motion,
+or without JavaScript, it simply stays lit.
+
+## Names
+
+The site says 0zkUSDC (the shielded token) or USDC, never dollars or the app's
+feature name. The releases generator renames it in the notes it takes from
+GitHub (`NAMES` in `tools/build-releases.py`).
 
 ## The releases page
 
@@ -59,14 +81,15 @@ page loads nothing from GitHub; its links go there only when clicked. The top
 bar, footer and platform icons come from `how-it-works/index.html` and the
 home page's tiles, so change them there and run the script again.
 
-## The click sound
+## The press sounds
 
-Buttons and links make a short square-wave blip, synthesized with the Web
-Audio API in `site.js`; there are no audio files. The audio context is made on
-the visitor's first press, never before. The SOUND switch in the footer of the
-home page and the how-it-works page turns it off and on (on by default) and
-remembers the choice in `localStorage` under `veylor.sound`; if storage is
-blocked the page still works and the sound stays on.
+Buttons and links sound like a light cycle: detuned saws through a resonant
+filter, a glassy FM ring over them and a short metallic room behind both,
+synthesized with the Web Audio API in `site.js`; there are no audio files. The
+audio context is made on the visitor's first press, never before. The SOUND
+switch in the footer turns it off and on (on by default) and remembers the
+choice in `localStorage` under `veylor.sound`; if storage is blocked the page
+still works and the sound stays on.
 
 ## The donation address
 

@@ -7,13 +7,13 @@
   },
   "android_certificate_sha256": "83f16e2037b09e731e51b3472466db43c4a962ada1fb4e40eaa4c3215a2174f5",
   "summaries": {
-    "veylor-android/v1.0.6": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and Shielded USD keeps your language to itself.",
-    "veylor-linux/v0.9.4": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and Shielded USD keeps your language to itself.",
-    "veylor-windows/v0.9.4": "The first Windows release, in beta: the neon look and Shielded USD, as on Linux.",
+    "veylor-android/v1.0.6": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and 0zkUSDC keeps your language to itself.",
+    "veylor-linux/v0.9.4": "Sends and bridges wait for Ethereum after a lost answer, refunds no longer stick when fees rise, and 0zkUSDC keeps your language to itself.",
+    "veylor-windows/v0.9.4": "The first Windows release, in beta: the neon look and 0zkUSDC, as on Linux.",
     "veylor-android/v1.0.5": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
     "veylor-linux/v0.9.3": "Pays a market maker's fee only once your wallet has synced, and always shows a fee a bridge paid.",
-    "veylor-android/v1.0.4": "Bridges to Shielded USD can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
-    "veylor-linux/v0.9.2": "Bridges to Shielded USD can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
+    "veylor-android/v1.0.4": "Bridges to 0zkUSDC can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
+    "veylor-linux/v0.9.2": "Bridges to 0zkUSDC can carry a small market maker fee, shown before you bridge, and a lost answer is followed from Ethereum.",
     "veylor-android/v1.0.3": "Now also a direct download, built by GitHub and signed by Veylor.",
     "veylor-linux/v0.9.1": "Built and published by GitHub, with a signed record of every file's build.",
     "veylor-linux/v0.9.0": "The first Linux release."

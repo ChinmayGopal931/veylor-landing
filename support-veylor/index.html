@@ -12,7 +12,8 @@
 <meta property="og:url" content="https://veylor.cash/support-veylor/">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
-<link rel="preload" href="/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/gotham-thin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/site.js" defer></script>
@@ -21,7 +22,7 @@
 <div class="topbar">
   <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
   <nav class="tb-links" aria-label="Main">
-    <a href="/#paid">Shielded USD</a>
+    <a class="tk" href="/#paid">0zkUSDC</a>
     <a href="/how-it-works/">The bridge</a>
     <a href="/releases/">Releases</a>
   </nav>
@@ -63,28 +64,66 @@
 </main>
 
 <footer class="site-footer">
-  <div class="ft-brand">
-    <a class="tb-mark" href="/" aria-label="Veylor home"><svg class="wordmark lit" viewBox="-5 -5 92.5 24" aria-hidden="true"><g fill="none" stroke-linecap="square" stroke-linejoin="miter"><use href="#vw" class="halo" filter="url(#vw-halo)"/><use href="#vw" class="glow" filter="url(#vw-glow)"/><use href="#vw" class="core"/></g></svg></a>
-    <p>Shielded ZEC and Shielded USD, in one wallet.</p>
+  <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+    <path id="sg-v" d="M0 0L4 14L6 14L10 0"/>
+    <path id="sg-e" d="M10 0L0 0L0 14L10 14M2 7L8.5 7"/>
+    <path id="sg-y" d="M0 0L5 7L10 0M5 7L5 14"/>
+    <path id="sg-l" d="M0 0L0 14L10 14"/>
+    <path id="sg-o" d="M3 0L10 0L10 11L7 14L0 14L0 3Z"/>
+    <path id="sg-r" d="M0 14L0 0L7.5 0L10 2.5L10 4.5L7.5 7L0 7M4 7L7 7L10 10L10 14"/>
+    <filter id="sg-halo" x="-90%" y="-70%" width="280%" height="240%"><feGaussianBlur stdDeviation="2"/></filter>
+    <filter id="sg-glow" x="-40%" y="-30%" width="180%" height="160%"><feGaussianBlur stdDeviation="0.5"/></filter>
+    <filter id="vz-halo" x="-30%" y="-400%" width="160%" height="900%"><feGaussianBlur stdDeviation="26"/></filter>
+    <filter id="vz-glow" x="-10%" y="-150%" width="120%" height="400%"><feGaussianBlur stdDeviation="7"/></filter>
+    <path id="vz" pathLength="1" d="M174 579C182.8 582.8 209.3 596.4 227 602C244.7 607.7 262.3 610.3 280 612.7C297.7 615.1 315.3 615.8 333 616.3C350.7 616.8 368.3 616.5 386 615.9C403.7 615.2 421.3 614.3 439 612.4C456.7 610.6 474.3 608.5 492 604.7C509.7 600.8 527.3 596.6 545 589.2C562.7 581.8 589.2 565.2 598 560.4"/>
+  </defs></svg>
+  <div class="ft-top">
+    <div class="ft-intro">
+      <p>Practical privacy for ZEC and 0zkUSDC.</p>
+      <div class="ft-row">
+        <a class="ft-chip plate" href="https://x.com/veylorwallet" aria-label="Veylor on X">X</a>
+        <a class="ft-chip plate" href="https://t.me/veylorwallet" aria-label="Veylor on Telegram">Telegram</a>
+        <button class="sound plate" type="button" aria-pressed="true" hidden>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
+          <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+        </button>
+      </div>
+    </div>
+    <nav class="ft-nav" aria-label="Footer">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works/">The bridge</a></li>
+        <li><a href="/releases/">Releases</a></li>
+        <li><a href="/#beta">Get the app</a></li>
+      </ul>
+      <ul>
+        <li><a href="/#support">Help</a></li>
+        <li><a href="mailto:hello@veylor.cash">hello@veylor.cash</a></li>
+        <li><a href="/support-veylor/">Support Veylor</a></li>
+        <li><a href="/privacy/">Privacy policy</a></li>
+      </ul>
+    </nav>
   </div>
-  <div class="ft-links">
-    <nav aria-label="Footer">
-      <a href="/">Home</a>
-      <a href="/releases/">Releases</a>
-      <a href="/privacy/">Privacy policy</a>
-      <a href="/support-veylor/">Support Veylor</a>
-      <a href="/#support">Help</a>
-      <a href="mailto:hello@veylor.cash">hello@veylor.cash</a>
-    </nav>
-    <nav class="ft-social" aria-label="Social">
-      <a href="https://x.com/veylorwallet" aria-label="Veylor on X">X</a>
-      <a href="https://t.me/veylorwallet" aria-label="Veylor on Telegram">Telegram</a>
-    </nav>
-    <button class="sound plate" type="button" aria-pressed="true" hidden>
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6H5.5L9 3V13L5.5 10H2.5Z"/><path class="wave" d="M11.25 5.5L12.5 8L11.25 10.5M13.5 3.5L15.25 8L13.5 12.5"/><path class="mute" d="M11.5 6L15 10M15 6L11.5 10"/></svg>
-      <span>Sound</span><span class="sound-state" aria-hidden="true">On</span>
+  <div class="ft-stage">
+    <div class="ft-wash" aria-hidden="true"></div>
+    <button class="sign" type="button" aria-pressed="true" aria-label="Veylor's neon sign">
+      <span class="sign-half">
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-v" class="can"/><use href="#sg-v" class="face"/><use href="#sg-v" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-v" class="halo" filter="url(#sg-halo)"/><use href="#sg-v" class="can"/><use href="#sg-v" class="face"/><use href="#sg-v" class="glow" filter="url(#sg-glow)"/><use href="#sg-v" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-e" class="can"/><use href="#sg-e" class="face"/><use href="#sg-e" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-e" class="halo" filter="url(#sg-halo)"/><use href="#sg-e" class="can"/><use href="#sg-e" class="face"/><use href="#sg-e" class="glow" filter="url(#sg-glow)"/><use href="#sg-e" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-y" class="can"/><use href="#sg-y" class="face"/><use href="#sg-y" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-y" class="halo" filter="url(#sg-halo)"/><use href="#sg-y" class="can"/><use href="#sg-y" class="face"/><use href="#sg-y" class="glow" filter="url(#sg-glow)"/><use href="#sg-y" class="core"/></svg></span>
+      </span>
+      <span class="helmet">
+        <img src="/art/helmet.webp" width="740" height="998" alt="" loading="lazy" decoding="async">
+        <svg class="visor" viewBox="0 0 740 998" aria-hidden="true"><use href="#vz" class="v-halo" filter="url(#vz-halo)"/><use href="#vz" class="v-glow" filter="url(#vz-glow)"/><use href="#vz" class="v-core"/><use href="#vz" class="v-hot" filter="url(#vz-glow)"/></svg>
+      </span>
+      <span class="sign-half">
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-l" class="can"/><use href="#sg-l" class="face"/><use href="#sg-l" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-l" class="halo" filter="url(#sg-halo)"/><use href="#sg-l" class="can"/><use href="#sg-l" class="face"/><use href="#sg-l" class="glow" filter="url(#sg-glow)"/><use href="#sg-l" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-o" class="can"/><use href="#sg-o" class="face"/><use href="#sg-o" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-o" class="halo" filter="url(#sg-halo)"/><use href="#sg-o" class="can"/><use href="#sg-o" class="face"/><use href="#sg-o" class="glow" filter="url(#sg-glow)"/><use href="#sg-o" class="core"/></svg></span>
+        <span class="tube"><svg viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-r" class="can"/><use href="#sg-r" class="face"/><use href="#sg-r" class="glass"/></svg><svg class="lit" viewBox="-3 -3 16 20" aria-hidden="true"><use href="#sg-r" class="halo" filter="url(#sg-halo)"/><use href="#sg-r" class="can"/><use href="#sg-r" class="face"/><use href="#sg-r" class="glow" filter="url(#sg-glow)"/><use href="#sg-r" class="core"/></svg></span>
+      </span>
     </button>
   </div>
+  <div class="ft-base"><p>Open source and attestable.</p><p>Built on <a href="https://vizor.cash/">Vizor</a>.</p></div>
 </footer>
 </body>
 </html>
